@@ -1,27 +1,22 @@
-#header-illustration{
- height : 100%;
+ul {
+  list-style: none;
+  padding: 0;
+  padding-left: 1rem;
+  margin: 0;
+  display: flex;
 }
 
-mat-toolbar{
-  padding : 0;
-  height: 6rem;
+li {
+  margin-right: 1em;
 }
 
 a {
-  text-decoration : none;
-  color : white;
-  padding : 0;
-  margin : 0;
+  text-decoration: none;
+  color: white;
+  padding: 0;
+  margin: 0;
 }
 
-ul{
- list-style : none;
- padding : 0;
- padding-left : 1rem;
- margin : 0;
- display : flex;
-}
-
-li{
-  margin-right : 1em;
+.spacer {
+  flex: 1 1 auto;
 }
