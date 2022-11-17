@@ -1,12 +1,16 @@
-<p>test works!</p>
-<section class="example-section" [formGroup]="toppings">
-  <h4>Select your toppings:</h4>
-  <p><mat-checkbox formControlName="pepperoni">Pepperoni</mat-checkbox></p>
-  <p><mat-checkbox formControlName="extracheese">Extra Cheese</mat-checkbox></p>
-  <p><mat-checkbox formControlName="mushroom">Mushroom</mat-checkbox></p>
-</section>
+<mat-checkbox
+           [checked]="allChecked"
+           [indeterminate]="isFewSelected()"
+           (change)="setAll($event.checked)">
+                    {{skill.name}}
+ </mat-checkbox>
 
-<section class="example-section" [formGroup]="toppings">
-  <h4>You chose:</h4>
-  {{toppings.value | json}}
-</section>
+<ul>
+  <li *ngFor="let subskill of skill.subskills">
+    <mat-checkbox
+         [(ngModel)]="subskill.selected"
+         (ngModelChange)="updateAllComplete()">
+             {{subskill.name}} = {{subskill.selected}}
+    </mat-checkbox>
+</li>
+</ul>
