@@ -1,11 +1,36 @@
-<section>
-  <div>
-    Paramètres d'affichage
-    <div>
-      Paramètres d'affichages (choix de langue, passer en mode détaillé, police,
-      thème, nombre de colonnes, liens pour wiki, couper les annotations...)
-    </div>
-    <div>Filtres</div>
-  </div>
-  <div>Bouton Générer un PDF</div>
+<section id="story-params">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Paramètres d'affichage</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Paramètres d'affichages (choix de langue, passer en mode détaillé,
+        police, thème, nombre de colonnes, liens pour wiki, couper les
+        annotations...)
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Filtrer les jeux</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <section >
+        <p *ngFor="let game of games">
+          <input type="checkbox"><label>{{ game }}</label>
+        </p>
+      </section>
+
+
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <p>Bouton Générer un PDF</p>
+    </mat-card-content>
+  </mat-card>
 </section>
