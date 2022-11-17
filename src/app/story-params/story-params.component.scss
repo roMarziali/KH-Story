@@ -2,3 +2,10 @@
   display : flex;
 }
 
+#games-filter{
+  display : flex;
+  flex-direction :column;
+  flex-wrap: wrap;
+  height : 16rem;
+  width : 46rem;
+}
