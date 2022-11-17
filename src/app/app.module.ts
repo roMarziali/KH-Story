@@ -10,6 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { StoryParamsComponent } from './story-params/story-params.component';
 import { StoryContentComponent } from './story-content/story-content.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { StoryContentComponent } from './story-content/story-content.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

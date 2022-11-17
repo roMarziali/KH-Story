@@ -1,3 +1,17 @@
 <header>
-  header / router (home/login)
+  <mat-toolbar color="primary">
+    <img
+      src="../../assets/heart-book.png"
+      alt="Mysterious book with a heart drawn on the cover"
+      id="header-illustration"
+    />
+    <ul>
+      <li>
+        <a mat-button routerLink="/" routerLinkActive="mat-accent">Home</a>
+      </li>
+      <li>
+        <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+      </li>
+    </ul>
+  </mat-toolbar>
 </header>
