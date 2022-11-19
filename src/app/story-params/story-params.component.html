@@ -17,7 +17,7 @@
       <mat-card-title>Filtrer les sources</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <section id="games-filter">
+      <section id="sources-filter">
         <p *ngFor="let sourceFilter of sourceFilters">
           <mat-checkbox [(ngModel)]="sourceFilter.selected">
             {{ sourceFilter.name }}
