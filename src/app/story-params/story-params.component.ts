@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { StoryComponent } from '../story/story.component';
 
-interface GameFilter {
+interface sourceFilter {
   name: string;
   selected: boolean;
 }
@@ -13,12 +13,12 @@ interface GameFilter {
 })
 
 export class StoryParamsComponent {
-  games: string[] = [];
-  gameFilters: GameFilter[] = [];
+  sources: string[] = [];
+  sourceFilters: sourceFilter[] = [];
 
   constructor(private StoryComponent: StoryComponent) {
-    this.games = this.StoryComponent.games;
-    for (const game of this.games) this.gameFilters.push({ name: game, selected: true });
+    this.sources = this.StoryComponent.sources;
+    for (const source of this.sources) this.sourceFilters.push({ name: source, selected: true });
   }
 
 

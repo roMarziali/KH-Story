@@ -14,13 +14,13 @@
 
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Filtrer les jeux</mat-card-title>
+      <mat-card-title>Filtrer les sources</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <section id="games-filter">
-        <p *ngFor="let gameFilter of gameFilters">
-          <mat-checkbox [(ngModel)]="gameFilter.selected">
-            {{ gameFilter.name }}
+        <p *ngFor="let sourceFilter of sourceFilters">
+          <mat-checkbox [(ngModel)]="sourceFilter.selected">
+            {{ sourceFilter.name }}
           </mat-checkbox>
         </p>
       </section>

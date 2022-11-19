@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class StoryComponent {
 
-  private _games = [
+  private _sources = [
     "Kingdom Hearts",
     "Kingdom Hearts: Chain of Memories",
     "Kingdom Hearts II",
@@ -21,10 +21,11 @@ export class StoryComponent {
     "Kingdom Hearts III",
     "Kingdom Hearts Dark Road",
     "Kingdom Hearts Melody of Memory",
+    "Autre (interviews, guides officiels...)"
   ]
 
-  public get games() {
-    return this._games
+  public get sources() {
+    return this._sources
   }
 
 }
