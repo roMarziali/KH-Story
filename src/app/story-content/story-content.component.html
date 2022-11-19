@@ -1,3 +1,34 @@
 <section id="story-content">
-{{storyContent | json}}
+  <button mat-raised-button color="accent">Créer un segment</button>
+
+  Remplacer les boutons par des icônes
+  <div *ngFor="let storySegment of storySegments" [class]="storySegment.class">
+    <div>
+      <div [class]="'mat-' + storySegment.class">
+        {{ storySegment.content }}
+      </div>
+      <div
+        *ngIf="storySegment.alternative"
+        [class]="'mat-' + storySegment.class"
+      >
+        {{ storySegment.alternative.content }}
+      </div>
+      <div *ngIf="storySegment.annotation" class="story-content-annotation">
+        {{ storySegment.annotation.content }}
+      </div>
+      <div *ngIf="storySegment.retcon" class="story-content-retcon">
+        {{ storySegment.retcon.content }}
+      </div>
+
+      <button mat-raised-button color="accent">Modifier</button>
+      <button mat-raised-button color="accent">Supprimer</button>
+    </div>
+
+    <button mat-raised-button color="accent">Créer un segment</button>
+  </div>
+
+  Voir ici pour customized la typo
+  https://material.angular.io/guide/typography
 </section>
+
+<!-- -->

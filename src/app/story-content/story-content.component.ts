@@ -7,18 +7,38 @@ import { Component } from '@angular/core';
 })
 export class StoryContentComponent {
 
-  storyContent: object = {};
+  storySegments: any = [];
 
   constructor() {
-    this.storyContent = this.getContent()
+    this.storySegments = this.getStorySegments()
   }
 
-  getContent(): object {
-    return {
-      "insertAnIdToken": {
+  getStorySegments(): object[] {
+    return [
+      {
+        "order": 1,
+        "content": "Ère des Contes de Fées",
+        "class": "h1",
+        "sources": [0]
+      },
+
+      {
+        "order": 2,
+        "content": "Les Îles du Destin",
+        "class": "h2",
+        "sources": [0]
+      },
+
+      {
+        "order": 3,
+        "content": "Rencontre avec un inconnu",
+        "class": "h3",
+        "sources": [0]
+      },
+      {
         "order": 4,
         "content": "Ceci est l'histoire de Sora",
-        "type": "text",
+        "class": "body",
         "sources": [1, 2, 5],
         "alternative": {
           "content": "Ceci est l'histoire d'un garçon armé d'une clé géante",
@@ -30,29 +50,8 @@ export class StoryContentComponent {
         "retcon": {
           "content": "Dans le tout premier jeu, Sora est armé d'une tronçonneuse"
         }
-      },
-
-      "insertAnIdToken2": {
-        "order": 1,
-        "content": "Ère des Contes de Fées",
-        "type": "titre1",
-        "sources": [0]
-      },
-
-      "insertAnIdToken3": {
-        "order": 2,
-        "content": "Les Îles du Destin",
-        "type": "titre2",
-        "sources": [0]
-      },
-
-      "insertAnIdToken4": {
-        "order": 3,
-        "content": "Rencontre avec un inconnu",
-        "type": "titre2",
-        "sources": [0]
       }
-    }
-
+    ]
   }
+
 }
