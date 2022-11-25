@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StoryComponent } from '../story/story.component';
 
 interface SourcesFilter {
+  id: number,
   name: string,
   selected: boolean,
 }
@@ -15,16 +17,25 @@ interface SourcesFilter {
 export class StoryParamsComponent {
   sources: string[] = [];
   sourcesFilter: SourcesFilter[] = [];
-  @Output() sourceFilterModified = new EventEmitter()
+
 
   constructor(private StoryComponent: StoryComponent) {
     this.sources = this.StoryComponent.sources;
-    for (const source of this.sources) this.sourcesFilter.push({ name: source, selected: true });
-    this.StoryComponent.sourcesFilter = this.sourcesFilter;
+    for (const sourceId in this.sources) this.sourcesFilter.push({ id: parseInt(sourceId), name: this.sources[sourceId], selected: true });
+    this.updateSourcesFilter();
+
   }
 
   updateSourcesFilter() {
-    this.sourceFilterModified.emit(this.sourcesFilter);
+      this.StoryComponent.sourcesFilter =  this.minimizeSourceFilter();
+  }
+
+  minimizeSourceFilter() {
+    const minSourcesFilter:number[] = []
+    for (const source of this.sourcesFilter) {
+      if (source.selected) minSourcesFilter.push(source.id);
+    }
+    return minSourcesFilter;
   }
 
 }
