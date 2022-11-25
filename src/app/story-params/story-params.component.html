@@ -19,7 +19,7 @@
     <mat-card-content>
       <section id="sources-filter">
         <p *ngFor="let sourceFilter of sourcesFilter">
-          <mat-checkbox [(ngModel)]="sourceFilter.selected" (change)="modifySourcesFilter()">
+          <mat-checkbox [(ngModel)]="sourceFilter.selected" (change)="updateSourcesFilter()">
             {{ sourceFilter.name }}
           </mat-checkbox>
         </p>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injectable, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { StoryComponent } from '../story/story.component';
 
 interface SourcesFilter {
@@ -20,9 +20,10 @@ export class StoryParamsComponent {
   constructor(private StoryComponent: StoryComponent) {
     this.sources = this.StoryComponent.sources;
     for (const source of this.sources) this.sourcesFilter.push({ name: source, selected: true });
+    this.StoryComponent.sourcesFilter = this.sourcesFilter;
   }
 
-  modifySourcesFilter() {
+  updateSourcesFilter() {
     this.sourceFilterModified.emit(this.sourcesFilter);
   }
 
