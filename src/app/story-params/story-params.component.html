@@ -4,7 +4,7 @@
       <mat-card-title>Paramètres d'affichage</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p style ="width : 200px">
+      <p style="width: 200px">
         Paramètres d'affichages (choix de langue, passer en mode détaillé,
         police, thème, nombre de colonnes, liens pour wiki, couper les
         annotations...)
@@ -17,12 +17,27 @@
       <mat-card-title>Filtrer les sources</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <section id="sources-filter">
-        <p *ngFor="let sourceFilter of sourcesFilter">
-          <mat-checkbox [(ngModel)]="sourceFilter.selected" (change)="updateSourcesFilter()">
-            {{ sourceFilter.name }}
-          </mat-checkbox>
-        </p>
+      <section>
+        <div id="sources-filter">
+          <p *ngFor="let sourceFilter of sourcesFilter">
+            <mat-checkbox
+              [(ngModel)]="sourceFilter.selected"
+              (change)="updateSourcesFilter()"
+              color="primary"
+            >
+              {{ sourceFilter.name }}
+            </mat-checkbox>
+          </p>
+        </div>
+        <div>
+          <mat-checkbox
+            color="accent"
+            checked
+            [(ngModel)]="displayAnnotation"
+            (change)="updateAnnotationFilter()"
+            >Afficher les annotations</mat-checkbox
+          >
+        </div>
       </section>
     </mat-card-content>
   </mat-card>

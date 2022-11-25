@@ -25,6 +25,8 @@ export class StoryComponent {
   ]
 
   sourcesFilter: number[] = [];
+  displayAnnotation: boolean = true;
+
   public get sources() {
     return this._sources
   }

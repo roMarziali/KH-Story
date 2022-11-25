@@ -20,11 +20,11 @@
       >
         {{ storySegment.alternative.content }}
       </div>
-      <div *ngIf="storySegment.annotation" class="story-content-annotation">
+      <div
+        *ngIf="storySegment.annotation && storedDisplayAnnotation"
+        class="story-content-annotation"
+      >
         {{ storySegment.annotation.content }}
-      </div>
-      <div *ngIf="storySegment.retcon" class="story-content-retcon">
-        {{ storySegment.retcon.content }}
       </div>
 
       <mat-icon>edit</mat-icon>
@@ -35,5 +35,3 @@
 
   Voir ici pour customized la typo https://material.angular.io/guide/typography
 </section>
-
-<!-- -->

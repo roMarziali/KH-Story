@@ -9,6 +9,7 @@ export class StoryContentComponent {
 
   storySegments: any = [];
   @Input() storedSourcesFilter: Number[] = [];
+  @Input() storedDisplayAnnotation: boolean = true;
 
   constructor() {
     this.storySegments = this.getStorySegments()
@@ -59,17 +60,9 @@ export class StoryContentComponent {
         },
         "annotation": {
           "content": "Ceci est une annotation !"
-        },
-        "retcon": {
-          "content": "Dans le tout premier jeu, Sora est armé d'une tronçonneuse"
         }
       }
     ]
   }
 
-}
-
-interface SourcesFilter {
-  name: string,
-  selected: boolean,
 }

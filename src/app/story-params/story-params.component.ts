@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { StoryComponent } from '../story/story.component';
 
 interface SourcesFilter {
@@ -17,12 +16,14 @@ interface SourcesFilter {
 export class StoryParamsComponent {
   sources: string[] = [];
   sourcesFilter: SourcesFilter[] = [];
+  displayAnnotation: boolean = true;
 
 
   constructor(private StoryComponent: StoryComponent) {
     this.sources = this.StoryComponent.sources;
     for (const sourceId in this.sources) this.sourcesFilter.push({ id: parseInt(sourceId), name: this.sources[sourceId], selected: true });
     this.updateSourcesFilter();
+    this.updateAnnotationFilter();
 
   }
 
@@ -36,6 +37,10 @@ export class StoryParamsComponent {
       if (source.selected) minSourcesFilter.push(source.id);
     }
     return minSourcesFilter;
+  }
+
+  updateAnnotationFilter(){
+    this.StoryComponent.displayAnnotation = this.displayAnnotation;
   }
 
 }
