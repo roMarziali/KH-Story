@@ -12,7 +12,6 @@ interface SourcesFilter {
   styleUrls: ['./story-params.component.scss']
 })
 
-@Injectable()
 export class StoryParamsComponent {
   sources: string[] = [];
   sourcesFilter: SourcesFilter[] = [];
