@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-story-content',
@@ -13,27 +13,29 @@ export class StoryContentComponent {
     this.storySegments = this.getStorySegments()
   }
 
+@Input() storedSourcesFilter:SourcesFilter[] = [];
+
   getStorySegments(): object[] {
     return [
       {
         "order": 1,
         "content": "Ère des Contes de Fées",
         "class": "h1",
-        "sources": [0]
+        "sources": [5]
       },
 
       {
         "order": 2,
         "content": "Les Îles du Destin",
         "class": "h2",
-        "sources": [0]
+        "sources": [4]
       },
 
       {
         "order": 3,
         "content": "Rencontre avec un inconnu",
         "class": "h3",
-        "sources": [0]
+        "sources": [5]
       },
       {
         "order": 4,
@@ -54,4 +56,9 @@ export class StoryContentComponent {
     ]
   }
 
+}
+
+interface SourcesFilter {
+  name: string,
+  selected: boolean,
 }

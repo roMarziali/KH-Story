@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Injectable, Output } from '@angular/core';
 import { StoryComponent } from '../story/story.component';
 
-interface sourceFilter {
-  name: string;
-  selected: boolean;
+interface SourcesFilter {
+  name: string,
+  selected: boolean,
 }
 
 @Component({
@@ -12,14 +12,19 @@ interface sourceFilter {
   styleUrls: ['./story-params.component.scss']
 })
 
+@Injectable()
 export class StoryParamsComponent {
   sources: string[] = [];
-  sourceFilters: sourceFilter[] = [];
+  sourcesFilter: SourcesFilter[] = [];
+  @Output() sourceFilterModified = new EventEmitter()
 
   constructor(private StoryComponent: StoryComponent) {
     this.sources = this.StoryComponent.sources;
-    for (const source of this.sources) this.sourceFilters.push({ name: source, selected: true });
+    for (const source of this.sources) this.sourcesFilter.push({ name: source, selected: true });
   }
 
+  modifySourcesFilter() {
+    this.sourceFilterModified.emit(this.sourcesFilter);
+  }
 
 }

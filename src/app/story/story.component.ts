@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-story',
@@ -24,8 +24,19 @@ export class StoryComponent {
     "Autre (interviews, guides officiels...)"
   ]
 
+  sourcesFilter: SourcesFilter[] = [];
+
+  sourceFilterModified(sourcesFilter: SourcesFilter[]) {
+    this.sourcesFilter = sourcesFilter;
+  }
+
   public get sources() {
     return this._sources
   }
 
+}
+
+interface SourcesFilter {
+  name: string,
+  selected: boolean,
 }
