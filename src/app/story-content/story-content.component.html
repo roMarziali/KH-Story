@@ -2,23 +2,9 @@
   <mat-icon>add</mat-icon>
 
   <div *ngFor="let storySegment of storySegments" [class]="storySegment.class">
-    <div
-      *ngIf="
-        displayMethod(storySegment) == 'mainDisplay' ||
-        displayMethod(storySegment) == 'alternatedDisplay'
-      "
-    >
-      <div
-        *ngIf="displayMethod(storySegment) == 'mainDisplay'"
-        [class]="'mat-' + storySegment.class"
-      >
-        {{ storySegment.content }}
-      </div>
-      <div
-        *ngIf="displayMethod(storySegment) == 'alternatedDisplay'"
-        [class]="'mat-' + storySegment.class"
-      >
-        {{ storySegment.alternative.content }}
+    <div *ngIf="displayMethod(storySegment).display">
+      <div [class]="'mat-' + storySegment.class">
+        {{ displayMethod(storySegment).content }}
       </div>
       <div
         *ngIf="storySegment.annotation && storedDisplayAnnotation"

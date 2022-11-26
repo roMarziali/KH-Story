@@ -17,14 +17,17 @@ export class StoryContentComponent {
 
   displayMethod(storySegment: any) {
     for (const source of storySegment.sources) {
-      if (this.storedSourcesFilter.includes(source)) return "mainDisplay";
+      if (this.storedSourcesFilter.includes(source)) return { display: true, content: storySegment.content };
     }
-    if (storySegment.alternative) {
-      for (const source of storySegment.alternative.sources) {
-        if (this.storedSourcesFilter.includes(source)) return "alternatedDisplay";
+    if (storySegment.alternatives) {
+      for (const alternativeId in storySegment.alternatives) {
+        const alternative = storySegment.alternatives[alternativeId];
+        for (const source of alternative.sources) {
+          if (this.storedSourcesFilter.includes(source)) return { display: true, content: alternative.content };
+        }
       }
     }
-    return "noDisplay";
+    return { display: false };
   }
 
   getStorySegments(): object[] {
@@ -33,7 +36,7 @@ export class StoryContentComponent {
         "order": 1,
         "content": "Ère des Contes de Fées",
         "class": "h1",
-        "sources": [0, 8]
+        "sources": [0, 8],
       },
 
       {
@@ -54,9 +57,15 @@ export class StoryContentComponent {
         "content": "Ceci est l'histoire de Sora",
         "class": "body",
         "sources": [2, 4, 5],
-        "alternative": {
-          "content": "Ceci est l'histoire d'un garçon armé d'une clé géante",
-          "sources": [7, 8]
+        "alternatives": {
+          1: {
+            "content": "Ceci est l'histoire d'un garçon armé d'une clé géante",
+            "sources": [7, 8]
+          },
+          2: {
+            "content": "Ceci est l'histoire de Nomura",
+            "sources": [9, 10]
+          }
         },
         "annotation": {
           "content": "Ceci est une annotation !"
