@@ -9,6 +9,10 @@ export class UserContentManagerComponent {
   displayedCards = {
     filters: false,
     settings: false,
-    visibility : false
+    visibility: false
+  }
+
+  toggleDisplayedCard(cardName: 'filters' | 'settings' | 'visibility') {
+    this.displayedCards[cardName] = !this.displayedCards[cardName];
   }
 }

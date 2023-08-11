@@ -2,13 +2,16 @@
   <mat-toolbar>
     <span>Gestion du contenu</span>
     <span class="spacer"></span>
-    <button mat-icon-button aria-label="Filtres" matTooltip="Filtres">
+    <button mat-icon-button aria-label="Filtres" matTooltip="Filtres"
+      [color]="(displayedCards.filters) ? 'primary' : 'basic'" (click)="toggleDisplayedCard('filters')">
       <mat-icon>filter_list</mat-icon>
     </button>
-    <button mat-icon-button aria-label="Paramètres" matTooltip="Paramètres">
+    <button mat-icon-button aria-label="Paramètres" matTooltip="Paramètres"
+      [color]="(displayedCards.settings) ? 'primary' : 'basic'" (click)="toggleDisplayedCard('settings')">
       <mat-icon>settings</mat-icon>
     </button>
-    <button mat-icon-button aria-label="Visibilité" matTooltip="Visibilité">
+    <button mat-icon-button aria-label="Visibilité" matTooltip="Visibilité"
+      [color]="(displayedCards.visibility) ? 'primary' : 'basic'" (click)="toggleDisplayedCard('visibility')">
       <mat-icon>visibility</mat-icon>
     </button>
   </mat-toolbar>
