@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './header-page/header-page.component';
 
 import { MainPageComponent } from './main-page/main-page.component';
-import { UserComponentManagerComponent } from './main-page/user-component-manager/user-component-manager.component';
+import { UserContentManagerComponent } from './main-page/user-content-manager/user-content-manager.component';
 
 
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -21,7 +21,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AppComponent,
     HeaderPageComponent,
     MainPageComponent,
-    UserComponentManagerComponent
+    UserContentManagerComponent
   ],
   imports: [
     BrowserModule,
