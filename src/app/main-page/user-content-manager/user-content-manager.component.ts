@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-content-manager.component.scss']
 })
 export class UserContentManagerComponent {
-
+  displayedCards = {
+    filters: false,
+    settings: false,
+    visibility : false
+  }
 }

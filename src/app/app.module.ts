@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderPageComponent } from './header-page/header-page.component';
-
-import { MainPageComponent } from './main-page/main-page.component';
-import { UserContentManagerComponent } from './main-page/user-content-manager/user-content-manager.component';
-
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderPageComponent } from './header-page/header-page.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { UserContentManagerComponent } from './main-page/user-content-manager/user-content-manager.component';
+import { ContentFiltersComponent } from './user-content-manager/content-filters/content-filters.component';
+import { ContentSettingsComponent } from './user-content-manager/content-settings/content-settings.component';
+import { ContentVisibilityComponent } from './user-content-manager/content-visibility/content-visibility.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AppComponent,
     HeaderPageComponent,
     MainPageComponent,
-    UserContentManagerComponent
+    UserContentManagerComponent,
+    ContentFiltersComponent,
+    ContentSettingsComponent,
+    ContentVisibilityComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
