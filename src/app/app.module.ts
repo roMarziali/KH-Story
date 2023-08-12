@@ -11,6 +11,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
@@ -24,6 +26,7 @@ import { ContentFiltersComponent } from './components/main-page/user-content-man
 import { ContentSettingsComponent } from './components/main-page/user-content-manager/content-settings/content-settings.component';
 import { ContentVisibilityComponent } from './components/main-page/user-content-manager/content-visibility/content-visibility.component';
 import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
+import { TranslatedVisibilityPipe } from './pipes/translated-visibility.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
     ContentFiltersComponent,
     ContentSettingsComponent,
     ContentVisibilityComponent,
-    TranslateSettingsPipe
+    TranslateSettingsPipe,
+    TranslatedVisibilityPipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
     MatCardModule,
     MatButtonToggleModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
