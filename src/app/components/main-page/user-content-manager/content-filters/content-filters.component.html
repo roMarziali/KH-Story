@@ -1,7 +1,12 @@
 <mat-card>
-  <ul>
-    <li *ngFor="let filter of contentParametersService.filters">
-      <mat-checkbox [(ngModel)]="filter.selected">{{filter.name}}</mat-checkbox>
-    </li>
-  </ul>
+  <mat-card-header>
+    <mat-card-title>Filtres</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <li *ngFor="let filter of contentParametersService.filters">
+        <mat-checkbox [(ngModel)]="filter.selected">{{filter.name}}</mat-checkbox>
+      </li>
+    </ul>
+  </mat-card-content>
 </mat-card>
