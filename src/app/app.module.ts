@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -8,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,13 +36,15 @@ import { ContentVisibilityComponent } from './components/main-page/user-content-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
     MatCardModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
