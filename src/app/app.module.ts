@@ -16,10 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './header-page/header-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UserContentManagerComponent } from './main-page/user-content-manager/user-content-manager.component';
-import { ContentFiltersComponent } from './user-content-manager/content-filters/content-filters.component';
-import { ContentSettingsComponent } from './user-content-manager/content-settings/content-settings.component';
-import { ContentVisibilityComponent } from './user-content-manager/content-visibility/content-visibility.component';
-
+import { ContentFiltersComponent } from './main-page/user-content-manager/content-filters/content-filters.component';
+import { ContentSettingsComponent } from './main-page/user-content-manager/content-settings/content-settings.component';
+import { ContentVisibilityComponent } from './main-page/user-content-manager/content-visibility/content-visibility.component';
 
 @NgModule({
   declarations: [
