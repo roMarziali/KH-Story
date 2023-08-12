@@ -13,7 +13,7 @@ export class FiltersService {
     },
     {
       id: 'KHCoM',
-      name: 'Kingdom Hearts: Chain of Memories',
+      name: 'KH: Chain of Memories',
       selected: true
     },
     {
@@ -23,47 +23,47 @@ export class FiltersService {
     },
     {
       id: 'KH3582Days',
-      name: 'Kingdom Hearts 358/2 Days',
+      name: 'KH 358/2 Days',
       selected: true
     },
     {
       id: 'KHBBS',
-      name: 'Kingdom Hearts: Birth by Sleep',
+      name: 'KH: Birth by Sleep',
       selected: true
     },
     {
       id: 'KHCoded',
-      name: 'Kingdom Hearts Coded',
+      name: 'KH Coded',
       selected: true
     },
     {
       id: 'KHDDD',
-      name: 'Kingdom Hearts 3D: Dream Drop Distance',
+      name: 'KH 3D: Dream Drop Distance',
       selected: true
     },
     {
       id: 'KH0pt2',
-      name: 'Kingdom Hearts 0.2: Birth by Sleep - A Fragmentary Passage',
+      name: 'KH 0.2: Birth by Sleep - A Fragmentary Passage',
       selected: true
     },
     {
       id: 'KH3',
-      name: 'Kingdom Hearts III',
+      name: 'KKingdom HeartsH III',
       selected: true
     },
     {
       id: 'KHUX',
-      name: 'Kingdom Hearts Union χ',
+      name: 'KH Union χ',
       selected: true
     },
     {
       id: 'KHUXBackCover',
-      name: 'Kingdom Hearts Union χ Back Cover',
+      name: 'KH Union χ Back Cover',
       selected: true
     },
     {
       id: 'KHMoM',
-      name: 'Kingdom Hearts: Melody of Memory',
+      name: 'KH: Melody of Memory',
       selected: true
     },
     {
