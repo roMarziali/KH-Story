@@ -14,8 +14,8 @@
     <mat-icon>visibility</mat-icon>
   </button>
 </mat-toolbar>
-<div id="user-content-parameters">
+<mat-card id="user-content-parameters">
   <app-content-filters *ngIf="displayedCards.filters"></app-content-filters>
   <app-content-settings *ngIf="displayedCards.settings"></app-content-settings>
   <app-content-visibility *ngIf="displayedCards.visibility"></app-content-visibility>
-</div>
+</mat-card>

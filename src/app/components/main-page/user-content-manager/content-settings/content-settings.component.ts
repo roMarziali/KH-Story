@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContentParametersService } from 'src/app/services/content-parameters.service';
 
 @Component({
   selector: 'app-content-settings',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./content-settings.component.scss']
 })
 export class ContentSettingsComponent {
+
+  constructor(public contentParametersService: ContentParametersService) { }
 
 }

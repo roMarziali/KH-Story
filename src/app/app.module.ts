@@ -10,6 +10,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -44,7 +46,8 @@ import { ContentVisibilityComponent } from './components/main-page/user-content-
     MatTooltipModule,
     MatCardModule,
     MatButtonToggleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

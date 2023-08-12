@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FiltersService } from 'src/app/services/filters.service';
 import { Filter } from 'src/app/models/filter.model';
+import { SettingsService } from './settings.service';
 import { Settings } from 'src/app/models/settings.model';
 
 @Injectable({
@@ -9,14 +10,12 @@ import { Settings } from 'src/app/models/settings.model';
 export class ContentParametersService {
 
   filters: Filter[] = [];
-  settings: Settings = {
-    annotations: "bubble",
-    references: "visible",
-  };
+  settings: Settings[] = [];
   visibility: undefined;
 
-  constructor(public filtersService: FiltersService) {
-    this.filters = filtersService.getFilters();
+  constructor(private filtersService: FiltersService, private settingsService: SettingsService) {
+    this.filters = this.filtersService.getFilters();
+    this.settings = this.settingsService.getSettings();
     this.loadParameters();
   }
 
@@ -48,13 +47,16 @@ export class ContentParametersService {
   loadSettings() {
     const localSettings = localStorage.getItem('settings');
     if (localSettings) {
-      const localSettingParsed = JSON.parse(localSettings);
-      for (const setting of Object.keys(this.settings)) {
-        if (setting === "annotations" || setting === "references") {
-          this.settings[setting] = localSettingParsed[setting];
+      const localSettingsParsed = JSON.parse(localSettings);
+      for (const setting of localSettingsParsed) {
+        const settingIndex = this.settings.findIndex(s => s.id === setting.id);
+        if (settingIndex !== -1) {
+          this.settings[settingIndex].value = setting.value;
         }
       }
+
     }
+    return
   }
 
 

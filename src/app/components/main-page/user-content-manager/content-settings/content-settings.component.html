@@ -1,3 +1,17 @@
-<mat-card>
-  <mat-card-content>Settings card</mat-card-content>
-</mat-card>
+<mat-card-header>
+  <mat-card-title>Paramètres</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+
+  <div *ngFor="let setting of contentParametersService.settings">
+    <mat-form-field>
+      <mat-label>{{setting.id}}</mat-label>
+      <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
+        <mat-option *ngFor="let option of setting.options" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</mat-card-content>

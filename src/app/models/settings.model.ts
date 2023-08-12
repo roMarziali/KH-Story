@@ -1,5 +1,6 @@
 
 export interface Settings {
-  annotations: "bubble" | "footnote" | "hidden",
-  references: "visible" | "hidden",
+  id : string;
+  options : string[];
+  value : string;
 }
