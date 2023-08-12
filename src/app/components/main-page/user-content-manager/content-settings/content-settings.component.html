@@ -5,10 +5,10 @@
 
   <div *ngFor="let setting of contentParametersService.settings">
     <mat-form-field>
-      <mat-label>{{setting.id}}</mat-label>
+      <mat-label>{{setting.id | translateSettings}}</mat-label>
       <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
         <mat-option *ngFor="let option of setting.options" [value]="option">
-          {{option}}
+          {{option |translateSettings}}
         </mat-option>
       </mat-select>
     </mat-form-field>

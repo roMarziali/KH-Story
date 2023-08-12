@@ -8,13 +8,13 @@ export class SettingsService {
   private settings: Settings[] = [
     {
       id: 'annotations',
-      options: ["bubble", "footnote", "hidden"],
-      value: "bubble"
+      options: ["Yes", "No"],
+      value: "Yes"
     },
     {
       id: 'references',
-      options: ["visible", "hidden"],
-      value: "visible"
+      options: ["Yes", "No"],
+      value: "Yes"
     }
   ];
 

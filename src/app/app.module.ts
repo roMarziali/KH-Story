@@ -23,6 +23,7 @@ import { UserContentManagerComponent } from './components/main-page/user-content
 import { ContentFiltersComponent } from './components/main-page/user-content-manager/content-filters/content-filters.component';
 import { ContentSettingsComponent } from './components/main-page/user-content-manager/content-settings/content-settings.component';
 import { ContentVisibilityComponent } from './components/main-page/user-content-manager/content-visibility/content-visibility.component';
+import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContentVisibilityComponent } from './components/main-page/user-content-
     UserContentManagerComponent,
     ContentFiltersComponent,
     ContentSettingsComponent,
-    ContentVisibilityComponent
+    ContentVisibilityComponent,
+    TranslateSettingsPipe
   ],
   imports: [
     BrowserModule,
