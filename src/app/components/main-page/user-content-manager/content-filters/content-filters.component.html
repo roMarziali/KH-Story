@@ -5,7 +5,7 @@
   <ul>
     <li *ngFor="let filter of contentParametersService.filters">
       <mat-checkbox [(ngModel)]="filter.selected"
-        (change)="contentParametersService.saveParameters()">{{filter.name}}</mat-checkbox>
+        (change)="contentParametersService.filterChanged()">{{filter.name}}</mat-checkbox>
     </li>
   </ul>
 </mat-card-content>

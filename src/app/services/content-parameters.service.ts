@@ -1,12 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { FiltersService } from 'src/app/services/filters.service';
 import { Filter } from 'src/app/models/filter.model';
 import { SettingsService } from './settings.service';
 import { Settings } from 'src/app/models/settings.model';
 import { Visibility } from '../models/visibility.model';
-import {
-  VisibilityService
-} from './visibility.service';
+import { VisibilityService } from './visibility.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,11 +14,18 @@ export class ContentParametersService {
   settings: Settings[] = [];
   visibility: Visibility[] = [];
 
+  filtersChange = new EventEmitter();
+
   constructor(private filtersService: FiltersService, private settingsService: SettingsService, private visibilityService: VisibilityService) {
     this.filters = this.filtersService.getFilters();
     this.settings = this.settingsService.getSettings();
     this.visibility = this.visibilityService.getVisibility();
     this.loadParameters();
+  }
+
+  filterChanged() {
+    this.saveParameters();
+    this.filtersChange.emit();
   }
 
   saveParameters() {

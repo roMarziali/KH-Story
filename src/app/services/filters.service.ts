@@ -48,7 +48,7 @@ export class FiltersService {
     },
     {
       id: 'KH3',
-      name: 'KKingdom HeartsH III',
+      name: 'Kingdom Hearts III',
       selected: true
     },
     {

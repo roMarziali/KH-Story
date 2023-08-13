@@ -1,1 +1,1 @@
-<div [class]="segment.content.type">{{segment.content.texts | json }}</div>
+<div *ngIf="text" [class]="segment.content.type">{{text }}</div>
