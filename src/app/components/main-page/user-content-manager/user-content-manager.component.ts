@@ -6,13 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-content-manager.component.scss']
 })
 export class UserContentManagerComponent {
-  displayedCards = {
-    filters: false,
-    settings: false,
-    visibility: false
-  }
+  displaySettings = false;
 
-  toggleDisplayedCard(cardName: 'filters' | 'settings' | 'visibility') {
-    this.displayedCards[cardName] = !this.displayedCards[cardName];
+  toggleDisplaySetting() {
+    this.displaySettings = !this.displaySettings;
   }
 }
