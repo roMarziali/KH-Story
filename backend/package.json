@@ -1,0 +1,14 @@
+{
+  "name": "kh-story_backend",
+  "version": "1.0.0",
+  "description": "KH Story backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Romain Marziali",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
