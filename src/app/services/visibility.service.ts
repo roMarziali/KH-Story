@@ -14,7 +14,7 @@ export class VisibilityService {
     {
       id: 'font-police',
       type: 'options',
-      options: ["Arial", "Times New Roman", "Verdana", "Helvetica", "Georgia", "Roboto"],
+      options: ["Verdana", "Arial", "Times New Roman", "Helvetica", "Georgia", "Roboto"],
       value: "Verdana"
     },
     {

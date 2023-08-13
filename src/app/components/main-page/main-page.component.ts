@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContentParametersService } from 'src/app/services/content-parameters.service';
 
 @Component({
   selector: 'app-main-page',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent {
+
+constructor(public contentParametersService: ContentParametersService) { }
 
 }

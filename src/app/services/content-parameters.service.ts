@@ -10,6 +10,7 @@ export class ContentParametersService {
 
   filters: Filter[] = [];
   visibility: Visibility[] = [];
+  displaySettings: boolean = false;
 
   filtersChange = new EventEmitter();
 
@@ -17,6 +18,10 @@ export class ContentParametersService {
     this.filters = this.filtersService.getFilters();
     this.visibility = this.visibilityService.getVisibility();
     this.loadParameters();
+  }
+
+  toggleDisplaySetting() {
+    this.displaySettings = !this.displaySettings;
   }
 
   filterChanged() {

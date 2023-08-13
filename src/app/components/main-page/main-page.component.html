@@ -1,4 +1,12 @@
 <main>
   <app-user-content-manager id="user-component-manager"></app-user-content-manager>
-  <app-story></app-story>
+  <div id="story-zone">
+    <mat-card id="user-settings" *ngIf="contentParametersService.displaySettings">
+      <app-content-filters></app-content-filters>
+      <app-content-visibility></app-content-visibility>
+    </mat-card>
+
+    <app-story></app-story>
+  </div>
+
 </main>

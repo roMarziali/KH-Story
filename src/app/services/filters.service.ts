@@ -38,12 +38,12 @@ export class FiltersService {
     },
     {
       id: 'KHDDD',
-      name: 'KH 3D: Dream Drop Distance',
+      name: 'KH Dream Drop Distance',
       selected: true
     },
     {
       id: 'KH0pt2',
-      name: 'KH 0.2: Birth by Sleep - A Fragmentary Passage',
+      name: 'KH 0.2 A Fragmentary Passage',
       selected: true
     },
     {
