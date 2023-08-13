@@ -1,0 +1,10 @@
+{
+  "name": "KH-story - Dev",
+  "port": 3000,
+  "PGSQL": {
+    "database": "kh_story",
+    "host": "localhost",
+    "user": "postgres",
+    "port": 5432
+  }
+}
