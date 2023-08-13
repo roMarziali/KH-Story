@@ -3,10 +3,6 @@
   <span class="spacer"></span>
   <button mat-icon-button aria-label="Filtres" matTooltip="Filtres"
     [color]="(displayedCards.filters) ? 'primary' : 'basic'" (click)="toggleDisplayedCard('filters')">
-    <mat-icon>filter_list</mat-icon>
-  </button>
-  <button mat-icon-button aria-label="Paramètres" matTooltip="Paramètres"
-    [color]="(displayedCards.settings) ? 'primary' : 'basic'" (click)="toggleDisplayedCard('settings')">
     <mat-icon>settings</mat-icon>
   </button>
   <button mat-icon-button aria-label="Visibilité" matTooltip="Visibilité"
@@ -16,6 +12,5 @@
 </mat-toolbar>
 <mat-card id="user-content-parameters">
   <app-content-filters *ngIf="displayedCards.filters"></app-content-filters>
-  <app-content-settings *ngIf="displayedCards.settings"></app-content-settings>
   <app-content-visibility *ngIf="displayedCards.visibility"></app-content-visibility>
 </mat-card>

@@ -22,7 +22,6 @@ export class SegmentComponent {
 
   constructor(private contentParameters: ContentParametersService) {
     this.contentParameters.filtersChange.subscribe(() => {
-      console.log("update setText");
       this.setText();
     });
   }
@@ -36,6 +35,13 @@ export class SegmentComponent {
   }
 
   setText() {
+    if (this.segment.content.type === 'annotation'){
+      const filteredAnnotations = this.contentParameters.filters.filter(f => f.id === 'annotations' && f.selected);
+      if (filteredAnnotations.length === 0) {
+        this.text = "";
+        return;
+      }
+    }
     const texts = this.segment.content.texts;
     for (const key in texts) {
       const text = texts[key].text;

@@ -70,6 +70,11 @@ export class FiltersService {
       id: 'Other',
       name: 'Autre (interviews, livres, etc.)',
       selected: true
+    },
+    {
+      id: 'annotations',
+      name: 'Annotations',
+      selected: true
     }
   ];
 
