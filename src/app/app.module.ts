@@ -28,6 +28,7 @@ import { ContentVisibilityComponent } from './components/main-page/user-content-
 import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
 import { TranslatedVisibilityPipe } from './pipes/translated-visibility.pipe';
 import { StoryComponent } from './components/main-page/story/story.component';
+import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { StoryComponent } from './components/main-page/story/story.component';
     ContentVisibilityComponent,
     TranslateSettingsPipe,
     TranslatedVisibilityPipe,
-    StoryComponent
+    StoryComponent,
+    SegmentComponent
   ],
   imports: [
     BrowserModule,

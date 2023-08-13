@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Segment } from 'src/app/models/segment';
 
 @Component({
   selector: 'app-story',
@@ -7,13 +8,13 @@ import { Component } from '@angular/core';
 })
 export class StoryComponent {
 
+  segments: Segment[] = [];
+
   ngOnInit() {
     const api = 'http://localhost:3000/api/story/getSegments';
     fetch(api)
       .then(response => response.json())
-      .then(data => console.log(data));
-
-
+      .then(data => this.segments = data);
   }
 
 }
