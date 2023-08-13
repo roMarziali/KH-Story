@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -49,6 +51,7 @@ import { SegmentComponent } from './components/main-page/story/segment/segment.c
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
 
     MatToolbarModule,
     MatButtonModule,
