@@ -1,8 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { FiltersService } from 'src/app/services/filters.service';
 import { Filter } from 'src/app/models/filter.model';
-import { SettingsService } from './settings.service';
-import { Settings } from 'src/app/models/settings.model';
 import { Visibility } from '../models/visibility.model';
 import { VisibilityService } from './visibility.service';
 @Injectable({
@@ -11,14 +9,12 @@ import { VisibilityService } from './visibility.service';
 export class ContentParametersService {
 
   filters: Filter[] = [];
-  settings: Settings[] = [];
   visibility: Visibility[] = [];
 
   filtersChange = new EventEmitter();
 
-  constructor(private filtersService: FiltersService, private settingsService: SettingsService, private visibilityService: VisibilityService) {
+  constructor(private filtersService: FiltersService, private visibilityService: VisibilityService) {
     this.filters = this.filtersService.getFilters();
-    this.settings = this.settingsService.getSettings();
     this.visibility = this.visibilityService.getVisibility();
     this.loadParameters();
   }
@@ -30,13 +26,11 @@ export class ContentParametersService {
 
   saveParameters() {
     localStorage.setItem('filters', JSON.stringify(this.filters));
-    localStorage.setItem('settings', JSON.stringify(this.settings));
     localStorage.setItem('visibility', JSON.stringify(this.visibility));
   }
 
   loadParameters() {
     this.loadFilters();
-    this.loadSettings();
     this.loadVisibility();
   }
 
@@ -52,22 +46,6 @@ export class ContentParametersService {
       }
     }
   }
-
-  loadSettings() {
-    const localSettings = localStorage.getItem('settings');
-    if (localSettings) {
-      const localSettingsParsed = JSON.parse(localSettings);
-      for (const setting of localSettingsParsed) {
-        const settingIndex = this.settings.findIndex(s => s.id === setting.id);
-        if (settingIndex !== -1) {
-          this.settings[settingIndex].value = setting.value;
-        }
-      }
-
-    }
-  }
-
-
 
   loadVisibility() {
     const localVisibility = localStorage.getItem('visibility');
