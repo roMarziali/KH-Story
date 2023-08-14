@@ -1,5 +1,5 @@
 main {
-  margin-top: 70px;
+  margin-top: 65px;
 }
 
 #nav-close-button {
@@ -8,11 +8,22 @@ main {
 }
 
 @media screen and (max-width: 500px) {
- .reduced {
+  .reduced {
     display: none;
   }
 
-  .opened{
-    width : 100%;
+  .opened {
+    width: 100%;
   }
+}
+
+#story-buttons {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+}
+
+#story {
+  margin-top: 60px;
 }

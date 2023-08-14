@@ -12,18 +12,16 @@
     </mat-sidenav>
 
     <mat-sidenav-content [class.reduced]="sidenav.opened">
-      <div>
-        <div>
-          <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.open()">
-            <mat-icon>settings</mat-icon>
-          </button>
-          <button mat-icon-button aria-label="Télécharger" matTooltip="Télécharger">
-            <mat-icon>download</mat-icon>
-          </button>
-        </div>
-        <div>
-          <app-story></app-story>
-        </div>
+      <div id="story-buttons">
+        <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.open()">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Télécharger" matTooltip="Télécharger">
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
+      <div id="story">
+        <app-story></app-story>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
