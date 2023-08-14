@@ -3,7 +3,7 @@
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" [fixedTopGap]="70" [class.opened]="sidenav.opened">
       <div id="nav-close-button">
-        <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.close()">
+        <button mat-icon-button aria-label="Fermer les paramètres" (click)="sidenav.close()">
           <mat-icon>close</mat-icon>
         </button>
       </div>
@@ -13,12 +13,10 @@
 
     <mat-sidenav-content [class.reduced]="sidenav.opened">
       <div id="story-buttons">
-        <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.open()">
+        <button mat-icon-button aria-label="Paramètres" (click)="sidenav.open()">
           <mat-icon>settings</mat-icon>
         </button>
-        <button mat-icon-button aria-label="Télécharger" matTooltip="Télécharger">
-          <mat-icon>download</mat-icon>
-        </button>
+        <app-download-menu></app-download-menu>
       </div>
       <div id="story">
         <app-story></app-story>

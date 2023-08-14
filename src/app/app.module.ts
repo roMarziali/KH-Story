@@ -8,13 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,7 @@ import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
 import { TranslatedVisibilityPipe } from './pipes/translated-visibility.pipe';
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
+import { DownloadMenuComponent } from './components/main-page/download-menu/download-menu.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SegmentComponent } from './components/main-page/story/segment/segment.c
     TranslateSettingsPipe,
     TranslatedVisibilityPipe,
     StoryComponent,
-    SegmentComponent
+    SegmentComponent,
+    DownloadMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -51,13 +53,12 @@ import { SegmentComponent } from './components/main-page/story/segment/segment.c
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule,
-    MatCardModule,
     MatButtonToggleModule,
     MatCheckboxModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

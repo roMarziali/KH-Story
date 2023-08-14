@@ -1,0 +1,12 @@
+<button mat-icon-button aria-label="Télécharger" [matMenuTriggerFor]="menu">
+  <mat-icon>download</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <span>PDF</span>
+  </button>
+  <button mat-menu-item>
+    <span>EPUB</span>
+  </button>
+</mat-menu>
