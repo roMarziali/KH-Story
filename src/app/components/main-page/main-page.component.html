@@ -1,31 +1,30 @@
 <main>
 
-  <ng-container>
-    <mat-sidenav-container>
-      <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" [fixedTopGap]="70">
-        <app-content-visibility></app-content-visibility>
-        <app-content-filters></app-content-filters>
-      </mat-sidenav>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" [fixedTopGap]="70" [class.opened]="sidenav.opened">
+      <div id="nav-close-button">
+        <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <app-content-visibility></app-content-visibility>
+      <app-content-filters></app-content-filters>
+    </mat-sidenav>
 
-      <mat-sidenav-content>
+    <mat-sidenav-content [class.reduced]="sidenav.opened">
+      <div>
         <div>
-          <div>
-            <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.toggle()">
-              <mat-icon>settings</mat-icon>
-            </button>
-            <button mat-icon-button aria-label="Télécharger" matTooltip="Télécharger">
-              <mat-icon>download</mat-icon>
-            </button>
-          </div>
-          <div>
-            <app-story></app-story>
-          </div>
+          <button mat-icon-button aria-label="Filtres" matTooltip="Filtres" (click)="sidenav.open()">
+            <mat-icon>settings</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Télécharger" matTooltip="Télécharger">
+            <mat-icon>download</mat-icon>
+          </button>
         </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </ng-container>
-
-
-
-
+        <div>
+          <app-story></app-story>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </main>

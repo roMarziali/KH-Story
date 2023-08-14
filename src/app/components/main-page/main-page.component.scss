@@ -1,3 +1,18 @@
 main {
   margin-top: 70px;
 }
+
+#nav-close-button {
+  text-align: right;
+  height: 10px;
+}
+
+@media screen and (max-width: 500px) {
+ .reduced {
+    display: none;
+  }
+
+  .opened{
+    width : 100%;
+  }
+}
