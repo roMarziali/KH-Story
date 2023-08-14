@@ -20,10 +20,6 @@ export class ContentParametersService {
     this.loadParameters();
   }
 
-  toggleDisplaySetting() {
-    this.displaySettings = !this.displaySettings;
-  }
-
   filterChanged() {
     this.saveParameters();
     this.filtersChange.emit();

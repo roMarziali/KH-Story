@@ -14,8 +14,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +22,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { UserContentManagerComponent } from './components/main-page/user-content-manager/user-content-manager.component';
 import { ContentFiltersComponent } from './components/main-page/user-content-manager/content-filters/content-filters.component';;
 import { ContentVisibilityComponent } from './components/main-page/user-content-manager/content-visibility/content-visibility.component';
 import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
@@ -36,7 +34,6 @@ import { SegmentComponent } from './components/main-page/story/segment/segment.c
     AppComponent,
     HeaderPageComponent,
     MainPageComponent,
-    UserContentManagerComponent,
     ContentFiltersComponent,
     ContentVisibilityComponent,
     TranslateSettingsPipe,
@@ -59,7 +56,8 @@ import { SegmentComponent } from './components/main-page/story/segment/segment.c
     MatButtonToggleModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
