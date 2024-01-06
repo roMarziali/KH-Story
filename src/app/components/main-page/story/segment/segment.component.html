@@ -1,12 +1,12 @@
 <ng-container *ngIf="text">
   <ng-container *ngIf="segment.type == 'title1'">
-    <h1><app-segment-text [mainString]="text"></app-segment-text></h1>
+    <div class="title1"><app-segment-text [mainString]="text"></app-segment-text></div>
   </ng-container>
   <ng-container *ngIf="segment.type == 'title2'">
-    <h2><app-segment-text [mainString]="text"></app-segment-text></h2>
+    <div class="title2"><app-segment-text [mainString]="text"></app-segment-text></div>
   </ng-container>
   <ng-container *ngIf="segment.type == 'title3'">
-    <h3><app-segment-text [mainString]="text"></app-segment-text></h3>
+    <div class="title3"><app-segment-text [mainString]="text"></app-segment-text></div>
   </ng-container>
   <ng-container *ngIf="segment.type == 'paragraph'">
     <p><app-segment-text [mainString]="text"></app-segment-text></p>
