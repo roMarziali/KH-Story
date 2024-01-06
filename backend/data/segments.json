@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "type": "text",
-    "order": "5",
+    "type": "paragraph",
+    "order": 1,
     "texts": {
       "1": {
         "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
@@ -37,17 +37,17 @@
   {
     "id": 2,
     "type": "title1",
-    "order": "2",
+    "order": 2,
     "texts": {
       "1": {
-        "text": "Titre 1 relié KH1 et KHDDD [annotation id-annotation='1']Annotation ![/annotation]",
+        "text": "Titre 1 relié KH1 et KHDDD [annotation:1]Annotation ![/annotation] et une autre [annotation:2]Annotation ![/annotation]",
         "relatedTo": [
           "KH1",
           "KHDDD"
         ]
       },
       "2": {
-        "text": "Titre 1 relié KH358 et KH3 [annotation id-annotation='2']Annotation ![/annotation]",
+        "text": "Titre 1 relié KH358 et KH3 [annotation:2]Annotation ![/annotation]",
         "relatedTo": [
           "KH3582Days",
           "KH3"
@@ -58,7 +58,7 @@
   {
     "id": 3,
     "type": "title2",
-    "order": "3",
+    "order": 3,
     "texts": {
       "1": {
         "text": "Titre 2 relié KH2 et KHBBS",
@@ -79,7 +79,7 @@
   {
     "id": 4,
     "type": "title3",
-    "order": "4",
+    "order": 4,
     "texts": {
       "1": {
         "text": "Titre 3 relié KHUX et KHUXBackCover",
@@ -99,11 +99,25 @@
   },
   {
     "id": 5,
-    "type": "text",
-    "order": "1",
+    "type": "paragraph",
+    "order": 5,
     "texts": {
       "1": {
         "text": "Texte relié à KH1 et KH2",
+        "relatedTo": [
+          "KHI",
+          "KH2"
+        ]
+      }
+    }
+  },
+  {
+    "id": 6,
+    "type": "paragraph",
+    "order": 6,
+    "texts": {
+      "1": {
+        "text": "Texte aussi relié à KH1 et KH2",
         "relatedTo": [
           "KHI",
           "KH2"

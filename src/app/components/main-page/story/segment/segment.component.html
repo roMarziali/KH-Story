@@ -1,1 +1,14 @@
-<div *ngIf="text" [class]="segment.type">{{text}}</div>
+<ng-container *ngIf="text">
+  <ng-container *ngIf="segment.type == 'title1'">
+    <h1>{{text }}</h1>
+  </ng-container>
+  <ng-container *ngIf="segment.type == 'title2'">
+    <h2>{{text}}</h2>
+  </ng-container>
+  <ng-container *ngIf="segment.type == 'title3'">
+    <h3>{{text}}</h3>
+  </ng-container>
+  <ng-container *ngIf="segment.type == 'paragraph'">
+    <p>{{text}}</p>
+  </ng-container>
+</ng-container>

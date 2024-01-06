@@ -7,4 +7,9 @@ router.get("/segments", async (req, res, next) => {
   res.send(segments);
 });
 
+router.get("/annotations", async (req, res, next) => {
+  const annotations = await SegmentManager.getAnnotations();
+  res.send(annotations);
+});
+
 module.exports = router;

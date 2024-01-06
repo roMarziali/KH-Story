@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +14,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +37,7 @@ import { DownloadMenuComponent } from './components/main-page/download-menu/down
     ContentVisibilityComponent,
     StoryComponent,
     SegmentComponent,
-    DownloadMenuComponent
+    DownloadMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,8 @@ import { DownloadMenuComponent } from './components/main-page/download-menu/down
     MatSlideToggleModule,
     MatSidenavModule,
     MatMenuModule,
-    MatSliderModule
+    MatSliderModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
