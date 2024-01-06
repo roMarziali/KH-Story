@@ -117,7 +117,7 @@
     "order": 6,
     "texts": {
       "1": {
-        "text": "Texte aussi relié à KH1 et KH2",
+        "text": "Texte [annotation:1]aussi relié[/annotation] à KH1 et KH2",
         "relatedTo": [
           "KHI",
           "KH2"

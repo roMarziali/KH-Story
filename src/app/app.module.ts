@@ -27,6 +27,7 @@ import { ContentVisibilityComponent } from './components/main-page/user-content-
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/main-page/download-menu/download-menu.component';
+import { SegmentTextComponent } from './components/main-page/story/segment/segment-text/segment-text.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DownloadMenuComponent } from './components/main-page/download-menu/down
     StoryComponent,
     SegmentComponent,
     DownloadMenuComponent,
+    SegmentTextComponent,
   ],
   imports: [
     BrowserModule,

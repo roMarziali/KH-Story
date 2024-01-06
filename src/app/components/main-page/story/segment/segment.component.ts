@@ -41,7 +41,7 @@ export class SegmentComponent {
       if (relatedTo.length === 0) continue;
       const isRelatedToFilteredGame = relatedTo.some(r => this.contentParameters.filters.find(f => f.id === r)?.selected);
       if (isRelatedToFilteredGame) {
-        this.text = this.annotations.setAnnotationsInText(text);
+        this.text = text;
         return;
       }
     }

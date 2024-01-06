@@ -1,0 +1,8 @@
+<ng-container *ngFor="let string of strings">
+  <ng-container *ngIf="!string.annotation">
+    {{string.text}}
+  </ng-container>
+  <ng-container *ngIf=" string.annotation">
+    <span [matTooltip]="string.annotation" class="annotated">{{string.text}}</span>
+  </ng-container>
+</ng-container>

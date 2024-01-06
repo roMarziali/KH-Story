@@ -17,21 +17,9 @@ export class AnnotationsService {
   }
 
 
-  setAnnotationsInText(string: string) {
-    const searchAnnotation = /\[annotation:(\d+)\]/g;
-    let match;
-    while ((match = searchAnnotation.exec(string)) !== null) {
-      const id = parseInt(match[1]);
-      const correspondingAnnotation = this.annotations.find(a => a.id === id);
-      if (!correspondingAnnotation) {
-        string = string.replace(match[0], `<span matTooltip="Erreur : annotation manquante">`);
-      } else {
-        string = string.replace(match[0], `<span matTooltip="${correspondingAnnotation.content}">`);
-      }
-    }
-    const searchEndAnnotation = /\[\/annotation\]/g;
-    string = string.replace(searchEndAnnotation, '</span>');
-    return string;
+  getAnnotation(id: number): string {
+    const annotation = this.annotations.find(a => a.id === id);
+    return annotation ? annotation.content : 'Erreur : annotation non trouvée';
   }
 
 }
