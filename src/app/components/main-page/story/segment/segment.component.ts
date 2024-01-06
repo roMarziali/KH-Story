@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Segment } from 'src/app/models/segment';
 import { ContentParametersService } from 'src/app/services/content-parameters.service';
-import { AnnotationsService } from 'src/app/services/annotations.service';
 
 @Component({
   selector: 'app-segment',
@@ -19,7 +18,7 @@ export class SegmentComponent {
 
   text: string = '';
 
-  constructor(private contentParameters: ContentParametersService, private annotations: AnnotationsService) {
+  constructor(private contentParameters: ContentParametersService) {
     this.contentParameters.filtersChange.subscribe(() => {
       this.setText();
     });

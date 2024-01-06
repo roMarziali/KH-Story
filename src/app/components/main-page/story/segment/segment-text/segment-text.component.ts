@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AnnotationsService } from 'src/app/services/annotations.service';
+import { ContentParametersService } from 'src/app/services/content-parameters.service';
 
 export interface Strings {
   text: string;
@@ -15,10 +16,17 @@ export class SegmentTextComponent {
 
   @Input() mainString!: string;
   strings: Strings[] = [];
+  displayAnnotations!: boolean;
 
-  constructor(private annotations: AnnotationsService) { }
+  constructor(private annotations: AnnotationsService, private contentParameters: ContentParametersService) {
+    this.contentParameters.filtersChange.subscribe(() => {
+      this.displayAnnotations = (this.contentParameters.filters.find(f => f.id === 'annotations')?.selected) ? true : false;
+    });
+  }
 
   ngOnInit() {
+    this.displayAnnotations = (this.contentParameters.filters.find(f => f.id === 'annotations')?.selected) ? true : false;
+
     const regex = /\[annotation:(\d+)\](.*?)\[\/annotation\]/g;
     let match;
     let lastIndex = 0;
