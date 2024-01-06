@@ -15,6 +15,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -58,7 +60,8 @@ import { SegmentTextComponent } from './components/main-page/story/segment/segme
     MatSidenavModule,
     MatMenuModule,
     MatSliderModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

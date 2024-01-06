@@ -1,7 +1,15 @@
-<h1>Filtres</h1>
-<ul>
-  <li *ngFor="let filter of contentParametersService.filters">
-    <mat-checkbox [(ngModel)]="filter.selected"
-      (change)="contentParametersService.filterChanged()">{{filter.name}}</mat-checkbox>
-  </li>
-</ul>
+<mat-expansion-panel expanded=true>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Filtres
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <ul>
+    <li *ngFor="let filter of contentParametersService.filters">
+      <mat-checkbox [(ngModel)]="filter.selected"
+        (change)="contentParametersService.filterChanged()">{{filter.name}}</mat-checkbox>
+    </li>
+  </ul>
+
+</mat-expansion-panel>

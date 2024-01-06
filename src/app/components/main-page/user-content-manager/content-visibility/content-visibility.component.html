@@ -1,28 +1,34 @@
-<h1>Lecture</h1>
+<mat-expansion-panel expanded = true>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Lecture
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div *ngFor="let setting of contentParametersService.visibility">
 
-<div *ngFor="let setting of contentParametersService.visibility">
+    <ng-container *ngIf="setting.type == 'boolean'">
+      <mat-slide-toggle [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
+        {{setting.label}}
+      </mat-slide-toggle>
+    </ng-container>
 
-  <ng-container *ngIf="setting.type == 'boolean'">
-    <mat-slide-toggle [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
-      {{setting.label}}
-    </mat-slide-toggle>
-  </ng-container>
+    <ng-container *ngIf="setting.type == 'options' &&  setting.options">
+      <mat-form-field>
+        <mat-label>{{setting.label}}</mat-label>
+        <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
+          <mat-option *ngFor="let key of Object.keys(setting.options)" [value]="key">
+            {{setting.options[key]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
 
-  <ng-container *ngIf="setting.type == 'options' &&  setting.options">
-    <mat-form-field>
-      <mat-label>{{setting.label}}</mat-label>
-      <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
-        <mat-option *ngFor="let key of Object.keys(setting.options)" [value]="key">
-          {{setting.options[key]}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </ng-container>
+    <ng-container *ngIf="setting.type == 'range'">
+      <label>{{setting.label}}</label>
+      <mat-slider min="0" max="100" step="1" discrete [displayWith]="formatRangeLabel">
+        <input matSliderThumb [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
+      </mat-slider>
+    </ng-container>
+  </div>
 
-  <ng-container *ngIf="setting.type == 'range'">
-    <label>{{setting.label}}</label>
-    <mat-slider min="0" max="100" step="1" discrete [displayWith]="formatRangeLabel">
-      <input matSliderThumb [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
-    </mat-slider>
-  </ng-container>
-</div>
+</mat-expansion-panel>
