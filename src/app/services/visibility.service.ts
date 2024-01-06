@@ -66,7 +66,7 @@ export class VisibilityService {
 
     {
       id: 'flex-align',
-      label: 'Position du texte dans la page',
+      label: 'Emplacement du texte',
       type: 'options',
       options: {
         "flex-start": "À gauche",
