@@ -24,8 +24,6 @@ import { HeaderPageComponent } from './components/header-page/header-page.compon
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ContentFiltersComponent } from './components/main-page/user-content-manager/content-filters/content-filters.component';;
 import { ContentVisibilityComponent } from './components/main-page/user-content-manager/content-visibility/content-visibility.component';
-import { TranslateSettingsPipe } from './pipes/translate-settings.pipe';
-import { TranslatedVisibilityPipe } from './pipes/translated-visibility.pipe';
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/main-page/download-menu/download-menu.component';
@@ -37,8 +35,6 @@ import { DownloadMenuComponent } from './components/main-page/download-menu/down
     MainPageComponent,
     ContentFiltersComponent,
     ContentVisibilityComponent,
-    TranslateSettingsPipe,
-    TranslatedVisibilityPipe,
     StoryComponent,
     SegmentComponent,
     DownloadMenuComponent

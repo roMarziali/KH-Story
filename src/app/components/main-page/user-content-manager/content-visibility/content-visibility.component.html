@@ -4,15 +4,15 @@
 
   <ng-container *ngIf="setting.type == 'boolean'">
     <mat-slide-toggle [(ngModel)]="setting.value">
-      {{setting.id | translatedVisibility}}
+      {{setting.label}}
     </mat-slide-toggle>
   </ng-container>
   <ng-container *ngIf="setting.type == 'options'">
     <mat-form-field>
-      <mat-label>{{setting.id | translatedVisibility}}</mat-label>
+      <mat-label>{{setting.label}}</mat-label>
       <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
-        <mat-option *ngFor="let option of setting.options" [value]="option">
-          {{option}}
+        <mat-option *ngFor="let option of setting.options | keyvalue" [value]="option.key">
+          {{option.value}}
         </mat-option>
       </mat-select>
     </mat-form-field>

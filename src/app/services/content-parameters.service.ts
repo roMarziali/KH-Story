@@ -50,7 +50,7 @@ export class ContentParametersService {
 
   loadVisibility() {
     const localVisibility = localStorage.getItem('visibility');
-    if (localVisibility) {
+    if (localVisibility && localVisibility !== "undefined") {
       const localVisibilityParsed = JSON.parse(localVisibility);
       for (const visibility of localVisibilityParsed) {
         const visibilityIndex = this.visibility.findIndex(v => v.id === visibility.id);
