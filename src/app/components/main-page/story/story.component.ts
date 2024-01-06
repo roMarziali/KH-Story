@@ -14,7 +14,8 @@ export class StoryComponent {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.api.get('story/getSegments').subscribe((data) => {
+    this.api.get('story/segments').subscribe((data) => {
+      console.log(data);
       this.segments = data
     });
   }

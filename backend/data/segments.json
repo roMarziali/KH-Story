@@ -43,14 +43,14 @@
       "order": "2",
       "texts": {
         "1": {
-          "text": "Titre 1 relié KH1 et KHDDD",
+          "text": "Titre 1 relié KH1 et KHDDD <annotation id-annotation='1'>Annotation !</annotation>",
           "relatedTo": [
             "KH1",
             "KHDDD"
           ]
         },
         "2": {
-          "text": "Titre 1 relié KH358 et KH3",
+          "text": "Titre 1 relié KH358 et KH3  <annotation id-annotation='2'>Annotation !</annotation>",
           "relatedTo": [
             "KH3582Days",
             "KH3"
