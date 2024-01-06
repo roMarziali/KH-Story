@@ -1,123 +1,113 @@
 [
   {
     "id": 1,
-    "content": {
-      "type": "text",
-      "order": "8",
-      "texts": {
-        "1": {
-          "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
-          "relatedTo": [
-            "KH1",
-            "KH2"
-          ]
-        },
-        "2": {
-          "text": "text 1 relié KHDDD et KH3",
-          "relatedTo": [
-            "KHDDD",
-            "KH3"
-          ]
-        },
-        "3": {
-          "text": "text 1 relié au reste",
-          "relatedTo": [
-            "KHCoM",
-            "KH3582Days",
-            "KHBBS",
-            "KHCoded",
-            "KH0pt2",
-            "KHUX",
-            "KHUXBackCover",
-            "KHMoM",
-            "Other"
-          ]
-        }
+    "type": "text",
+    "order": "5",
+    "texts": {
+      "1": {
+        "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
+        "relatedTo": [
+          "KH1",
+          "KH2"
+        ]
+      },
+      "2": {
+        "text": "text 1 relié KHDDD et KH3",
+        "relatedTo": [
+          "KHDDD",
+          "KH3"
+        ]
+      },
+      "3": {
+        "text": "text 1 relié au reste",
+        "relatedTo": [
+          "KHCoM",
+          "KH3582Days",
+          "KHBBS",
+          "KHCoded",
+          "KH0pt2",
+          "KHUX",
+          "KHUXBackCover",
+          "KHMoM",
+          "Other"
+        ]
       }
     }
   },
   {
     "id": 2,
-    "content": {
-      "type": "title1",
-      "order": "2",
-      "texts": {
-        "1": {
-          "text": "Titre 1 relié KH1 et KHDDD <annotation id-annotation='1'>Annotation !</annotation>",
-          "relatedTo": [
-            "KH1",
-            "KHDDD"
-          ]
-        },
-        "2": {
-          "text": "Titre 1 relié KH358 et KH3  <annotation id-annotation='2'>Annotation !</annotation>",
-          "relatedTo": [
-            "KH3582Days",
-            "KH3"
-          ]
-        }
+    "type": "title1",
+    "order": "2",
+    "texts": {
+      "1": {
+        "text": "Titre 1 relié KH1 et KHDDD [annotation id-annotation='1']Annotation ![/annotation]",
+        "relatedTo": [
+          "KH1",
+          "KHDDD"
+        ]
+      },
+      "2": {
+        "text": "Titre 1 relié KH358 et KH3 [annotation id-annotation='2']Annotation ![/annotation]",
+        "relatedTo": [
+          "KH3582Days",
+          "KH3"
+        ]
       }
     }
   },
   {
     "id": 3,
-    "content": {
-      "type": "title2",
-      "order": "3",
-      "texts": {
-        "1": {
-          "text": "Titre 2 relié KH2 et KHBBS",
-          "relatedTo": [
-            "KH2",
-            "KHBBS"
-          ]
-        },
-        "2": {
-          "text": "Titre 2 relié KH0pt2 et KHCoded",
-          "relatedTo": [
-            "KH0pt2",
-            "KHCoded"
-          ]
-        }
+    "type": "title2",
+    "order": "3",
+    "texts": {
+      "1": {
+        "text": "Titre 2 relié KH2 et KHBBS",
+        "relatedTo": [
+          "KH2",
+          "KHBBS"
+        ]
+      },
+      "2": {
+        "text": "Titre 2 relié KH0pt2 et KHCoded",
+        "relatedTo": [
+          "KH0pt2",
+          "KHCoded"
+        ]
       }
     }
   },
   {
     "id": 4,
-    "content": {
-      "type": "title3",
-      "order": "9",
-      "texts": {
-        "1": {
-          "text": "Titre 3 relié KHUX et KHUXBackCover",
-          "relatedTo": [
-            "KHUX",
-            "KHUXBackCover"
-          ]
-        },
-        "2": {
-          "text": "Titre 3 relié KHMoM et Other",
-          "relatedTo": [
-            "KHMoM",
-            "Other"
-          ]
-        }
+    "type": "title3",
+    "order": "4",
+    "texts": {
+      "1": {
+        "text": "Titre 3 relié KHUX et KHUXBackCover",
+        "relatedTo": [
+          "KHUX",
+          "KHUXBackCover"
+        ]
+      },
+      "2": {
+        "text": "Titre 3 relié KHMoM et Other",
+        "relatedTo": [
+          "KHMoM",
+          "Other"
+        ]
       }
     }
   },
   {
     "id": 5,
-    "content": {
-      "type": "annotation",
-      "order": "12",
-      "texts": {
-        "1": {
-          "text": "annotation 1 relié KH1 et KH2",
-          "relatedTo": [
-            "KHI",
-            "KH2"
-          ]
-        }
+    "type": "text",
+    "order": "1",
+    "texts": {
+      "1": {
+        "text": "Texte relié à KH1 et KH2",
+        "relatedTo": [
+          "KHI",
+          "KH2"
+        ]
       }
     }
   }

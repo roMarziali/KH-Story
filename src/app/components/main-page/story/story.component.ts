@@ -15,8 +15,16 @@ export class StoryComponent {
 
   ngOnInit() {
     this.api.get('story/segments').subscribe((data) => {
-      console.log(data);
       this.segments = data
+      this.sortSegments();
+    });
+  }
+
+  sortSegments() {
+    this.segments.sort((a, b) => {
+      if (a.order === null) return 1;
+      if (b.order === null) return -1;
+      return a.order - b.order;
     });
   }
 

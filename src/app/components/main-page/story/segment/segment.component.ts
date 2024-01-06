@@ -11,11 +11,9 @@ export class SegmentComponent {
 
   @Input() segment: Segment = {
     id: 0,
-    content: {
-      type: '',
-      order: '',
-      texts: {}
-    }
+    type: '',
+    order: null,
+    texts: {}
   };
 
   text: string = '';
@@ -35,14 +33,7 @@ export class SegmentComponent {
   }
 
   setText() {
-    if (this.segment.content.type === 'annotation'){
-      const filteredAnnotations = this.contentParameters.filters.filter(f => f.id === 'annotations' && f.selected);
-      if (filteredAnnotations.length === 0) {
-        this.text = "";
-        return;
-      }
-    }
-    const texts = this.segment.content.texts;
+    const texts = this.segment.texts;
     for (const key in texts) {
       const text = texts[key].text;
       const relatedTo = texts[key].relatedTo;
