@@ -6,5 +6,5 @@ export interface Visibility {
   options?: {
     [key: string]: string
   }
-  value: string | boolean;
+  value: string | boolean | number;
 }

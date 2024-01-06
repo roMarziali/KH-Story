@@ -12,6 +12,7 @@ export class VisibilityService {
       type: 'boolean',
       value: false
     },
+
     {
       id: 'font-police',
       label: 'Police',
@@ -26,6 +27,7 @@ export class VisibilityService {
       },
       value: "Verdana"
     },
+
     {
       id: 'font-size',
       label: 'Taille de la police',
@@ -40,6 +42,7 @@ export class VisibilityService {
       },
       value: "14px"
     },
+
     {
       id: 'columns',
       type: 'options',
@@ -53,12 +56,15 @@ export class VisibilityService {
       },
       value: "1"
     },
+
     {
       id: 'width',
       label: 'Largeur de la page',
-      type: 'scale',
-      value: "100"
-    }, {
+      type: 'range',
+      value: 100
+    },
+
+    {
       id: 'flex-align',
       label: 'Position du texte dans la page',
       type: 'options',

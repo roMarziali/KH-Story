@@ -9,5 +9,10 @@ export class ContentVisibilityComponent {
 
   constructor(public contentParametersService: ContentParametersService) { }
 
-  Object = Object; // To use Object.keys in template
+  Object = Object; // To use Object.keys in template (ngFor with keyvalue pipe sort by alphabetical order, it is an issue for some select options)
+
+  formatRangeLabel(value: number): string {
+    return value + "%";
+  }
+
 }

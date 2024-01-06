@@ -2,3 +2,8 @@ mat-slide-toggle{
   margin-top : 1rem;
   margin-bottom : 1rem;
 }
+
+label{
+  display: flex;
+  justify-content: space-between;
+}

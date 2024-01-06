@@ -3,12 +3,12 @@
 <div *ngFor="let setting of contentParametersService.visibility">
 
   <ng-container *ngIf="setting.type == 'boolean'">
-    <mat-slide-toggle [(ngModel)]="setting.value">
+    <mat-slide-toggle [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
       {{setting.label}}
     </mat-slide-toggle>
   </ng-container>
+
   <ng-container *ngIf="setting.type == 'options' &&  setting.options">
-    {{setting.options | json}}
     <mat-form-field>
       <mat-label>{{setting.label}}</mat-label>
       <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
@@ -17,5 +17,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngIf="setting.type == 'range'">
+    <label>{{setting.label}}</label>
+    <mat-slider min="0" max="100" step="1" discrete [displayWith]="formatRangeLabel">
+      <input matSliderThumb [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
+    </mat-slider>
   </ng-container>
 </div>
