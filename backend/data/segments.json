@@ -2,7 +2,7 @@
   {
     "id": 1,
     "type": "paragraph",
-    "order": 1,
+    "order": 2,
     "texts": {
       "1": {
         "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
@@ -37,7 +37,7 @@
   {
     "id": 2,
     "type": "title1",
-    "order": 2,
+    "order": 1,
     "texts": {
       "1": {
         "text": "Titre 1 relié KH1 et KHDDD [annotation:1]Annotation ![/annotation] et une autre [annotation:2]Annotation ![/annotation]",
@@ -120,6 +120,34 @@
         "text": "Texte [annotation:1]aussi relié[/annotation] à KH1 et KH2",
         "relatedTo": [
           "KHI",
+          "KH2"
+        ]
+      }
+    }
+  },
+  {
+    "id": 6,
+    "type": "paragraph",
+    "order": 6,
+    "texts": {
+      "1": {
+        "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
+        "relatedTo": [
+          "KH1",
+          "KH2"
+        ]
+      }
+    }
+  },
+  {
+    "id": 7,
+    "type": "paragraph",
+    "order": 7,
+    "texts": {
+      "1": {
+        "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
+        "relatedTo": [
+          "KH1",
           "KH2"
         ]
       }

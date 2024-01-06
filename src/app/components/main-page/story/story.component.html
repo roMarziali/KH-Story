@@ -1,3 +1,10 @@
-<ng-container *ngFor="let segment of segments">
-  <app-segment [segment]="segment"></app-segment>
-</ng-container>
+<div id="story">
+
+  <div id="story-title">L'histoire de Kingdom Hearts</div>
+
+  <div id="story-text">
+    <ng-container *ngFor="let segment of segments">
+      <app-segment [segment]="segment"></app-segment>
+    </ng-container>
+  </div>
+</div>
