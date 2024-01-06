@@ -7,12 +7,13 @@
       {{setting.label}}
     </mat-slide-toggle>
   </ng-container>
-  <ng-container *ngIf="setting.type == 'options'">
+  <ng-container *ngIf="setting.type == 'options' &&  setting.options">
+    {{setting.options | json}}
     <mat-form-field>
       <mat-label>{{setting.label}}</mat-label>
       <mat-select [(ngModel)]="setting.value" (ngModelChange)="contentParametersService.saveParameters()">
-        <mat-option *ngFor="let option of setting.options | keyvalue" [value]="option.key">
-          {{option.value}}
+        <mat-option *ngFor="let key of Object.keys(setting.options)" [value]="key">
+          {{setting.options[key]}}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -9,4 +9,5 @@ export class ContentVisibilityComponent {
 
   constructor(public contentParametersService: ContentParametersService) { }
 
+  Object = Object; // To use Object.keys in template
 }
