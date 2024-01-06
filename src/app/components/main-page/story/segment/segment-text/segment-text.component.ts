@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { AnnotationsService } from 'src/app/services/annotations.service';
-import { ContentParametersService } from 'src/app/services/content-parameters.service';
+import { SettingsService } from 'src/app/services/settings.service';
 
 export interface Strings {
   text: string;
@@ -18,15 +18,25 @@ export class SegmentTextComponent {
   strings: Strings[] = [];
   displayAnnotations!: boolean;
 
-  constructor(private annotations: AnnotationsService, private contentParameters: ContentParametersService) {
-    this.contentParameters.filtersChange.subscribe(() => {
-      this.displayAnnotations = (this.contentParameters.filters.find(f => f.id === 'annotations')?.selected) ? true : false;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['mainString']) {
+      this.setStrings();
+    }
+  }
+
+  constructor(private annotations: AnnotationsService, private settingsService: SettingsService) {
+    this.settingsService.filtersChange.subscribe(() => {
+      this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
     });
   }
 
   ngOnInit() {
-    this.displayAnnotations = (this.contentParameters.filters.find(f => f.id === 'annotations')?.selected) ? true : false;
+    this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
+    this.setStrings();
+  }
 
+  setStrings() {
+    this.strings = [];
     const regex = /\[annotation:(\d+)\](.*?)\[\/annotation\]/g;
     let match;
     let lastIndex = 0;

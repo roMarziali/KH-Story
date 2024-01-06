@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ContentParametersService } from 'src/app/services/content-parameters.service';
+import { SettingsService } from 'src/app/services/settings.service';
+import { Filter } from 'src/app/models/filter.model';
 @Component({
   selector: 'app-content-filters',
   templateUrl: './content-filters.component.html',
@@ -7,7 +8,17 @@ import { ContentParametersService } from 'src/app/services/content-parameters.se
 })
 export class ContentFiltersComponent {
 
-  constructor(public contentParametersService: ContentParametersService) { }
+  filters: Filter[] = this.settingsService.settings.filters;
+
+  constructor(private settingsService: SettingsService) {
+    this.settingsService.filtersChange.subscribe(() => {
+      this.filters = this.settingsService.settings.filters;
+    });
+  }
+
+  filterChanged() {
+    this.settingsService.filterChanged();
+  }
 
 
 }

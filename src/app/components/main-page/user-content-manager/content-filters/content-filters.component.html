@@ -6,9 +6,9 @@
   </mat-expansion-panel-header>
 
   <ul>
-    <li *ngFor="let filter of contentParametersService.filters">
+    <li *ngFor="let filter of filters">
       <mat-checkbox [(ngModel)]="filter.selected"
-        (change)="contentParametersService.filterChanged()">{{filter.name}}</mat-checkbox>
+        (change)="filterChanged()">{{filter.name}}</mat-checkbox>
     </li>
   </ul>
 

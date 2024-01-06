@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Segment } from 'src/app/models/segment';
-import { ContentParametersService } from 'src/app/services/content-parameters.service';
+import { SettingsService } from 'src/app/services/settings.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-segment',
@@ -18,8 +19,8 @@ export class SegmentComponent {
 
   text: string = '';
 
-  constructor(private contentParameters: ContentParametersService) {
-    this.contentParameters.filtersChange.subscribe(() => {
+  constructor(private settingsService: SettingsService, private cdr: ChangeDetectorRef) {
+    this.settingsService.filtersChange.subscribe(() => {
       this.setText();
     });
   }
@@ -29,7 +30,7 @@ export class SegmentComponent {
   }
 
   ngOnDestroy() {
-    this.contentParameters.filtersChange.unsubscribe();
+    this.settingsService.filtersChange.unsubscribe();
   }
 
   setText() {
@@ -38,8 +39,7 @@ export class SegmentComponent {
       const text = texts[key].text;
       const relatedTo = texts[key].relatedTo;
       if (relatedTo.length === 0) continue;
-      const isRelatedToFilteredGame = relatedTo.some(r => this.contentParameters.filters.find(f => f.id === r)?.selected);
-      if (isRelatedToFilteredGame) {
+      if (this.settingsService.isAtLeastOneFilterSelected(relatedTo)) {
         this.text = text;
         return;
       }

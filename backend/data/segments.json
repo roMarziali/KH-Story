@@ -5,21 +5,21 @@
     "order": 2,
     "texts": {
       "1": {
-        "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
+        "text": "id1 order 2 alt1 : KH1/KH2",
         "relatedTo": [
           "KH1",
           "KH2"
         ]
       },
       "2": {
-        "text": "text 1 relié KHDDD et KH3",
+        "text": "id 1 order 2 alt2 : KHDDD, KH3",
         "relatedTo": [
           "KHDDD",
           "KH3"
         ]
       },
       "3": {
-        "text": "text 1 relié au reste",
+        "text": "id 1 order 2 alt 3: KHCOM, 358, BBS, Coded, 0pt2, UX, UXBC, MoM, Other",
         "relatedTo": [
           "KHCoM",
           "KH3582Days",
@@ -40,14 +40,14 @@
     "order": 1,
     "texts": {
       "1": {
-        "text": "Titre 1 relié KH1 et KHDDD [annotation:1]Annotation ![/annotation] et une autre [annotation:2]Annotation ![/annotation]",
+        "text": "id 2 order 1 alt1 KH1, KHDDD  + [annotation:1]Annotation ![/annotation] et une autre [annotation:2]Annotation ![/annotation]",
         "relatedTo": [
           "KH1",
           "KHDDD"
         ]
       },
       "2": {
-        "text": "Titre 1 relié KH358 et KH3 [annotation:2]Annotation ![/annotation]",
+        "text": "id 2 order 1 alt2 KH358, KH3 [annotation:2]Annotation ![/annotation]",
         "relatedTo": [
           "KH3582Days",
           "KH3"
@@ -61,14 +61,14 @@
     "order": 3,
     "texts": {
       "1": {
-        "text": "Titre 2 relié KH2 et KHBBS",
+        "text": "id 3 order 3 alt1 KH2 et KHBBS",
         "relatedTo": [
           "KH2",
           "KHBBS"
         ]
       },
       "2": {
-        "text": "Titre 2 relié KH0pt2 et KHCoded",
+        "text": "id 3 order 3 alt 2 KH0pt2 et KHCoded",
         "relatedTo": [
           "KH0pt2",
           "KHCoded"
@@ -82,14 +82,14 @@
     "order": 4,
     "texts": {
       "1": {
-        "text": "Titre 3 relié KHUX et KHUXBackCover",
+        "text": "id4 order 4 alt 1 relié KHUX et KHUXBackCover",
         "relatedTo": [
           "KHUX",
           "KHUXBackCover"
         ]
       },
       "2": {
-        "text": "Titre 3 relié KHMoM et Other",
+        "text": "id4 prder 4 alt 2 KHMoM et Other",
         "relatedTo": [
           "KHMoM",
           "Other"
@@ -103,7 +103,7 @@
     "order": 5,
     "texts": {
       "1": {
-        "text": "Texte relié à KH1 et KH2",
+        "text": "id 5 order 5 alt 1 relié à KH1 et KH2",
         "relatedTo": [
           "KH1",
           "KH2"
@@ -117,21 +117,7 @@
     "order": 6,
     "texts": {
       "1": {
-        "text": "Texte [annotation:1]aussi relié[/annotation] à KH1 et KH2",
-        "relatedTo": [
-          "KH1",
-          "KH2"
-        ]
-      }
-    }
-  },
-  {
-    "id": 6,
-    "type": "paragraph",
-    "order": 6,
-    "texts": {
-      "1": {
-        "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
+        "text": "id 6 roder 6 alt 1 relié à KH1 et KH2",
         "relatedTo": [
           "KH1",
           "KH2"
@@ -145,7 +131,7 @@
     "order": 7,
     "texts": {
       "1": {
-        "text": "text 1 relié KH1 et KH2 Nobis dolorem quod iste fuga eveniet, saepe veniam repellendus. Doloribus sint repellendus, nesciunt nemo nihil tempore perferendis iusto natus asperiores quas recusandae dolorum, optio aperiam sunt tempora ipsum eligendi quasi Blanditiis, aspernatur voluptate? Suscipit harum labore, obcaecati nulla perferendis officiis, soluta, reprehenderit ipsum ex similique provident! Cumque sapiente ex officia repudiandae iure, aliquam architecto sed nesciunt veritatis adipisci nihil facere Excepturi, provident velit corporis saepe odit ipsum eos quis placeat voluptatem aspernatur itaque quisquam autem cum fugiat beatae magnam quam! Laboriosam a quos ipsam ullam reprehenderit laudantium voluptate provident nesciunt? Nisi esse, dolore fugit illo, numquam porro deserunt non qui ex, placeat pariatur aperiam perferendis ipsam in repellendus perspiciatis? Mollitia eveniet ratione totam reiciendis repellendus facilis quae voluptatem molestias officiis. Voluptates doloremque in pariatur quasi consequuntur deleniti neque ratione fuga sequi fugit accusantium beatae inventore necessitatibus ducimus excepturi officia dignissimos aliquam voluptatum esse, facilis ut dolore mollitia? Atque, obcaecati non. Voluptatibus pariatur, dolores quo natus, molestias veniam repudiandae alias possimus voluptates reiciendis quam eligendi sit. Totam dignissimos aperiam ut dolorum nemo dicta quaerat dolore soluta ab. Aliquam numquam nisi harum? Aliquam tenetur modi doloremque quod nostrum, nemo odit iste eligendi maxime magnam aperiam animi optio impedit exercitationem nihil expedita dolorum quas veritatis pariatur. Facere hic dolore earum animi consectetur pariatur! quia, soluta perspiciatis. Tempora, facilis.",
+        "text": "id 7 order 7 alt 1 relié à KH1 et KH2",
         "relatedTo": [
           "KH1",
           "KH2"

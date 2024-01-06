@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ContentParametersService } from 'src/app/services/content-parameters.service';
+import { SettingsService } from 'src/app/services/settings.service';
 @Component({
   selector: 'app-content-visibility',
   templateUrl: './content-visibility.component.html',
@@ -7,7 +7,7 @@ import { ContentParametersService } from 'src/app/services/content-parameters.se
 })
 export class ContentVisibilityComponent {
 
-  constructor(public contentParametersService: ContentParametersService) { }
+  constructor(public settingsService: SettingsService) { }
 
   Object = Object; // To use Object.keys in template (ngFor with keyvalue pipe sort by alphabetical order, it is an issue for some select options)
 
