@@ -17,6 +17,10 @@ app.use((req, res, next) => {
 
 app.use("/api/story", story);
 
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "angular", "index.html"));
+})
+
 
 
 module.exports = app;
