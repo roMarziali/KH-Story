@@ -6,10 +6,16 @@
   </mat-expansion-panel-header>
   <div *ngFor="let setting of settingsService.settings.visibility">
 
+    <ng-container *ngIf="setting.type == 'boolean'">
+      <mat-slide-toggle [(ngModel)]="setting.value" (ngModelChange)="settingsService.visibilityChanged()">
+        {{setting.label}}
+      </mat-slide-toggle>
+    </ng-container>
+
     <ng-container *ngIf="setting.type == 'options' &&  setting.options">
       <mat-form-field>
         <mat-label>{{setting.label}}</mat-label>
-        <mat-select [(ngModel)]="setting.value" (ngModelChange)="settingsService.saveParameters()">
+        <mat-select [(ngModel)]="setting.value" (ngModelChange)="settingsService.visibilityChanged()">
           <mat-option *ngFor="let key of Object.keys(setting.options)" [value]="key">
             {{setting.options[key]}}
           </mat-option>
@@ -20,7 +26,7 @@
     <ng-container *ngIf="setting.type == 'range'">
       <label>{{setting.label}}</label>
       <mat-slider min="300" max="1500" step="10" discrete [displayWith]="formatRangeLabel">
-        <input matSliderThumb [(ngModel)]="setting.value" (ngModelChange)="settingsService.saveParameters()">
+        <input matSliderThumb [(ngModel)]="setting.value" (ngModelChange)="settingsService.visibilityChanged()">
       </mat-slider>
     </ng-container>
   </div>

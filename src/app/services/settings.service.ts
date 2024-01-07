@@ -15,6 +15,7 @@ export class SettingsService {
 
 
   filtersChange = new EventEmitter();
+  visibilityChange = new EventEmitter();
 
   constructor() {
     this.loadLocalParameters();
@@ -23,6 +24,11 @@ export class SettingsService {
   filterChanged() {
     this.saveParameters();
     this.filtersChange.emit();
+  }
+
+  visibilityChanged() {
+    this.saveParameters();
+    this.visibilityChange.emit();
   }
 
   saveParameters() {
@@ -34,12 +40,16 @@ export class SettingsService {
     if (localSettings) {
       const localSettingsParsed = JSON.parse(localSettings);
       for (const settingCategory in localSettingsParsed) {
-        if (settingCategory in this.settings) {
-          // Pas très joli mais obligé de rajouter ces conditions pour que le typage fonctionne. Pose souci que si on veut rajouter une famille, il faudra rajouter une condition... Chercher une solution plus propre
-          if (settingCategory === 'filters') {
-            this.settings[settingCategory] = localSettingsParsed[settingCategory] as Filter[];
-          } else if (settingCategory === 'visibility') {
-            this.settings[settingCategory] = localSettingsParsed[settingCategory] as Visibility[];
+        if (settingCategory === 'filters') {
+          for (const setting of localSettingsParsed[settingCategory]) {
+            const relatedSettings = this.settings[settingCategory].find(s => s.id === setting.id);
+            if (relatedSettings) relatedSettings.selected = setting.selected;
+          }
+        }
+        else if (settingCategory === 'visibility') {
+          for (const setting of localSettingsParsed[settingCategory]) {
+            const relatedSettings = this.settings[settingCategory].find(s => s.id === setting.id);
+            if (relatedSettings) relatedSettings.value = setting.value;
           }
         }
       }

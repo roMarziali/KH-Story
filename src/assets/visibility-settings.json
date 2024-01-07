@@ -1,5 +1,11 @@
 [
   {
+    "id": "darkMode",
+    "label": "Succomber au Ténèbres",
+    "type": "boolean",
+    "value": false
+  },
+  {
     "id": "font-police",
     "label": "Police",
     "type": "options",

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'KH-Story';
+  darkMode!: boolean;
+
+  constructor(private settingsService: SettingsService) {
+    this.darkMode = this.settingsService.getVisibilitySetting('darkMode')
+    this.settingsService.visibilityChange.subscribe(() => {
+      this.darkMode = this.settingsService.getVisibilitySetting('darkMode')
+    });
+  }
 }
