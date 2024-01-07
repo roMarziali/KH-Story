@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-header-page',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./header-page.component.scss']
 })
 export class HeaderPageComponent {
+
+  constructor(private settingsService: SettingsService) { }
+
+  toggleSettings() {
+    this.settingsService.emitToggleSettingsEvent();
+  }
 
 }

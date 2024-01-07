@@ -16,6 +16,7 @@ export class SettingsService {
 
   filtersChange = new EventEmitter();
   visibilityChange = new EventEmitter();
+  toggleSettingsEvent = new EventEmitter();
 
   constructor() {
     this.loadLocalParameters();
@@ -29,6 +30,10 @@ export class SettingsService {
   visibilityChanged() {
     this.saveParameters();
     this.visibilityChange.emit();
+  }
+
+  emitToggleSettingsEvent() {
+    this.toggleSettingsEvent.emit();
   }
 
   saveParameters() {

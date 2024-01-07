@@ -1,7 +1,7 @@
 [
   {
     "id": "darkMode",
-    "label": "Succomber au Ténèbres",
+    "label": "Mode Ténèbres",
     "type": "boolean",
     "value": false
   },

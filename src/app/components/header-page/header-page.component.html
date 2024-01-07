@@ -1,7 +1,7 @@
 <header>
-  <mat-toolbar color="primary" id = "header-toolbar">
+  <mat-toolbar color="primary" id="header-toolbar">
     <span>KH Story</span>
-    <button mat-icon-button aria-label="Paramètres">
+    <button mat-icon-button aria-label="Paramètres" (click)="toggleSettings()">
       <mat-icon>settings</mat-icon>
     </button>
     <app-download-menu></app-download-menu>
