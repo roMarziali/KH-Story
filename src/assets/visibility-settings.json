@@ -1,12 +1,5 @@
 [
   {
-    "id": "nightMode",
-    "label": "Mode nuit",
-    "type": "boolean",
-    "value": false
-  },
-
-  {
     "id": "font-police",
     "label": "Police",
     "type": "options",
@@ -19,7 +12,6 @@
     },
     "value": "Verdana"
   },
-
   {
     "id": "font-size",
     "label": "Taille de la police",
@@ -33,7 +25,6 @@
     },
     "value": "14px"
   },
-
   {
     "id": "width",
     "label": "Largeur de la page",

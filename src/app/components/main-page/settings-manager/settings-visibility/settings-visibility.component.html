@@ -1,16 +1,10 @@
-<mat-expansion-panel expanded = true>
+<mat-expansion-panel expanded=true>
   <mat-expansion-panel-header>
     <mat-panel-title>
       Lecture
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div *ngFor="let setting of settingsService.settings.visibility">
-
-    <ng-container *ngIf="setting.type == 'boolean'">
-      <mat-slide-toggle [(ngModel)]="setting.value" (ngModelChange)="settingsService.saveParameters()">
-        {{setting.label}}
-      </mat-slide-toggle>
-    </ng-container>
 
     <ng-container *ngIf="setting.type == 'options' &&  setting.options">
       <mat-form-field>
