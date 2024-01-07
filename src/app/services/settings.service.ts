@@ -1,8 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Visibility } from '../models/visibility.model';
-import visibility from '../assets/visibility-settings.json';
+import visibility from '../../assets/visibility-settings.json';
 import { Filter } from 'src/app/models/filter.model';
-import filters from '../assets/filters.json';
+import filters from '../../assets/filters.json';
 @Injectable({
   providedIn: 'root'
 })
