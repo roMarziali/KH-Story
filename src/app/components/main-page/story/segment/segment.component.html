@@ -1,14 +1,16 @@
+<div class = "toto">
 <ng-container *ngIf="text">
   <ng-container *ngIf="segment.type == 'title1'">
-    <div class="title1"><app-segment-text [mainString]="text"></app-segment-text></div>
+    <h1><app-segment-text [mainString]="text"></app-segment-text></h1>
   </ng-container>
   <ng-container *ngIf="segment.type == 'title2'">
-    <div class="title2"><app-segment-text [mainString]="text"></app-segment-text></div>
+    <h2><app-segment-text [mainString]="text"></app-segment-text></h2>
   </ng-container>
   <ng-container *ngIf="segment.type == 'title3'">
-    <div class="title3"><app-segment-text [mainString]="text"></app-segment-text></div>
+    <h3><app-segment-text [mainString]="text"></app-segment-text></h3>
   </ng-container>
   <ng-container *ngIf="segment.type == 'paragraph'">
     <p><app-segment-text [mainString]="text"></app-segment-text></p>
   </ng-container>
 </ng-container>
+</div>

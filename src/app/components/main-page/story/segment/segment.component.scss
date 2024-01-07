@@ -1,16 +1,22 @@
-.title1{
-  line-height : 2rem;
-  font-size : 1.5rem;
+h1, h2, h3, p {
+  line-height: 1.2em;
 }
 
-.title2{
-
+p {
+  text-align: justify;
 }
 
-.title3{
-
+h1 {
+  font-size: 2em;
+  text-decoration: underline;
 }
 
-p{
-  text-align : justify;
+h2 {
+  font-size: 1.5em;
+  text-decoration: underline;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-style: italic;
 }
