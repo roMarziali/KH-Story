@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const story = require("./routes/story");
+const path = require("path");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -16,6 +17,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/story", story);
+
+app.use(express.static(__dirname + '/angular'));
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "angular", "index.html"));
