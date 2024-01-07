@@ -28,7 +28,7 @@ import { SettingsFiltersComponent } from './components/main-page/settings-manage
 import { SettingsVisibilityComponent } from './components/main-page/settings-manager/settings-visibility/settings-visibility.component';
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
-import { DownloadMenuComponent } from './components/main-page/download-menu/download-menu.component';
+import { DownloadMenuComponent } from './components/header-page/download-menu/download-menu.component';
 import { SegmentTextComponent } from './components/main-page/story/segment/segment-text/segment-text.component';
 
 @NgModule({

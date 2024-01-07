@@ -1,17 +1,10 @@
 <main>
-  <div id="top-buttons">
-    <button mat-icon-button aria-label="Paramètres" (click)="toggleSettings()">
-      <mat-icon>settings</mat-icon>
-    </button>
-    <app-download-menu></app-download-menu>
-  </div>
-
   <section id="main-content">
-    <section id="settings" [ngClass]="{'settings-opened': settingsOpenened, 'settings-closed': !settingsOpenened}">
+    <section id="settings">
       <app-settings-visibility></app-settings-visibility>
       <app-settings-filters></app-settings-filters>
     </section>
-    <section id="story" [ngClass]="{'story-reduced': storyReduced}">
+    <section id="story">
       <app-story></app-story>
     </section>
   </section>

@@ -1,20 +1,6 @@
-#top-buttons {
-  top: 65px;
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  /* Présence d'un background pour éviter que lorsque le texte remonte, il apparaisse derrière les boutons d'option */
-  background-color: white;
-}
-
-#main-content {
-  margin-top: 100px;
-  display: flex;
-}
-
 .settings-closed {
   width: 0;
-  height : 0;
+  height: 0;
   overflow: hidden;
 }
 
@@ -24,6 +10,6 @@
   }
 
   .story-reduced {
-    display : none;
+    display: none;
   }
 }
