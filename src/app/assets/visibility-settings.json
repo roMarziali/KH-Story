@@ -39,6 +39,6 @@
     "id": "width",
     "label": "Largeur de la page",
     "type": "range",
-    "value": 100
+    "value": 800
   }
 ]
