@@ -3,6 +3,7 @@
     {{string.text}}
   </ng-container>
   <ng-container *ngIf="string.annotation && displayAnnotations">
-    <span [matTooltip]="string.annotation" class="annotated">{{string.text}}</span>
+    <span [matTooltip]="string.annotation" class="annotated"
+      [ngClass]="{'dark-mode' : darkMode}">{{string.text}}</span>
   </ng-container>
 </ng-container>

@@ -17,6 +17,7 @@ export class SegmentTextComponent {
   @Input() mainString!: string;
   strings: Strings[] = [];
   displayAnnotations!: boolean;
+  darkMode!: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['mainString']) {
@@ -27,6 +28,10 @@ export class SegmentTextComponent {
   constructor(private annotations: AnnotationsService, private settingsService: SettingsService) {
     this.settingsService.filtersChange.subscribe(() => {
       this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
+    });
+    this.darkMode = this.settingsService.getVisibilitySetting("darkMode");
+    this.settingsService.visibilityChange.subscribe(() => {
+      this.darkMode = this.settingsService.getVisibilitySetting("darkMode");
     });
   }
 
