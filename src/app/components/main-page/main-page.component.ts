@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent {
 
-constructor() { }
+  constructor() { }
+
+  storyReduced: boolean = false;
+  settingsOpenened: boolean = false;
+
+  toggleSettings() {
+    this.settingsOpenened = !this.settingsOpenened;
+    this.storyReduced = !this.storyReduced;
+  }
 
 }

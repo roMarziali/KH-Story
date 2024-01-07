@@ -1,24 +1,19 @@
 <main>
+  <div id="top-buttons">
+    <button mat-icon-button aria-label="Paramètres" (click)="toggleSettings()">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <app-download-menu></app-download-menu>
+  </div>
 
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" [fixedTopGap]="65" [class.opened]="sidenav.opened">
-      <div id="nav-close-button">
-        <button mat-icon-button aria-label="Fermer les paramètres" (click)="sidenav.close()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
+  <section id="main-content">
+    <section id="settings" [ngClass]="{'settings-opened': settingsOpenened, 'settings-closed': !settingsOpenened}">
       <app-settings-visibility></app-settings-visibility>
       <app-settings-filters></app-settings-filters>
-    </mat-sidenav>
-
-    <mat-sidenav-content [class.reduced]="sidenav.opened">
-      <div id="story-buttons">
-        <button mat-icon-button aria-label="Paramètres" (click)="sidenav.open()">
-          <mat-icon>settings</mat-icon>
-        </button>
-        <app-download-menu></app-download-menu>
-      </div>
+    </section>
+    <section id="story" [ngClass]="{'story-reduced': storyReduced}">
       <app-story></app-story>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </section>
+  </section>
+
 </main>
