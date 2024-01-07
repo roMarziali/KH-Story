@@ -1,8 +1,8 @@
-<div id="story" [style.width.%]="getCSSWidth()">
+<div id="story" [style.width.px]="getVisibilitySetting('width')">
 
   <div id="story-title">L'histoire de Kingdom Hearts</div>
 
-  <div id="story-text" [style.fontSize]="getCSS('font-size')" [style.fontFamily]="getCSS('font-police')">
+  <div id="story-text" [style.fontSize]="getVisibilitySetting('font-size')" [style.fontFamily]="getVisibilitySetting('font-police')">
     <ng-container *ngFor="let segment of segments">
       <app-segment [segment]="segment"></app-segment>
     </ng-container>

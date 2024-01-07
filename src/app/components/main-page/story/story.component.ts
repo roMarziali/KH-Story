@@ -31,17 +31,7 @@ export class StoryComponent {
     });
   }
 
-  getCSS(property: string): string | number | boolean {
-    return this.settingsService.settings.visibility.find(v => v.id === property)?.value || '';
+  getVisibilitySetting(property: string): string | number | boolean {
+    return this.settingsService.getVisibilitySetting(property);
   }
-
-  getCSSWidth(): number {
-    const width = this.settingsService.settings.visibility.find(v => v.id === "width")?.value
-    if (!width || typeof (width) !== "number") return 95;
-    else {
-      return width - 5;
-    }
-  }
-
-
 }

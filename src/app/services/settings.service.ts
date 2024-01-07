@@ -55,4 +55,9 @@ export class SettingsService {
     return filters.some(f => this.isFilterSelected(f));
   }
 
+  getVisibilitySetting(visibilityId: string): any {
+    const visibility = this.settings.visibility.find(v => v.id === visibilityId);
+    return visibility ? visibility.value : false;
+  }
+
 }

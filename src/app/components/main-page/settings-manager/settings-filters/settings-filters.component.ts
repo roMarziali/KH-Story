@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Filter } from 'src/app/models/filter.model';
 @Component({
-  selector: 'app-content-filters',
-  templateUrl: './content-filters.component.html',
-  styleUrls: ['./content-filters.component.scss']
+  selector: 'app-settings-filters',
+  templateUrl: './settings-filters.component.html',
+  styleUrls: ['./settings-filters.component.scss']
 })
-export class ContentFiltersComponent {
+export class SettingsFiltersComponent {
 
   filters: Filter[] = this.settingsService.settings.filters;
 

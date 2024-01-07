@@ -25,7 +25,7 @@
 
     <ng-container *ngIf="setting.type == 'range'">
       <label>{{setting.label}}</label>
-      <mat-slider min="25" max="100" step="1" discrete [displayWith]="formatRangeLabel">
+      <mat-slider min="300" max="1500" step="10" discrete [displayWith]="formatRangeLabel">
         <input matSliderThumb [(ngModel)]="setting.value" (ngModelChange)="settingsService.saveParameters()">
       </mat-slider>
     </ng-container>

@@ -24,8 +24,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { ContentFiltersComponent } from './components/main-page/user-content-manager/content-filters/content-filters.component';;
-import { ContentVisibilityComponent } from './components/main-page/user-content-manager/content-visibility/content-visibility.component';
+import { SettingsFiltersComponent } from './components/main-page/settings-manager/settings-filters/settings-filters.component';;
+import { SettingsVisibilityComponent } from './components/main-page/settings-manager/settings-visibility/settings-visibility.component';
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/main-page/download-menu/download-menu.component';
@@ -36,8 +36,8 @@ import { SegmentTextComponent } from './components/main-page/story/segment/segme
     AppComponent,
     HeaderPageComponent,
     MainPageComponent,
-    ContentFiltersComponent,
-    ContentVisibilityComponent,
+    SettingsFiltersComponent,
+    SettingsVisibilityComponent,
     StoryComponent,
     SegmentComponent,
     DownloadMenuComponent,
