@@ -30,6 +30,7 @@ import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/header-page/download-menu/download-menu.component';
 import { SegmentTextComponent } from './components/main-page/story/segment/segment-text/segment-text.component';
+import { IconComponent } from './components/shared/icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SegmentTextComponent } from './components/main-page/story/segment/segme
     SegmentComponent,
     DownloadMenuComponent,
     SegmentTextComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
