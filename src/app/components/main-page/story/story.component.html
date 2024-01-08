@@ -3,8 +3,7 @@
     <mat-card-title>Kingdom Hearts : Résumé Chronologique (Site en construction)</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div id="story-text" [style.fontSize]="getVisibilitySetting('font-size')"
-      [style.fontFamily]="getVisibilitySetting('font-police')">
+    <div id="story" [style.fontSize]="getStoryFontSize()">
       <ng-container *ngFor="let segment of segments">
         <app-segment [segment]="segment"></app-segment>
       </ng-container>

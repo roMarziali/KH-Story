@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Visibility } from '../models/visibility.model';
 import visibility from '../../assets/data/visibility-settings.json';
 import { Filter } from 'src/app/models/filter.model';
 import filters from '../../assets/data/filters.json';
@@ -8,15 +7,17 @@ import filters from '../../assets/data/filters.json';
 })
 export class SettingsService {
 
-  settings: { filters: Filter[], visibility: Visibility[] } = {
+  settings: { filters: Filter[], visibility: any } = {
     filters: filters as Filter[],
-    visibility: visibility as Visibility[]
+    visibility: {
+      "darkMode": false,
+      "fontSizeEm": 1
+    }
   }
 
 
   filtersChange = new EventEmitter();
   visibilityChange = new EventEmitter();
-  toggleSettingsEvent = new EventEmitter();
 
   constructor() {
     this.loadLocalParameters();
@@ -30,10 +31,6 @@ export class SettingsService {
   visibilityChanged() {
     this.saveParameters();
     this.visibilityChange.emit();
-  }
-
-  emitToggleSettingsEvent() {
-    this.toggleSettingsEvent.emit();
   }
 
   saveParameters() {
@@ -52,9 +49,9 @@ export class SettingsService {
           }
         }
         else if (settingCategory === 'visibility') {
-          for (const setting of localSettingsParsed[settingCategory]) {
-            const relatedSettings = this.settings[settingCategory].find(s => s.id === setting.id);
-            if (relatedSettings) relatedSettings.value = setting.value;
+          for (const setting of Object.keys(localSettingsParsed[settingCategory])) {
+            const value = localSettingsParsed[settingCategory][setting];
+            this.settings['visibility'][setting] = value;
           }
         }
       }
@@ -70,9 +67,28 @@ export class SettingsService {
     return filters.some(f => this.isFilterSelected(f));
   }
 
-  getVisibilitySetting(visibilityId: string): any {
-    const visibility = this.settings.visibility.find(v => v.id === visibilityId);
-    return visibility ? visibility.value : false;
+  isDarkMode(): boolean {
+    return this.settings.visibility.darkMode;
+  }
+
+  get storyFontSizeEm(): string {
+    return this.settings.visibility.fontSizeEm + "em";
+  }
+
+  get storyFontSizeNumber(): number {
+    return this.settings.visibility.fontSizeEm;
+  }
+
+  increaseFontSize() {
+    if (this.settings.visibility.fontSizeEm >= 2.5) return;
+    this.settings.visibility.fontSizeEm = this.settings.visibility.fontSizeEm + 0.125;
+    this.visibilityChanged();
+  }
+
+  decreaseFontSize() {
+    if (this.settings.visibility.fontSizeEm <= 0.5) return;
+    this.settings.visibility.fontSizeEm = this.settings.visibility.fontSizeEm - 0.125;
+    this.visibilityChanged();
   }
 
 }

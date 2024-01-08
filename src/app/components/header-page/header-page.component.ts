@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
-
 @Component({
   selector: 'app-header-page',
   templateUrl: './header-page.component.html',
@@ -8,10 +7,9 @@ import { SettingsService } from 'src/app/services/settings.service';
 })
 export class HeaderPageComponent {
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(public settingsService: SettingsService) { }
 
-  toggleSettings() {
-    this.settingsService.emitToggleSettingsEvent();
+  formatRangeLabel(value: number): string {
+    return value + "px";
   }
-
 }

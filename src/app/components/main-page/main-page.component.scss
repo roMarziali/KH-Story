@@ -1,13 +1,14 @@
-mat-sidenav-container {
-  height: 100vh;
-}
+
+
 
 @media screen and (max-width: 600px) {
-  .opened {
-    width: 100%;
+  main{
+    margin-top : 112px;
   }
+}
 
-  .reduced {
-    display: none;
+@media screen and (min-width: 600px) {
+  main{
+    margin-top : 128px;
   }
 }

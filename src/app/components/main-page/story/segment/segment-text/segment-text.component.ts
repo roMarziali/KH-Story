@@ -29,9 +29,9 @@ export class SegmentTextComponent {
     this.settingsService.filtersChange.subscribe(() => {
       this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
     });
-    this.darkMode = this.settingsService.getVisibilitySetting("darkMode");
+    this.darkMode = this.settingsService.isDarkMode();
     this.settingsService.visibilityChange.subscribe(() => {
-      this.darkMode = this.settingsService.getVisibilitySetting("darkMode");
+      this.darkMode = this.settingsService.isDarkMode();
     });
   }
 

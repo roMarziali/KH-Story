@@ -1,12 +1,40 @@
 <header>
-  <mat-toolbar color="primary" id="header-toolbar">
-    <span>KH Story</span>
-    <button mat-icon-button aria-label="Paramètres" (click)="toggleSettings()">
-      <mat-icon>settings</mat-icon>
-    </button>
-    <app-download-menu></app-download-menu>
-    <a target="_blank"
-      href="https://docs.google.com/document/d/1H4V1veomM1OVgEzc-7rq-dV2auze6T1uM-cbUc27_rE/edit?pli=1">Précédente
-      version (Google doc)</a>
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>KH Story</span>
+      <span class="spacer"></span>
+      <span>
+        <a target="_blank"
+          href="https://docs.google.com/document/d/1H4V1veomM1OVgEzc-7rq-dV2auze6T1uM-cbUc27_rE/edit?pli=1">Précédente
+          version (Google doc)</a>
+      </span>
+    </mat-toolbar-row>
   </mat-toolbar>
+
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <app-download-menu></app-download-menu>
+
+      <span class="spacer"></span>
+
+
+      <app-icon id="reduce-font-size" [alt]="'Réduire la taille de la police'" [height]="40"
+        [iconeName]="'keyblade.png'" (click)="settingsService.decreaseFontSize()">
+      </app-icon>
+      <span class="second-header-text">{{settingsService.storyFontSizeNumber*16}} pixels</span>
+      <app-icon [alt]="'Augmenter la taille de la police'" [height]="40" [iconeName]="'keyblade.png'"
+        (click)="settingsService.increaseFontSize()">
+      </app-icon>
+
+      <span class="mini-spacer"></span>
+
+      <mat-slide-toggle [(ngModel)]="settingsService.settings.visibility.darkMode"
+        (ngModelChange)="settingsService.visibilityChanged()">
+      </mat-slide-toggle>
+      <span class="second-header-text">Ténèbres</span>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
 </header>

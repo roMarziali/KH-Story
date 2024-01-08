@@ -1,10 +1,27 @@
 header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
 }
 
 a {
-  color:inherit;
+  color: inherit;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mini-spacer {
+  flex: 0 0 1rem;
+}
+
+.second-header-text {
+  font-size: 0.8rem;
+}
+
+#reduce-font-size {
+  transform: scale(0.75);
 }

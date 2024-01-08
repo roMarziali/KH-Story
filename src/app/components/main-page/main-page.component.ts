@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-main-page',
@@ -8,15 +7,4 @@ import { SettingsService } from 'src/app/services/settings.service';
 })
 export class MainPageComponent {
 
-  openedSetings: boolean = false;
-
-  constructor(private settingsService: SettingsService) {
-    this.settingsService.toggleSettingsEvent.subscribe(() => {
-      this.toggleSettings();
-    });
-   }
-
-  toggleSettings() {
-    this.openedSetings = !this.openedSetings;
-  }
 }

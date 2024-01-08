@@ -1,25 +1,10 @@
-[
-  {
-    "id": "darkMode",
+{
+  "darkMode": {
     "label": "Mode Ténèbres",
     "type": "boolean",
     "value": false
   },
-  {
-    "id": "font-police",
-    "label": "Police",
-    "type": "options",
-    "options": {
-      "Verdana": "Verdana",
-      "Arial": "Arial",
-      "Times New Roman": "Times New Roman",
-      "Georgia": "Georgia",
-      "Roboto": "Roboto"
-    },
-    "value": "Verdana"
-  },
-  {
-    "id": "font-size",
+  "font-size": {
     "label": "Taille de la police",
     "type": "options",
     "options": {
@@ -29,11 +14,5 @@
       "1.250em": "20px"
     },
     "value": "1em"
-  },
-  {
-    "id": "width",
-    "label": "Largeur de la page",
-    "type": "range",
-    "value": 800
   }
-]
+}

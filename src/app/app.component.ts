@@ -11,9 +11,9 @@ export class AppComponent {
   darkMode!: boolean;
 
   constructor(private settingsService: SettingsService) {
-    this.darkMode = this.settingsService.getVisibilitySetting('darkMode')
+    this.darkMode = this.settingsService.isDarkMode();
     this.settingsService.visibilityChange.subscribe(() => {
-      this.darkMode = this.settingsService.getVisibilitySetting('darkMode')
+      this.darkMode = this.settingsService.isDarkMode();
     });
   }
 }

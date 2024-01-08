@@ -31,7 +31,7 @@ export class StoryComponent {
     });
   }
 
-  getVisibilitySetting(property: string): string | number | boolean {
-    return this.settingsService.getVisibilitySetting(property);
+  getStoryFontSize(): string {
+    return this.settingsService.storyFontSizeEm;
   }
 }
