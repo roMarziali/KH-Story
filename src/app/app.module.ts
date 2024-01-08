@@ -16,7 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -26,7 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { SettingsFiltersComponent } from './components/main-page/settings-manager/settings-filters/settings-filters.component';;
-import { SettingsVisibilityComponent } from './components/main-page/settings-manager/settings-visibility/settings-visibility.component';
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/header-page/download-menu/download-menu.component';
@@ -39,7 +38,6 @@ import { IconComponent } from './components/shared/icon/icon.component';
     HeaderPageComponent,
     MainPageComponent,
     SettingsFiltersComponent,
-    SettingsVisibilityComponent,
     StoryComponent,
     SegmentComponent,
     DownloadMenuComponent,
