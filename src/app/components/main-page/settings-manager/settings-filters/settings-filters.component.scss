@@ -5,3 +5,23 @@ ul {
 li {
   list-style-type: none;
 }
+
+@media screen and (min-width: 600px) {
+  .screen-small {
+    display: none;
+  }
+
+  .screen-large {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .screen-large {
+    display: none;
+  }
+
+  .screen-small {
+    margin-bottom: 1rem;
+  }
+}
