@@ -1,14 +1,22 @@
-
-
-
 @media screen and (max-width: 600px) {
-  main{
-    margin-top : 112px;
+  main {
+    margin-top: 112px;
   }
 }
 
 @media screen and (min-width: 600px) {
-  main{
-    margin-top : 128px;
+  main {
+    margin-top: 128px;
+    display: flex;
+  }
+
+  #filters {
+    white-space: nowrap;
+    margin-right: 1rem;
+    position: fixed;
+  }
+
+  #story{
+    margin-left : 310px;
   }
 }

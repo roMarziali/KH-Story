@@ -8,12 +8,13 @@ import { SettingsService } from './services/settings.service';
 })
 export class AppComponent {
   title = 'KH-Story';
-  darkMode!: boolean;
 
   constructor(private settingsService: SettingsService) {
-    this.darkMode = this.settingsService.isDarkMode();
+    let darkMode = this.settingsService.isDarkMode();
+    document.getElementsByTagName("body")[0].classList.toggle("dark-mode", darkMode);
     this.settingsService.visibilityChange.subscribe(() => {
-      this.darkMode = this.settingsService.isDarkMode();
+      darkMode = this.settingsService.isDarkMode();
+      document.getElementsByTagName("body")[0].classList.toggle("dark-mode", darkMode);
     });
   }
 }

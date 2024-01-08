@@ -15,18 +15,15 @@ html {
   height: 100%;
 }
 
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.app {
-  height: 100vh;
-}
-
-.app.dark-mode {
-  @include mat.all-component-themes($dark-theme);
+body.dark-mode {
   background-color: #303030;
+  @include mat.all-component-themes($dark-theme);
 
   mat-card-title,
   mat-card-content {
