@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^17.0.8",
     "@angular/platform-browser-dynamic": "^17.0.8",
     "@angular/router": "^17.0.8",
+    "core-js": "^3.35.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
