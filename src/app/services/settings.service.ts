@@ -42,7 +42,7 @@ export class SettingsService {
 
   loadLocalParameters() {
     const localSettings = localStorage.getItem('settings');
-    if (localSettings) {
+    if (localSettings && localSettings !== 'undefined') {
       const localSettingsParsed = JSON.parse(localSettings);
       for (const settingCategory in localSettingsParsed) {
         if (settingCategory === 'filters') {
