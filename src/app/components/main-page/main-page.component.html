@@ -1,12 +1,9 @@
-<mat-sidenav-container>
-  <mat-sidenav [opened]="openedSetings" mode="side" [fixedInViewport]="true" [fixedTopGap]="55"
-    [class.opened]="openedSetings">
+<section>
 
-    <app-settings-visibility></app-settings-visibility>
-    <app-settings-filters></app-settings-filters>
-  </mat-sidenav>
 
-  <mat-sidenav-content [class.reduced]="openedSetings">
-    <app-story></app-story>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <app-settings-visibility></app-settings-visibility>
+  <app-settings-filters></app-settings-filters>
+
+  <app-story></app-story>
+
+</section>
