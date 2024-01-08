@@ -15,8 +15,8 @@ export class StoryComponent {
 
   constructor(private api: ApiService, private annotations: AnnotationsService, private settingsService: SettingsService) { }
 
-  ngOnInit() {
-    this.annotations.getAnnotations(); // A appeler avant les segments car les segments vont utiliser les annotations
+  async ngOnInit() {
+    await this.annotations.getAnnotations(); // Await car il faut les annotations avant les segments car les segments vont utiliser les annotations
     this.api.get('story/segments').subscribe((data) => {
       this.segments = data
       this.sortSegments();
