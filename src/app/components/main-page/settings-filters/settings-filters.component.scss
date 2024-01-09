@@ -6,7 +6,7 @@ li {
   list-style-type: none;
 }
 
-@media screen and (min-width: 600x) {
+@media screen and (min-width: 599px) {
   .screen-small {
     display: none;
   }
@@ -16,7 +16,7 @@ li {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 598.99px) {
   .screen-large {
     display: none;
   }
