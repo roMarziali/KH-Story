@@ -17,10 +17,10 @@
       <span class="spacer"></span>
 
 
+      <span class="second-header-text">Taille du texte :</span>
       <app-icon id="reduce-font-size" [alt]="'Réduire la taille de la police'" [height]="40"
         [iconeName]="'keyblade.png'" (click)="settingsService.decreaseFontSize()">
       </app-icon>
-      <span class="second-header-text">{{settingsService.storyFontSizeNumber*16}} pixels</span>
       <app-icon [alt]="'Augmenter la taille de la police'" [height]="40" [iconeName]="'keyblade.png'"
         (click)="settingsService.increaseFontSize()">
       </app-icon>
@@ -30,7 +30,7 @@
       <mat-slide-toggle [(ngModel)]="settingsService.settings.visibility.darkMode"
         (ngModelChange)="settingsService.visibilityChanged()">
       </mat-slide-toggle>
-      <mat-icon>wb_sunny</mat-icon>
+      <mat-icon (click)="settingsService.toggleDarkMode()">wb_sunny</mat-icon>
 
     </mat-toolbar-row>
   </mat-toolbar>
