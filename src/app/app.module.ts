@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { SettingsFiltersComponent } from './components/main-page/settings-manager/settings-filters/settings-filters.component';;
+import { SettingsFiltersComponent } from './components/main-page/settings-filters/settings-filters.component';;
 import { StoryComponent } from './components/main-page/story/story.component';
 import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/header-page/download-menu/download-menu.component';
