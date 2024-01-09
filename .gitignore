@@ -2,6 +2,7 @@
 
 /backend/node_modules
 /backend/angular
+/backend/public/images
 
 # Compiled output
 /dist

@@ -6,4 +6,10 @@ export interface Segment {
     text: string;
     relatedTo: string[];
   }>;
+  image?: {
+    "game": string;
+    "name": string;
+    "alt": string;
+    "caption": string;
+  }
 }

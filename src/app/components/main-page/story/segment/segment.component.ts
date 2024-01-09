@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Segment } from 'src/app/models/segment';
 import { SettingsService } from 'src/app/services/settings.service';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-segment',
   templateUrl: './segment.component.html',
@@ -18,6 +18,8 @@ export class SegmentComponent {
   };
 
   text: string = '';
+  private apiImage: string = environment.apiImage;
+
 
   constructor(private settingsService: SettingsService, private cdr: ChangeDetectorRef) {
     this.settingsService.filtersChange.subscribe(() => {
@@ -45,6 +47,11 @@ export class SegmentComponent {
       }
     }
     this.text = "";
+  }
+
+  get relatedImageSource(): string {
+    if (!this.segment.image) return "";
+    return `${this.apiImage}/${this.segment.image.game}/${this.segment.image.name}`;
   }
 
 }
