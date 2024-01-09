@@ -75,9 +75,6 @@ export class SettingsService {
     return this.settings.visibility.fontSizeEm + "em";
   }
 
-  get storyFontSizeNumber(): number {
-    return this.settings.visibility.fontSizeEm;
-  }
 
   increaseFontSize() {
     if (this.settings.visibility.fontSizeEm >= 2.5) return;

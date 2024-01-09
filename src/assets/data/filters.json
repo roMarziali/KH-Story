@@ -40,11 +40,6 @@
     "selected": true
   },
   {
-    "id": "KH3",
-    "name": "Kingdom Hearts III",
-    "selected": true
-  },
-  {
     "id": "KHUX",
     "name": "KH Union χ",
     "selected": true
@@ -52,6 +47,11 @@
   {
     "id": "KHUXBackCover",
     "name": "KH Union χ Back Cover",
+    "selected": true
+  },
+  {
+    "id": "KH3",
+    "name": "Kingdom Hearts III",
     "selected": true
   },
   {
