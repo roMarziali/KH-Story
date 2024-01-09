@@ -8,8 +8,4 @@ import { SettingsService } from 'src/app/services/settings.service';
 export class HeaderPageComponent {
 
   constructor(public settingsService: SettingsService) { }
-
-  formatRangeLabel(value: number): string {
-    return value + "px";
-  }
 }
