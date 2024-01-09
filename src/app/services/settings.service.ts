@@ -91,4 +91,9 @@ export class SettingsService {
     this.visibilityChanged();
   }
 
+  toggleDarkMode() {
+    this.settings.visibility.darkMode = !this.settings.visibility.darkMode;
+    this.visibilityChanged();
+  }
+
 }
