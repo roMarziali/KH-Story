@@ -27,9 +27,10 @@
 
       <span class="mini-spacer"></span>
 
-      <app-icon [alt]="'Mode sombre'" [height]="40" [iconeName]="'heartless-emblem.png'"
-        (click)="settingsService.toggleDarkMode()">
-      </app-icon>
+      <mat-slide-toggle [(ngModel)]="settingsService.settings.visibility.darkMode"
+        (ngModelChange)="settingsService.visibilityChanged()">
+      </mat-slide-toggle>
+      <mat-icon>wb_sunny</mat-icon>
 
     </mat-toolbar-row>
   </mat-toolbar>
