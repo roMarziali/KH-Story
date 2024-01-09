@@ -75,7 +75,6 @@ export class SettingsService {
     return this.settings.visibility.fontSizeEm + "em";
   }
 
-
   increaseFontSize() {
     if (this.settings.visibility.fontSizeEm >= 2.5) return;
     this.settings.visibility.fontSizeEm = this.settings.visibility.fontSizeEm + 0.125;
