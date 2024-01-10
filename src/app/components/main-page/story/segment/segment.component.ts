@@ -51,7 +51,7 @@ export class SegmentComponent {
 
   get relatedImageSource(): string {
     if (!this.segment.image) return "";
-    return `${this.apiImage}/${this.segment.image.game}/${this.segment.image.name}`;
+    return `${this.apiImage}/${this.segment.image.game}/${this.segment.image.name}`.toLowerCase();
   }
 
 }

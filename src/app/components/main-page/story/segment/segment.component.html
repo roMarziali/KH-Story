@@ -12,8 +12,10 @@
     <p><app-segment-text [mainString]="text"></app-segment-text></p>
   </ng-container>
 
-  <div *ngIf="segment.image">
-    <img [src]="relatedImageSource" class="illustration" [alt]="segment.image.alt">
-    <p class="image-caption">{{segment.image.caption}}</p>
+  <div class="illustration-container">
+    <div class="illustration" *ngIf="segment.image">
+      <img class="image" [src]="relatedImageSource" [alt]="segment.image.alt">
+      <div class="caption">{{segment.image.caption}}</div>
+    </div>
   </div>
 </ng-container>

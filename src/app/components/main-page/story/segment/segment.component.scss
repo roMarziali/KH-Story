@@ -24,12 +24,53 @@ h3 {
   font-style: italic;
 }
 
-.illustration {
-  max-height: 180px;
-  max-width: 320px;
+.illustration-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
-.image-caption{
-  font-size : 0.7em;
-  font-style : italic;
+@media screen and (max-width: 839.9px) {
+  .illustration {
+    width: 320px;
+    height: 180px;
+  }
+
+  .caption {
+    width: 304px;
+  }
+}
+
+@media screen and (min-width: 840px) {
+  .illustration {
+    width: 480px;
+    height: 270px;
+  }
+
+  .caption {
+    width: 464px;
+  }
+}
+
+.illustration {
+  position: relative;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 1em;
 }
