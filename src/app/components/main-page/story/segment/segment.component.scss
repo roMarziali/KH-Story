@@ -56,6 +56,9 @@ h3 {
 .illustration {
   position: relative;
   border: 1px solid rgb(0, 0, 0);
+  border-top-right-radius: 5%;
+  border-top-left-radius: 5%;
+  overflow : hidden;
 }
 
 img {
