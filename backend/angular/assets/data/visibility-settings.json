@@ -1,0 +1,18 @@
+{
+  "darkMode": {
+    "label": "Mode Ténèbres",
+    "type": "boolean",
+    "value": false
+  },
+  "font-size": {
+    "label": "Taille de la police",
+    "type": "options",
+    "options": {
+      "0.875em": "14px",
+      "1em": "16px",
+      "1.125em": "18px",
+      "1.250em": "20px"
+    },
+    "value": "1em"
+  }
+}
