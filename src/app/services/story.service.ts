@@ -16,7 +16,6 @@ export class StoryService {
 
   constructor(private api: ApiService, private settingsService: SettingsService) {
     this.getStoryData();
-
   }
 
   getStoryData() {
@@ -38,6 +37,17 @@ export class StoryService {
   getChapter(order: number): Chapter | null {
     const chapter = this.chapters.find(c => c.order === order);
     return (chapter) ? chapter : null;
+  }
+
+  getChaptersOrderAndTitle(){
+    const chapters = this.chapters.map(c => {
+      return {
+        order: c.order,
+        title: c.title
+      }
+    });
+    chapters.sort((a, b) => a.order - b.order);
+    return chapters;
   }
 
 }

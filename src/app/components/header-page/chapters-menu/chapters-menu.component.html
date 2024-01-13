@@ -4,10 +4,8 @@
 </button>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <span>L'Ère des Contes de Fées</span>
-  </button>
-  <button mat-menu-item>
-    <span>Le Trio Wayfinder</span>
-  </button>
+  <ng-container *ngFor="let chapter of chapters">
+    <a mat-menu-item [href]="'?chapter=' + chapter.order">{{chapter.title}}</a>
+  </ng-container>
+
 </mat-menu>
