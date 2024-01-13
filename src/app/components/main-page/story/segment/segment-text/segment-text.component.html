@@ -1,9 +1,6 @@
 <ng-container *ngFor="let string of strings">
-  <ng-container *ngIf="!string.annotation || !displayAnnotations">
-    {{string.text}}
-  </ng-container>
+  <ng-container *ngIf="!string.annotation || !displayAnnotations">{{string.text}}</ng-container>
   <ng-container *ngIf="string.annotation && displayAnnotations">
     <span [matTooltip]="string.annotation" class="annotated"
-      [ngClass]="{'dark-mode' : darkMode}">{{string.text}}</span>
-  </ng-container>
+      [ngClass]="{'dark-mode' : darkMode}">{{string.text}}</span></ng-container>
 </ng-container>
