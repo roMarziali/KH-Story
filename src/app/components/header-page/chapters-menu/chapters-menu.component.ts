@@ -10,12 +10,21 @@ import { Chapter } from 'src/app/models/chapter';
 export class ChaptersMenuComponent {
 
   chapters!: Chapter[];
+  currentChapterOrder!: number;
 
   constructor(private storyService: StoryService) {
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.chapters = this.storyService.chapters;
     });
+    this.storyService.changeChapterEvent.subscribe((chapterNumber) => {
+      this.currentChapterOrder = chapterNumber;
+    });
   }
+
+  changeChapter(chapterOrder: number) {
+    this.storyService.changeChapter(chapterOrder);
+  }
+
 
 
 

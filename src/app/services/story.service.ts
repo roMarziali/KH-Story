@@ -18,6 +18,7 @@ export class StoryService {
   chapters: Chapter[] = [];
 
   updatedStoryEvent = new EventEmitter();
+  changeChapterEvent = new EventEmitter<number>();
 
   constructor(private api: ApiService, private settingsService: SettingsService) {
     this.getStoryData();
@@ -99,6 +100,13 @@ export class StoryService {
       }
     });
     return paragraphs;
+  }
+
+  changeChapter(chapterOrder: number) {
+    const chapter = this.getChapter(chapterOrder);
+    if (chapter) {
+      this.changeChapterEvent.emit(chapterOrder);
+    }
   }
 
 }
