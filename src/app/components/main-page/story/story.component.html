@@ -1,12 +1,15 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Kingdom Hearts : Résumé Chronologique (Site en construction)</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <div id="story" [style.fontSize]="getStoryFontSize()">
-      <ng-container *ngFor="let segment of segments">
-        <app-segment [segment]="segment"></app-segment>
-      </ng-container>
-    </div>
-  </mat-card-content>
-</mat-card>
+<ng-container *ngIf="chapter">
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title>{{chapter.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="story" [style.fontSize]="getStoryFontSize()">
+        <ng-container *ngFor="let segment of chapter.segments">
+          <app-segment [segment]="segment"></app-segment>
+        </ng-container>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

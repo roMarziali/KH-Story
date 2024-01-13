@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Segment } from 'src/app/models/segment';
 import { ApiService } from 'src/app/services/api.service';
-import { AnnotationsService } from 'src/app/services/annotations.service';
+import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
+import { Chapter } from 'src/app/models/chapter';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-story',
@@ -11,27 +12,25 @@ import { SettingsService } from 'src/app/services/settings.service';
 })
 export class StoryComponent {
 
-  segments: Segment[] = [];
+  constructor(private api: ApiService, private storyService: StoryService, private settingsService: SettingsService, private route: ActivatedRoute) { }
 
-  constructor(private api: ApiService, private annotations: AnnotationsService, private settingsService: SettingsService) { }
+  chapter: Chapter | null = null;
+  chapterNumber!: number;
 
-  async ngOnInit() {
-    await this.annotations.getAnnotations(); // Await car il faut les annotations avant les segments car les segments vont utiliser les annotations
-    this.api.get('story/segments').subscribe((data) => {
-      this.segments = data
-      this.sortSegments();
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.chapterNumber = (params['chapter']) ? parseInt(params['chapter']) : 1;
     });
-  }
-
-  sortSegments() {
-    this.segments.sort((a, b) => {
-      if (a.order === null) return 1;
-      if (b.order === null) return -1;
-      return a.order - b.order;
+    this.storyService.updatedStoryEvent.subscribe(() => {
+      this.loadChapter();
     });
   }
 
   getStoryFontSize(): string {
     return this.settingsService.storyFontSizeEm;
+  }
+
+  loadChapter() {
+    this.chapter = this.storyService.getChapter(this.chapterNumber);
   }
 }

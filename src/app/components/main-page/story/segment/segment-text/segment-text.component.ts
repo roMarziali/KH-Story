@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { AnnotationsService } from 'src/app/services/annotations.service';
+import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
 
 export interface Strings {
@@ -25,7 +25,7 @@ export class SegmentTextComponent {
     }
   }
 
-  constructor(private annotations: AnnotationsService, private settingsService: SettingsService) {
+  constructor(private stodyService: StoryService, private settingsService: SettingsService) {
     this.settingsService.filtersChange.subscribe(() => {
       this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
     });
@@ -48,7 +48,7 @@ export class SegmentTextComponent {
 
     while ((match = regex.exec(this.mainString)) !== null) {
       this.strings.push({ text: this.mainString.slice(lastIndex, match.index) });
-      this.strings.push({ text: match[2], annotation: this.annotations.getAnnotation(parseInt(match[1])) });
+      this.strings.push({ text: match[2], annotation: this.stodyService.getAnnotation(parseInt(match[1])) });
       lastIndex = match.index + match[0].length;
     }
     this.strings.push({ text: this.mainString.slice(lastIndex) });

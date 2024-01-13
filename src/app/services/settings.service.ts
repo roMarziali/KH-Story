@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import visibility from '../../assets/data/visibility-settings.json';
 import { Filter } from 'src/app/models/filter.model';
 import filters from '../../assets/data/filters.json';
 @Injectable({
@@ -14,7 +13,6 @@ export class SettingsService {
       "fontSizeEm": 1
     }
   }
-
 
   filtersChange = new EventEmitter();
   visibilityChange = new EventEmitter();
