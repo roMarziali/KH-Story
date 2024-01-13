@@ -1,0 +1,6 @@
+<div *ngIf="previousChapter || nextChapter" class="move-chapter">
+  <div *ngIf="previousChapter"><button mat-raised-button color=accent (click)="moveToChapter(previousChapter)">Chapitre précédent</button></div>
+  <div *ngIf="!previousChapter"></div>
+  <div *ngIf="nextChapter"><button mat-raised-button color=accent (click)="moveToChapter(nextChapter)"> Chapitre suivant</button></div>
+  <div *ngIf="!nextChapter"></div>
+</div>

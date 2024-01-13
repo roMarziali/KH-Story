@@ -6,12 +6,14 @@
     </mat-card-header>
     <mat-card-content>
       <div id="story" [style.fontSize]="getStoryFontSize()">
+        <app-move-chapter [currentChapterNumber]="chapter.order"></app-move-chapter>
         <ng-container *ngFor="let section of chapter.sections">
           <h1 [style.fontSize]="getStoryFontSize()">{{section.title}}</h1>
           <ng-container *ngFor="let paragraph of section.paragraphs">
             <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
           </ng-container>
         </ng-container>
+        <app-move-chapter [currentChapterNumber]="chapter.order"></app-move-chapter>
       </div>
     </mat-card-content>
   </mat-card>
