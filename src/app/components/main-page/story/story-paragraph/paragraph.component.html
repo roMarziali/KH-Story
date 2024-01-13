@@ -1,0 +1,12 @@
+<ng-container *ngIf="paragraph">
+  <div class="text-container">
+    <div class="text" [innerHTML]="paragraph.text"></div>
+  </div>
+
+  <div class="illustration-container">
+    <div class="illustration" *ngIf="paragraph.image">
+      <img class="image" [src]="relatedImageSource" [alt]="paragraph.image.alt">
+      <div class="caption">{{paragraph.image.caption}}</div>
+    </div>
+  </div>
+</ng-container>

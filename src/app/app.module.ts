@@ -27,11 +27,10 @@ import { HeaderPageComponent } from './components/header-page/header-page.compon
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { SettingsFiltersComponent } from './components/main-page/settings-filters/settings-filters.component';;
 import { StoryComponent } from './components/main-page/story/story.component';
-import { SegmentComponent } from './components/main-page/story/segment/segment.component';
 import { DownloadMenuComponent } from './components/header-page/download-menu/download-menu.component';
-import { SegmentTextComponent } from './components/main-page/story/segment/segment-text/segment-text.component';
 import { IconComponent } from './components/shared/icon/icon.component';
 import { ChaptersMenuComponent } from './components/header-page/chapters-menu/chapters-menu.component';
+import { ParagraphComponent } from './components/main-page/story/story-paragraph/paragraph.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +39,10 @@ import { ChaptersMenuComponent } from './components/header-page/chapters-menu/ch
     MainPageComponent,
     SettingsFiltersComponent,
     StoryComponent,
-    SegmentComponent,
     DownloadMenuComponent,
-    SegmentTextComponent,
     IconComponent,
-    ChaptersMenuComponent
+    ChaptersMenuComponent,
+    ParagraphComponent
   ],
   imports: [
     BrowserModule,

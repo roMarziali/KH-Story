@@ -4,12 +4,12 @@ const path = require('path');
 const STORY_FILE_PATH = path.join(__dirname, '../data/story.json');
 const ANNOTATION_FILE_PATH = path.join(__dirname, '../data/annotations.json');
 
-module.exports = class SegmentManager {
+module.exports = class StoryManager {
 
   static async getStory() {
     const data = fs.readFileSync(STORY_FILE_PATH, 'utf8');
-    const jsonSegment = JSON.parse(data);
-    return jsonSegment;
+    const jsonStory = JSON.parse(data);
+    return jsonStory;
   }
 
   static async getAnnotations() {

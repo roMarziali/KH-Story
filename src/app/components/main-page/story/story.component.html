@@ -2,12 +2,15 @@
   <mat-card>
 
     <mat-card-header>
-      <mat-card-title>{{chapter.title}}</mat-card-title>
+      <mat-card-title [style.fontSize]="getStoryFontSize()">{{chapter.title}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div id="story" [style.fontSize]="getStoryFontSize()">
-        <ng-container *ngFor="let segment of chapter.segments">
-          <app-segment [segment]="segment"></app-segment>
+        <ng-container *ngFor="let section of chapter.sections">
+          <h2>{{section.title}}</h2>
+          <ng-container *ngFor="let paragraph of section.paragraphs">
+            <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
+          </ng-container>
         </ng-container>
       </div>
     </mat-card-content>
