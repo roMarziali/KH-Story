@@ -1,0 +1,22 @@
+#intro {
+  display: flex;
+
+  div {
+    padding: 1rem;
+  }
+}
+
+img {
+  height: 200px;
+}
+
+mat-card-title {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+
+  mat-icon {
+    padding-top: 4px;
+    cursor: pointer;
+  }
+}

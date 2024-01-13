@@ -17,7 +17,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +31,7 @@ import { DownloadMenuComponent } from './components/header-page/download-menu/do
 import { IconComponent } from './components/shared/icon/icon.component';
 import { ChaptersMenuComponent } from './components/header-page/chapters-menu/chapters-menu.component';
 import { ParagraphComponent } from './components/main-page/story/story-paragraph/paragraph.component';
+import { IntroComponent } from './components/main-page/intro/intro.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ParagraphComponent } from './components/main-page/story/story-paragraph
     DownloadMenuComponent,
     IconComponent,
     ChaptersMenuComponent,
-    ParagraphComponent
+    ParagraphComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { ParagraphComponent } from './components/main-page/story/story-paragraph
     MatSliderModule,
     MatTooltipModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

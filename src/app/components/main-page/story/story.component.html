@@ -7,7 +7,7 @@
     <mat-card-content>
       <div id="story" [style.fontSize]="getStoryFontSize()">
         <ng-container *ngFor="let section of chapter.sections">
-          <h2>{{section.title}}</h2>
+          <h1 [style.fontSize]="getStoryFontSize()">{{section.title}}</h1>
           <ng-container *ngFor="let paragraph of section.paragraphs">
             <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
           </ng-container>
