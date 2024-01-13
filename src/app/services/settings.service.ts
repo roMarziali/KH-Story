@@ -32,11 +32,11 @@ export class SettingsService {
   }
 
   saveParameters() {
-    localStorage.setItem("settings", JSON.stringify(this.settings));
+//    localStorage.setItem("settings", JSON.stringify(this.settings));
   }
 
   loadLocalParameters() {
-    const localSettings = localStorage.getItem('settings');
+   /* const localSettings = localStorage.getItem('settings');
     if (localSettings && localSettings !== 'undefined') {
       const localSettingsParsed = JSON.parse(localSettings);
       for (const settingCategory in localSettingsParsed) {
@@ -53,7 +53,7 @@ export class SettingsService {
           }
         }
       }
-    }
+    }*/
   }
 
   isFilterSelected(filterId: string): boolean {
