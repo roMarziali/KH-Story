@@ -1,31 +1,5 @@
-<div class="screen-small">
-  <mat-expansion-panel expanded=false>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Filtrer par jeux
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <ul>
-      <li *ngFor="let filter of filters">
-        <mat-checkbox [(ngModel)]="filter.selected" (change)="filterChanged()">{{filter.name}}</mat-checkbox>
-      </li>
-    </ul>
-
-  </mat-expansion-panel>
-</div>
-
-<div class="screen-large">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Filtrer par jeux</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <ul>
-        <li *ngFor="let filter of filters">
-          <mat-checkbox [(ngModel)]="filter.selected" (change)="filterChanged()">{{filter.name}}</mat-checkbox>
-        </li>
-      </ul>
-    </mat-card-content>
-  </mat-card>
-</div>
+<ul>
+  <li *ngFor="let filter of filters">
+    <mat-checkbox [(ngModel)]="filter.selected" (change)="filterChanged()">{{filter.name}}</mat-checkbox>
+  </li>
+</ul>

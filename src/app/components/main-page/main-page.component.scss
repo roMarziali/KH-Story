@@ -1,6 +1,14 @@
-@media screen and (max-width: 598.99px) {
+@media screen and (max-width: 598.9999999px) {
   main {
     margin-top: 112px;
+  }
+
+  .filter-large {
+    display: none;
+  }
+
+  .filter-small {
+    margin-bottom: 1rem;
   }
 }
 
@@ -19,5 +27,15 @@
   #story{
     margin-left : 310px;
     margin-right : 1rem;
+  }
+
+  .filter-small {
+    display: none;
+  }
+
+  .filter-large {
+    margin-left: 1rem;
+    overflow-y: auto;
+    max-height : 75vh;
   }
 }

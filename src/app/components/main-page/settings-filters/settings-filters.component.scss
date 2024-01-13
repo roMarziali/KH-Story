@@ -6,24 +6,4 @@ li {
   list-style-type: none;
 }
 
-@media screen and (min-width: 599px) {
-  .screen-small {
-    display: none;
-  }
 
-  .screen-large {
-    margin-left: 1rem;
-    overflow-y: auto;
-    max-height : 75vh;
-  }
-}
-
-@media screen and (max-width: 598.99px) {
-  .screen-large {
-    display: none;
-  }
-
-  .screen-small {
-    margin-bottom: 1rem;
-  }
-}
