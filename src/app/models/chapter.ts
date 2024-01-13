@@ -1,7 +1,6 @@
-import { Segment } from "./segment";
-
+import { ChapterSection } from "./chapter-section";
 export interface Chapter {
-  order: number;
-  title: string;
-  segments: Segment[];
+  order: number,
+  title: string,
+  sections: ChapterSection[];
 }
