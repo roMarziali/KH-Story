@@ -71,6 +71,7 @@ export class StoryService {
       };
       chapters.push(chapter);
     });
+    chapters.sort((a, b) => a.order - b.order);
     return chapters;
   }
 

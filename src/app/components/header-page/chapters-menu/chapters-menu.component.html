@@ -5,7 +5,13 @@
 
 <mat-menu #menu="matMenu">
   <ng-container *ngFor="let chapter of chapters">
-    <a mat-menu-item [href]="'?chapter=' + chapter.order">{{chapter.title}}</a>
+    <ng-container *ngIf="chapter.sections.length">
+      <a mat-menu-item [href]="'?chapter=' + chapter.order">{{chapter.title}}</a>
+    </ng-container>
+    <ng-container *ngIf="!chapter.sections.length">
+      <button disabled mat-menu-item>{{chapter.title}}</button>
+    </ng-container>
+
   </ng-container>
 
 </mat-menu>

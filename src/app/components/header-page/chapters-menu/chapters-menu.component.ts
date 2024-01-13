@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
+import { Chapter } from 'src/app/models/chapter';
 
 @Component({
   selector: 'app-chapters-menu',
@@ -8,11 +9,11 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class ChaptersMenuComponent {
 
-  chapters!: { order: number, title: string }[];
+  chapters!: Chapter[];
 
   constructor(private storyService: StoryService) {
     this.storyService.updatedStoryEvent.subscribe(() => {
-      this.chapters = this.storyService.getChaptersOrderAndTitle();
+      this.chapters = this.storyService.chapters;
     });
   }
 
