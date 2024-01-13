@@ -90,9 +90,12 @@ export class StoryService {
   getParagraphsFromRawSection(rawSection: RawSection): ChapterSectionParagraph[] {
     const paragraphs: ChapterSectionParagraph[] = [];
     rawSection.paragraphs.forEach(rawParagraph => {
-      rawParagraph.texts.forEach(rawText => {
-        if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) paragraphs.push({ text: rawText.text, image: rawText.image });
-      });
+      for (const rawText of rawParagraph.texts) {
+        if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) {
+          paragraphs.push({ text: rawText.text, image: rawText.image });
+          break;
+        }
+      }
     });
     return paragraphs;
   }
