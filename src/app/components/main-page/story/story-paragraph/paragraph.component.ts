@@ -21,14 +21,10 @@ export class ParagraphComponent {
   private apiImage: string = environment.apiImage;
   subStrings: subStrings[] = [];
   displayAnnotations: boolean = this.settingsService.isFilterSelected("annotations");
-  darkMode: boolean = this.settingsService.settings.visibility.darkMode;
 
   constructor(private settingsService: SettingsService, private storyService: StoryService) {
     this.settingsService.filtersChange.subscribe(() => {
       this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
-    });
-    this.settingsService.visibilityChange.subscribe(() => {
-      this.darkMode = this.settingsService.settings.visibility.darkMode;
     });
   }
 
@@ -50,8 +46,6 @@ export class ParagraphComponent {
     }
     this.subStrings.push({ text: mainString.slice(lastIndex) });
   }
-
-
 
   get relatedImageSource(): string {
     if (!this.paragraph.image) return "";

@@ -12,11 +12,7 @@ p {
 }
 
 .annotated {
-  border-bottom: dashed 1px #000;
-}
-
-.dark-mode.annotated {
-  border-bottom: dashed 1px #fff;
+  text-decoration: underline dotted;
 }
 
 @media screen and (max-width: 839.9px) {
