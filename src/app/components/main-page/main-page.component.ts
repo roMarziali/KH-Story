@@ -9,13 +9,16 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MainPageComponent {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit(){
-    this.dialog.open(IntroComponent, {
-      maxWidth: '350px',
-      maxHeight: '310px'
-    });
+  ngOnInit() {
+    if (!localStorage.getItem('introSeen')) {
+      this.dialog.open(IntroComponent, {
+        maxWidth: '350px',
+        maxHeight: '310px'
+      });
+      localStorage.setItem('introSeen', 'true');
+    }
   }
 
 }
