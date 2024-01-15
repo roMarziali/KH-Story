@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+____
+
+Ce site a pour projet de proposer un résumé de la série de jeux Kingdom Hearts. Plus qu'un simple texte, l'objectif est de proposer les fonctionnalités suivantes:
+-Possibilité de filtrer le contenu du texte en fonction des jeux sélectionnés par l'utilisateur afin qu'il ne se spoile pas certains contenus. Cela implique une modification dynamique du texte en fonction des filtres choisis, mais aussi la création de paragraphes alternatifs (un même événement pouvant être présent dans plusieurs jeux mais avec un niveau de détail différent)
+-Possibilité d'ajouter des annotations au texte
+-Possibilité d'exporter le texte (en respectant les filtres choisis par l'utilisateur)
+
+Pour arriver à ce résultat, en plus des options de navigation visible pour l'utilisateur, le site propose à un utilisateur authentifié de rédiger directement des titres et des paragraphes en indiquant à chaque fois à quels jeux ils sont relatifs, s'ils sont illustrés par des images, et la présence éventuelle de textes alternatifs (ainsi que les jeux relatifs)
+
+Le site se constitue d'une application Angular communiquant avec une API. Aucune base de données n'est utilisée, les éléments étant sauvegardés dans des fichiers json.
