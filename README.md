@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
-____
+## Description
 
 Ce site a pour projet de proposer un résumé de la série de jeux Kingdom Hearts. Plus qu'un simple texte, l'objectif est de proposer les fonctionnalités suivantes:
 -Possibilité de filtrer le contenu du texte en fonction des jeux sélectionnés par l'utilisateur afin qu'il ne se spoile pas certains contenus. Cela implique une modification dynamique du texte en fonction des filtres choisis, mais aussi la création de paragraphes alternatifs (un même événement pouvant être présent dans plusieurs jeux mais avec un niveau de détail différent)
