@@ -7,9 +7,13 @@ const ANNOTATION_FILE_PATH = path.join(__dirname, '../data/annotations.json');
 module.exports = class StoryManager {
 
   static async getStory() {
-    const data = fs.readFileSync(STORY_FILE_PATH, 'utf8');
-    const jsonStory = JSON.parse(data);
-    return jsonStory;
+    try {
+      const data = fs.readFileSync(STORY_FILE_PATH, 'utf8');
+      const jsonStory = JSON.parse(data);
+      return jsonStory;
+    } catch (err) {
+      return [];
+    }
   }
 
   static async getAnnotations() {
