@@ -81,6 +81,7 @@ export class StoryService {
     rawChapter.sections.forEach(rawSection => {
       rawSection.paragraphs.sort((a, b) => a.order - b.order);
       const section: ChapterSection = {
+        id: rawSection.id,
         title: rawSection.title,
         paragraphs: this.getParagraphsFromRawSection(rawSection)
       };
@@ -94,7 +95,7 @@ export class StoryService {
     rawSection.paragraphs.forEach(rawParagraph => {
       for (const rawText of rawParagraph.texts) {
         if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) {
-          paragraphs.push({ text: rawText.text, image: rawText.image });
+          paragraphs.push({id:rawText.id, text: rawText.text, image: rawText.image });
           break;
         }
       }
