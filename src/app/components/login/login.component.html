@@ -2,12 +2,35 @@
   <mat-card-header>
     <mat-card-title>
       <div>Connexion</div>
-      <div><button mat-icon-button mat-dialog-close aria-label="Fermer la fenêtre" tabindex="-1"><mat-icon>close</mat-icon></button></div>
+      <div><button mat-icon-button mat-dialog-close aria-label="Fermer la fenêtre"
+          tabindex="-1"><mat-icon>close</mat-icon></button></div>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
 
-login works
+    <mat-spinner *ngIf="isLoading" [diameter]="150"></mat-spinner>
+    <form *ngIf="!isLoading" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-form-field>
+          <mat-label>Login</mat-label>
+          <mat-icon matSuffix></mat-icon>
+          <!--Icon null pour que la taille du champ login soit identique à celle de password qui a une vraie icône-->
+          <input matInput placeholder="Nom d'utilisateur" formControlName="login">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Mot de passe</mat-label>
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <input matInput placeholder="Mot de passe" formControlName="password" [type]="hide ? 'password' : 'text'">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" type="submit">Connexion</button>
+      </div>
+    </form>
 
   </mat-card-content>
 </mat-card>

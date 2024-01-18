@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -18,9 +18,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MoveChapterComponent } from './components/main-page/story/move-chapter/move-chapter.component';
-import { LoginComponent } from './components/login/login.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +34,8 @@ import { IconComponent } from './components/shared/icon/icon.component';
 import { ChaptersMenuComponent } from './components/header-page/chapters-menu/chapters-menu.component';
 import { ParagraphComponent } from './components/main-page/story/story-paragraph/paragraph.component';
 import { IntroComponent } from './components/main-page/intro/intro.component';
+import { MoveChapterComponent } from './components/main-page/story/move-chapter/move-chapter.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { IntroComponent } from './components/main-page/intro/intro.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     MatToolbarModule,
@@ -70,9 +73,14 @@ import { IntroComponent } from './components/main-page/intro/intro.component';
     MatTooltipModule,
     MatExpansionModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { hideRequiredMarker: 'true' } },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
