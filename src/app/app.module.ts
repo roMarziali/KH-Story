@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MoveChapterComponent } from './components/main-page/story/move-chapter/move-chapter.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +47,8 @@ import { IntroComponent } from './components/main-page/intro/intro.component';
     ChaptersMenuComponent,
     ParagraphComponent,
     IntroComponent,
-    MoveChapterComponent
+    MoveChapterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
