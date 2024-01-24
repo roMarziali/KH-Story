@@ -21,7 +21,7 @@
       <div>
         <mat-form-field>
           <mat-label>Mot de passe</mat-label>
-          <button mat-icon-button matSuffix (click)="hide = !hide">
+          <button mat-icon-button matSuffix (click)="hide = !hide" tabindex=-1 type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <input matInput placeholder="Mot de passe" formControlName="password" [type]="hide ? 'password' : 'text'">
