@@ -11,9 +11,14 @@
         </a>
 
       </span>
-      <span>
+      <span *ngIf="!isAuthenticated">
         <button mat-icon-button aria-label="Connexion" (click)="openLoginDialog()">
           <mat-icon>account_circle</mat-icon>
+        </button>
+      </span>
+      <span *ngIf="isAuthenticated">
+        <button mat-icon-button aria-label="Connexion" (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon>
         </button>
       </span>
     </mat-toolbar-row>

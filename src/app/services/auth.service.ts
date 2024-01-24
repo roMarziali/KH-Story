@@ -13,8 +13,7 @@ interface DecodedToken {
 })
 export class AuthService {
 
-  constructor(private apiService: ApiService) {
-  }
+  constructor(private apiService: ApiService) { }
 
   login(login: string | null | undefined, password: string | null | undefined): Observable<boolean> {
     return this.apiService.post('auth/login', { login, password }).pipe(
