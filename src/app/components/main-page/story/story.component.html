@@ -9,6 +9,8 @@
         <div id="story" [style.fontSize]="getStoryFontSize()">
           <app-move-chapter [currentChapterNumber]="chapter.order"></app-move-chapter>
 
+          <app-adding-text></app-adding-text>
+
           <ng-container *ngIf="chapter.sections.length">
             <ng-container *ngFor="let section of chapter.sections">
               <h1 [style.fontSize]="getStoryFontSize()">{{section.title}}</h1>

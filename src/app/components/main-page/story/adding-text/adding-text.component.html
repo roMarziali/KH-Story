@@ -1,0 +1,10 @@
+<div *ngIf="isAuthenticated">
+  <button mat-icon-button aria-label="Ajout" [matMenuTriggerFor]="menu" class="main-button">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="addTitle()">Titre</button>
+    <button mat-menu-item (click)="addParagraph()">Paragraphe</button>
+  </mat-menu>
+</div>
