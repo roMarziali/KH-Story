@@ -1,7 +1,12 @@
 const express = require("express");
+const bodyParser = require('body-parser')
 const app = express();
 const story = require("./routes/story");
+const auth = require("./routes/auth");
 const path = require("path");
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -17,6 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/story", story);
+app.use("/api/auth", auth);
 
 app.use(express.static(__dirname + '/angular'));
 app.use(express.static('public'));

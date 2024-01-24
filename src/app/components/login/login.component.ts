@@ -9,7 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private authService: AuthService, private dialogRef:MatDialogRef<LoginComponent>) { }
+  constructor(private authService: AuthService, private dialogRef: MatDialogRef<LoginComponent>) { }
 
   loginForm = new FormGroup({
     login: new FormControl('', Validators.required),
@@ -18,15 +18,15 @@ export class LoginComponent {
 
   isLoading: boolean = false;
   hide: boolean = true;
-  showError = false;
+  errorMessage: string = '';
 
   onSubmit() {
     if (this.loginForm.invalid) return;
     this.isLoading = true;
-    this.showError = false;
+    this.errorMessage = "";
     this.authService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe((isAuthenticated) => {
       if (!isAuthenticated) {
-        this.showError = true;
+        this.errorMessage = "Identifiants invalide";
       } else {
         this.dialogRef.close();
       }
