@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 async function authenticate(login, password) {
   try {
+    const isAtLeast5FailedAttemptsInTheLastHour = await tooMuchRecentlyFailedAuthAttempts();
+    if (isAtLeast5FailedAttemptsInTheLastHour) throw Error('Too many failed attempts');
     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
     const user = users.find(user => user.login === login);
     if (!user) throw Error('User not found');
@@ -45,5 +47,18 @@ async function logAuthAttempt(login, success) {
     fs.writeFileSync('./data/auth-attempts.json', JSON.stringify(authAttempts));
   } catch (err) {
     console.error(err);
+  }
+}
+
+
+async function tooMuchRecentlyFailedAuthAttempts() {
+  try {
+    const authAttempts = JSON.parse(fs.readFileSync('./data/auth-attempts.json', 'utf8'));
+    const failedAttempts = authAttempts.filter(attempt => !attempt.success);
+    const failedAttemptsInTheLastHour = failedAttempts.filter(attempt => attempt.timestamp > Date.now() - 3600000);
+    return failedAttemptsInTheLastHour.length >= 5;
+  } catch (err) {
+    console.error(err);
+    return false;
   }
 }
