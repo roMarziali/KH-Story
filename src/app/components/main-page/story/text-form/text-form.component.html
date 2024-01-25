@@ -1,1 +1,23 @@
-<p *ngIf="displayed">text-form works!</p>
+<ng-container *ngIf="displayed && isAuthenticated">
+  <div>
+
+    <div>
+      <ng-container *ngIf="type=='title'">
+        <mat-form-field>
+          <input matInput [(ngModel)]="title">
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="type=='paragraph'">
+        <mat-form-field>
+          <textarea matInput [(ngModel)]="paragraph"></textarea>
+        </mat-form-field>
+      </ng-container>
+    </div>
+
+    <div>
+      <button *ngIf="action == 'adding'" mat-raised-button color="primary" (click)="onSubmit()">Ajouter</button>
+      <button *ngIf="action == 'modifying'" mat-raised-button color="primary" (click)="onSubmit()">Modifier</button>
+      <button mat-raised-button (click)="cancel()" type="button">Annuler</button>
+    </div>
+  </div>
+</ng-container>

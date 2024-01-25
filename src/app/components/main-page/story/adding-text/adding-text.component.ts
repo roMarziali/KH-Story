@@ -36,4 +36,12 @@ export class AddingTextComponent {
     return this.authService.isAuthenticated;
   }
 
+  get isDisplayedTextForm() {
+    return this.textFormService.isDisplayedTextForm({
+      previousTitle: this.previousTitle,
+      previousParagraph: this.previousParagraph,
+      action: 'adding'
+    });
+  }
+
 }

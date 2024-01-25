@@ -39,11 +39,22 @@ export class TextFormService {
   }
 
   getDisplayedTextFormType(textForm: TextFormIdentifier): 'title' | 'paragraph' {
-    if (textForm.action === 'modifying') {
-      return 'title';
-    } else if (textForm.action === 'adding') {
-      return 'paragraph';
-    }
-    return 'paragraph';
+    const displayedTextForm = this.displayedTextForms.find(tf => {
+      return tf.previousTitle === textForm.previousTitle &&
+        tf.previousParagraph === textForm.previousParagraph &&
+        tf.relatedTitle === textForm.relatedTitle &&
+        tf.relatedParagraph === textForm.relatedParagraph
+    });
+    return displayedTextForm?.type || 'paragraph';
+  }
+
+  removeDisplayedTextForm(textForm: TextFormIdentifier): void {
+    this.displayedTextForms = this.displayedTextForms.filter(tf => {
+      return tf.previousTitle !== textForm.previousTitle ||
+        tf.previousParagraph !== textForm.previousParagraph ||
+        tf.relatedTitle !== textForm.relatedTitle ||
+        tf.relatedParagraph !== textForm.relatedParagraph
+    });
+    this.displayedTextFormsChange.emit(this.displayedTextForms);
   }
 }

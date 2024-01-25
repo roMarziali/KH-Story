@@ -1,4 +1,4 @@
-<div *ngIf="isAuthenticated">
+<div *ngIf="isAuthenticated && !isDisplayedTextForm">
   <button mat-icon-button aria-label="Ajout" [matMenuTriggerFor]="menu" class="main-button">
     <mat-icon>add</mat-icon>
   </button>
