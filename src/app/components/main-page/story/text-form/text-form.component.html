@@ -8,8 +8,8 @@
         </mat-form-field>
       </ng-container>
       <ng-container *ngIf="type=='paragraph'">
-        <mat-form-field>
-          <textarea matInput [(ngModel)]="paragraph"></textarea>
+        <mat-form-field class = "form-textarea">
+          <textarea matInput rows="8" [(ngModel)]="paragraph"></textarea>
         </mat-form-field>
       </ng-container>
     </div>

@@ -48,6 +48,8 @@ export class TextFormComponent {
   }
 
   cancel(){
+    this.paragraph = '';
+    this.title = '';
     this.textFormService.removeDisplayedTextForm({
       previousTitle: this.previousTitle,
       previousParagraph: this.previousParagraph,
