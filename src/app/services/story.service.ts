@@ -7,6 +7,8 @@ import { SettingsService } from './settings.service';
 import { Chapter } from '../models/chapter';
 import { ChapterSection } from '../models/chapter-section';
 import { ChapterSectionParagraph } from '../models/chapter-section-paragraph';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +18,30 @@ export class StoryService {
   annotations: Annotation[] = [];
   rawChapters: RawChapter[] = [];
   chapters: Chapter[] = [];
+  currentChapterNumber = 1;
 
   updatedStoryEvent = new EventEmitter();
-  changeChapterEvent = new EventEmitter<number>();
+  changeChapterEvent = new EventEmitter();
 
-  constructor(private api: ApiService, private settingsService: SettingsService) {
+  constructor(private api: ApiService, private settingsService: SettingsService, private route: ActivatedRoute,
+    private location: Location) {
     this.getStoryData();
     this.settingsService.filtersChange.subscribe(() => {
       this.chapters = this.organizeChapters();
       this.updatedStoryEvent.emit();
     });
+
+    this.route.queryParams.subscribe(params => {
+      this.currentChapterNumber = (params['chapter']) ? parseInt(params['chapter']) : 1;
+      console.log(this.currentChapterNumber);
+      this.location.go('/', `chapter=${this.currentChapterNumber}`);
+      this.changeChapterEvent.emit();
+    });
+
+  }
+
+  get chapterNumber(): number {
+    return this.currentChapterNumber;
   }
 
   getStoryData() {
@@ -95,7 +111,7 @@ export class StoryService {
     rawSection.paragraphs.forEach(rawParagraph => {
       for (const rawText of rawParagraph.texts) {
         if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) {
-          paragraphs.push({id:rawText.id, text: rawText.text, image: rawText.image });
+          paragraphs.push({ id: rawText.id, text: rawText.text, image: rawText.image });
           break;
         }
       }
@@ -106,7 +122,8 @@ export class StoryService {
   changeChapter(chapterOrder: number) {
     const chapter = this.getChapter(chapterOrder);
     if (chapter) {
-      this.changeChapterEvent.emit(chapterOrder);
+      this.currentChapterNumber = chapterOrder;
+      this.changeChapterEvent.emit();
     }
   }
 
