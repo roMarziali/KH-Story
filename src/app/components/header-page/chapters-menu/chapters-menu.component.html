@@ -5,11 +5,12 @@
 
 <mat-menu #menu="matMenu">
   <ng-container *ngFor="let chapter of chapters">
-    <ng-container *ngIf="chapter.sections.length">
+    <ng-container *ngIf="chapter.sections.length || isAuthenticated">
+      <!--On laisse l'accès en mode authentifié afin de pouvoir modifier créer du texte dans les chapitres-->
       <button mat-menu-item (click)="changeChapter(chapter.order)"
         [ngClass]="{'current-chapter' :currentChapterOrder == chapter.order}">{{ chapter.title }}</button>
     </ng-container>
-    <ng-container *ngIf="!chapter.sections.length">
+    <ng-container *ngIf="!chapter.sections.length && !isAuthenticated">
       <button disabled mat-menu-item>{{chapter.title}}</button>
     </ng-container>
 

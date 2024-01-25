@@ -6,7 +6,7 @@ export interface TextFormIdentifier {
   relatedTitle?: number,
   relatedParagraph?: number,
   type?: 'title' | 'paragraph'
-  action?: 'modifying' | 'adding'
+  action?: 'editing' | 'adding'
 }
 
 @Injectable({
@@ -18,7 +18,7 @@ export class TextFormService {
   displayedTextFormsChange: EventEmitter<TextFormIdentifier[]> = new EventEmitter();
 
   isDisplayedTextForm(textForm: TextFormIdentifier): boolean {
-    if (textForm.action === 'modifying') {
+    if (textForm.action === 'editing') {
       return this.displayedTextForms.some(tf => {
         return tf.relatedTitle === textForm.relatedTitle &&
           tf.relatedParagraph === textForm.relatedParagraph

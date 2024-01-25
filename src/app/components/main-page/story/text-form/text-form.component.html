@@ -4,19 +4,19 @@
     <div>
       <ng-container *ngIf="type=='title'">
         <mat-form-field>
-          <input matInput [(ngModel)]="title">
+          <input matInput [(ngModel)]="text">
         </mat-form-field>
       </ng-container>
       <ng-container *ngIf="type=='paragraph'">
         <mat-form-field class = "form-textarea">
-          <textarea matInput rows="8" [(ngModel)]="paragraph"></textarea>
+          <textarea matInput rows="8" [(ngModel)]="text"></textarea>
         </mat-form-field>
       </ng-container>
     </div>
 
     <div>
       <button *ngIf="action == 'adding'" mat-raised-button color="primary" (click)="onSubmit()">Ajouter</button>
-      <button *ngIf="action == 'modifying'" mat-raised-button color="primary" (click)="onSubmit()">Modifier</button>
+      <button *ngIf="action == 'editing'" mat-raised-button color="primary" (click)="onSubmit()">Modifier</button>
       <button mat-raised-button (click)="cancel()" type="button">Annuler</button>
     </div>
   </div>

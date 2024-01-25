@@ -21,4 +21,15 @@ module.exports = class StoryManager {
     const jsonAnnotation = JSON.parse(data);
     return jsonAnnotation;
   }
+
+  static async addText(text, metaDataText) {
+    const story = await this.getStory();
+
+
+//    fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
+  }
+
+  static async editText(text, metaDataText) {
+
+  }
 };

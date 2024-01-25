@@ -15,7 +15,14 @@ router.get("/annotations", async (req, res, next) => {
 });
 
 router.post("/text", checkAuth, async (req, res, next) => {
-  console.log(req.body);
+  const action = req.body.metaDataText.action;
+  const text = req.body.text;
+  const metaDataText = req.body.metaDataText;
+  if (action === "adding") {
+    await StoryManager.addText(text, metaDataText);
+  } else if (action === "editing") {
+    await StoryManager.editText(text, metaDataText);
+  }
   res.json({ status: "ok" });
 });
 

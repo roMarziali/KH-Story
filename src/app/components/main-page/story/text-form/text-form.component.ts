@@ -15,9 +15,8 @@ export class TextFormComponent {
   @Input() relatedTitle!: number;
   @Input() relatedParagraph!: number;
   @Input() type!: 'title' | 'paragraph';
-  @Input() action: 'modifying' | 'adding' = 'adding';
-  @Input() title!: string;
-  @Input() paragraph!: string;
+  @Input() action: 'editing' | 'adding' = 'adding';
+  @Input() text!: string;
   displayed: boolean = false;
 
   constructor(private textFormService: TextFormService, private authService: AuthService, private api: ApiService) {
@@ -53,14 +52,13 @@ export class TextFormComponent {
       action: this.action,
       type: this.type
     }
-    this.api.post('story/text', { title: this.title, metaDataText }).subscribe((data) => {
+    this.api.post('story/text', { title: this.text, metaDataText }).subscribe((data) => {
       console.log(data);
     });
   }
 
   cancel() {
-    this.paragraph = '';
-    this.title = '';
+    this.text = '';
     this.textFormService.removeDisplayedTextForm({
       previousTitle: this.previousTitle,
       previousParagraph: this.previousParagraph,
