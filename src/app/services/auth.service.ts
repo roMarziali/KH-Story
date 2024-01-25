@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable, catchError, map, of, timer } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
-interface DecodedToken {
-  userId: string;
-  isAdmin: boolean;
-  iat: number;
-  exp: number;
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +30,7 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
-  get Token() {
+  get token() {
     return localStorage.getItem('token');
   }
 }

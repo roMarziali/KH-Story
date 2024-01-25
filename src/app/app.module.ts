@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,6 +38,7 @@ import { MoveChapterComponent } from './components/main-page/story/move-chapter/
 import { LoginComponent } from './components/login/login.component';
 import { AddingTextComponent } from './components/main-page/story/adding-text/adding-text.component';
 import { TextFormComponent } from './components/main-page/story/text-form/text-form.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,11 @@ import { TextFormComponent } from './components/main-page/story/text-form/text-f
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { hideRequiredMarker: 'true' } },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
