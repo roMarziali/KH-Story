@@ -37,6 +37,7 @@ import { IntroComponent } from './components/main-page/intro/intro.component';
 import { MoveChapterComponent } from './components/main-page/story/move-chapter/move-chapter.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddingTextComponent } from './components/main-page/story/adding-text/adding-text.component';
+import { TextFormComponent } from './components/main-page/story/text-form/text-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddingTextComponent } from './components/main-page/story/adding-text/ad
     IntroComponent,
     MoveChapterComponent,
     LoginComponent,
-    AddingTextComponent
+    AddingTextComponent,
+    TextFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { TextFormService } from 'src/app/services/text-form.service';
 
 @Component({
   selector: 'app-adding-text',
@@ -8,17 +9,28 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AddingTextComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private textFormService: TextFormService) { }
 
   @Input() previousTitle: number = 0;
   @Input() previousParagraph: number = 0;
 
   addTitle() {
-    console.log(this.previousParagraph);
-    console.log(this.previousTitle);
+    this.textFormService.addDisplayedTextForm({
+      previousTitle: this.previousTitle,
+      previousParagraph: this.previousParagraph,
+      type: 'title',
+      action: 'adding'
+    });
   }
 
-  addParagraph() { }
+  addParagraph() {
+    this.textFormService.addDisplayedTextForm({
+      previousTitle: this.previousTitle,
+      previousParagraph: this.previousParagraph,
+      type: 'paragraph',
+      action: 'adding'
+    });
+   }
 
   get isAuthenticated() {
     return this.authService.isAuthenticated;
