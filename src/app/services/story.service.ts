@@ -65,6 +65,11 @@ export class StoryService {
     return (chapter) ? chapter : null;
   }
 
+  get currentChapterId(): number | null {
+    const chapterId = this.getChapter()?.id;
+    return (chapterId) ? chapterId : null;
+  }
+
   getChaptersOrderAndTitle() {
     const chapters = this.chapters.map(c => {
       return {
@@ -81,6 +86,7 @@ export class StoryService {
     this.rawChapters.forEach(rawChapter => {
       rawChapter.sections.sort((a, b) => a.order - b.order);
       const chapter: Chapter = {
+        id: rawChapter.id,
         order: rawChapter.order,
         title: rawChapter.title,
         sections: this.getSectionsFromRawChapter(rawChapter)

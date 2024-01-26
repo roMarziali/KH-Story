@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TextFormService } from 'src/app/services/text-form.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-text-form',
@@ -19,7 +20,8 @@ export class TextFormComponent {
   @Input() text!: string;
   displayed: boolean = false;
 
-  constructor(private textFormService: TextFormService, private authService: AuthService, private api: ApiService) {
+  constructor(private textFormService: TextFormService, private authService: AuthService, private api: ApiService,
+    private storyService: StoryService) {
     this.textFormService.displayedTextFormsChange.subscribe(() => {
       this.displayed = this.textFormService.isDisplayedTextForm({
         previousTitle: this.previousTitle,
@@ -44,6 +46,7 @@ export class TextFormComponent {
   }
 
   onSubmit() {
+    const chapterId = this.storyService.currentChapterId;
     const metaDataText = {
       previousTitle: this.previousTitle,
       previousParagraph: this.previousParagraph,
