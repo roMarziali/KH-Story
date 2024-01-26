@@ -2,12 +2,12 @@
   <div>
 
     <div>
-      <ng-container *ngIf="type=='title'">
+      <ng-container *ngIf="textFormIdentifier.type=='title'">
         <mat-form-field>
           <input matInput [(ngModel)]="text">
         </mat-form-field>
       </ng-container>
-      <ng-container *ngIf="type=='paragraph'">
+      <ng-container *ngIf="textFormIdentifier.type=='paragraph'">
         <mat-form-field class = "form-textarea">
           <textarea matInput rows="8" [(ngModel)]="text"></textarea>
         </mat-form-field>
@@ -15,8 +15,8 @@
     </div>
 
     <div>
-      <button *ngIf="action == 'adding'" mat-raised-button color="primary" (click)="onSubmit()">Ajouter</button>
-      <button *ngIf="action == 'editing'" mat-raised-button color="primary" (click)="onSubmit()">Modifier</button>
+      <button *ngIf="textFormIdentifier.action == 'adding'" mat-raised-button color="primary" (click)="onSubmit()">Ajouter</button>
+      <button *ngIf="textFormIdentifier.action == 'editing'" mat-raised-button color="primary" (click)="onSubmit()">Modifier</button>
       <button mat-raised-button (click)="cancel()" type="button">Annuler</button>
     </div>
   </div>

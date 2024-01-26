@@ -9,6 +9,7 @@ import { ChapterSection } from '../models/chapter-section';
 import { ChapterSectionParagraph } from '../models/chapter-section-paragraph';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { TextFormService } from './text-form.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class StoryService {
   changeChapterEvent = new EventEmitter();
 
   constructor(private api: ApiService, private settingsService: SettingsService, private route: ActivatedRoute,
-    private location: Location) {
+    private location: Location, private textFormService: TextFormService) {
     this.getStoryData();
     this.settingsService.filtersChange.subscribe(() => {
       this.chapters = this.organizeChapters();
@@ -65,9 +66,9 @@ export class StoryService {
     return (chapter) ? chapter : null;
   }
 
-  get currentChapterId(): number | null {
+  get currentChapterId(): number {
     const chapterId = this.getChapter()?.id;
-    return (chapterId) ? chapterId : null;
+    return (chapterId) ? chapterId : 0;
   }
 
   getChaptersOrderAndTitle() {
@@ -102,6 +103,7 @@ export class StoryService {
     if (chapter) {
       this.currentChapterOrder = newChapterOrder;
       this.location.go('/', `chapter=${this.currentChapterOrder}`);
+      this.textFormService.undisplayAllTextForms();
       this.changeChapterEvent.emit();
     }
   }

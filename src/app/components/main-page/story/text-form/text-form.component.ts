@@ -3,6 +3,7 @@ import { TextFormService } from 'src/app/services/text-form.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
 import { StoryService } from 'src/app/services/story.service';
+import { TextFormIdentifier } from 'src/app/models/text-form-identifier';
 
 @Component({
   selector: 'app-text-form',
@@ -11,33 +12,15 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class TextFormComponent {
 
-  @Input() previousTitle!: number;
-  @Input() previousParagraph!: number;
-  @Input() relatedTitle!: number;
-  @Input() relatedParagraph!: number;
-  @Input() type!: 'title' | 'paragraph';
-  @Input() action: 'editing' | 'adding' = 'adding';
+  @Input() textFormIdentifier!: TextFormIdentifier;
   @Input() text!: string;
   displayed: boolean = false;
 
   constructor(private textFormService: TextFormService, private authService: AuthService, private api: ApiService,
     private storyService: StoryService) {
     this.textFormService.displayedTextFormsChange.subscribe(() => {
-      this.displayed = this.textFormService.isDisplayedTextForm({
-        previousTitle: this.previousTitle,
-        previousParagraph: this.previousParagraph,
-        relatedTitle: this.relatedTitle,
-        relatedParagraph: this.relatedParagraph,
-        action: this.action
-      });
-
-      this.type = this.textFormService.getDisplayedTextFormType({
-        previousTitle: this.previousTitle,
-        previousParagraph: this.previousParagraph,
-        relatedTitle: this.relatedTitle,
-        relatedParagraph: this.relatedParagraph,
-        action: this.action
-      });
+      this.displayed = this.textFormService.isDisplayedTextForm(this.textFormIdentifier);
+      this.textFormIdentifier.type = this.textFormService.getDisplayedTextFormType(this.textFormIdentifier);
     });
   }
 
@@ -47,28 +30,14 @@ export class TextFormComponent {
 
   onSubmit() {
     const chapterId = this.storyService.currentChapterId;
-    const metaDataText = {
-      previousTitle: this.previousTitle,
-      previousParagraph: this.previousParagraph,
-      relatedTitle: this.relatedTitle,
-      relatedParagraph: this.relatedParagraph,
-      action: this.action,
-      type: this.type
-    }
-    this.api.post('story/text', { title: this.text, metaDataText }).subscribe((data) => {
+    this.api.post('story/text', { title: this.text, textFormIdentifier: this.textFormIdentifier }).subscribe((data) => {
       console.log(data);
     });
   }
 
   cancel() {
     this.text = '';
-    this.textFormService.removeDisplayedTextForm({
-      previousTitle: this.previousTitle,
-      previousParagraph: this.previousParagraph,
-      relatedTitle: this.relatedTitle,
-      relatedParagraph: this.relatedParagraph,
-      action: this.action
-    });
+    this.textFormService.removeDisplayedTextForm(this.textFormIdentifier);
   }
 
 }

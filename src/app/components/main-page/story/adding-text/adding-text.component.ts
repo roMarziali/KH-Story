@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { TextFormService } from 'src/app/services/text-form.service';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-adding-text',
@@ -9,7 +10,7 @@ import { TextFormService } from 'src/app/services/text-form.service';
 })
 export class AddingTextComponent {
 
-  constructor(private authService: AuthService, private textFormService: TextFormService) { }
+  constructor(private authService: AuthService, private textFormService: TextFormService, private storyService: StoryService) { }
 
   @Input() previousTitle: number = 0;
   @Input() previousParagraph: number = 0;
@@ -19,7 +20,8 @@ export class AddingTextComponent {
       previousTitle: this.previousTitle,
       previousParagraph: this.previousParagraph,
       type: 'title',
-      action: 'adding'
+      action: 'adding',
+      chapterId: this.storyService.currentChapterId
     });
   }
 
@@ -28,9 +30,10 @@ export class AddingTextComponent {
       previousTitle: this.previousTitle,
       previousParagraph: this.previousParagraph,
       type: 'paragraph',
-      action: 'adding'
+      action: 'adding',
+      chapterId: this.storyService.currentChapterId
     });
-   }
+  }
 
   get isAuthenticated() {
     return this.authService.isAuthenticated;
@@ -40,7 +43,8 @@ export class AddingTextComponent {
     return this.textFormService.isDisplayedTextForm({
       previousTitle: this.previousTitle,
       previousParagraph: this.previousParagraph,
-      action: 'adding'
+      action: 'adding',
+      chapterId: this.storyService.currentChapterId
     });
   }
 

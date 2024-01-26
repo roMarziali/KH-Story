@@ -1,13 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-
-export interface TextFormIdentifier {
-  previousTitle?: number,
-  previousParagraph?: number,
-  relatedTitle?: number,
-  relatedParagraph?: number,
-  type?: 'title' | 'paragraph'
-  action?: 'editing' | 'adding'
-}
+import { TextFormIdentifier } from '../models/text-form-identifier';
 
 @Injectable({
   providedIn: 'root'
@@ -17,44 +9,55 @@ export class TextFormService {
   displayedTextForms: TextFormIdentifier[] = [];
   displayedTextFormsChange: EventEmitter<TextFormIdentifier[]> = new EventEmitter();
 
-  isDisplayedTextForm(textForm: TextFormIdentifier): boolean {
-    if (textForm.action === 'editing') {
+  isDisplayedTextForm(textFormIdentifier: TextFormIdentifier): boolean {
+    if (textFormIdentifier.action === 'editing') {
       return this.displayedTextForms.some(tf => {
-        return tf.relatedTitle === textForm.relatedTitle &&
-          tf.relatedParagraph === textForm.relatedParagraph
+        return tf.relatedTitle === textFormIdentifier.relatedTitle &&
+          tf.relatedParagraph === textFormIdentifier.relatedParagraph &&
+          tf.chapterId === textFormIdentifier.chapterId
       });
-    } else if (textForm.action === 'adding') {
+    } else if (textFormIdentifier.action === 'adding') {
       return this.displayedTextForms.some(tf => {
-        return tf.previousTitle === textForm.previousTitle &&
-          tf.previousParagraph === textForm.previousParagraph
+        return tf.previousTitle === textFormIdentifier.previousTitle &&
+          tf.previousParagraph === textFormIdentifier.previousParagraph &&
+          tf.chapterId === textFormIdentifier.chapterId
       });
     }
     return false;
   }
 
-  addDisplayedTextForm(textForm: TextFormIdentifier): void {
-    if (this.isDisplayedTextForm(textForm)) return;
-    this.displayedTextForms.push(textForm);
+  addDisplayedTextForm(textFormIdentifier: TextFormIdentifier): void {
+    if (this.isDisplayedTextForm(textFormIdentifier)) return;
+    this.displayedTextForms.push(textFormIdentifier);
     this.displayedTextFormsChange.emit(this.displayedTextForms);
   }
 
-  getDisplayedTextFormType(textForm: TextFormIdentifier): 'title' | 'paragraph' {
+  getDisplayedTextFormType(textFormIdentifier: TextFormIdentifier): 'title' | 'paragraph' {
     const displayedTextForm = this.displayedTextForms.find(tf => {
-      return tf.previousTitle === textForm.previousTitle &&
-        tf.previousParagraph === textForm.previousParagraph &&
-        tf.relatedTitle === textForm.relatedTitle &&
-        tf.relatedParagraph === textForm.relatedParagraph
+      return tf.previousTitle === textFormIdentifier.previousTitle &&
+        tf.previousParagraph === textFormIdentifier.previousParagraph &&
+        tf.relatedTitle === textFormIdentifier.relatedTitle &&
+        tf.relatedParagraph === textFormIdentifier.relatedParagraph &&
+        tf.chapterId === textFormIdentifier.chapterId
     });
     return displayedTextForm?.type || 'paragraph';
   }
 
-  removeDisplayedTextForm(textForm: TextFormIdentifier): void {
-    this.displayedTextForms = this.displayedTextForms.filter(tf => {
-      return tf.previousTitle !== textForm.previousTitle ||
-        tf.previousParagraph !== textForm.previousParagraph ||
-        tf.relatedTitle !== textForm.relatedTitle ||
-        tf.relatedParagraph !== textForm.relatedParagraph
+  removeDisplayedTextForm(textFormIdentifier: TextFormIdentifier): void {
+    const searchedTextFormIndex = this.displayedTextForms.findIndex(tf => {
+      return tf.previousTitle === textFormIdentifier.previousTitle &&
+        tf.previousParagraph === textFormIdentifier.previousParagraph &&
+        tf.relatedTitle === textFormIdentifier.relatedTitle &&
+        tf.relatedParagraph === textFormIdentifier.relatedParagraph &&
+        tf.chapterId === textFormIdentifier.chapterId
     });
+    if (searchedTextFormIndex === -1) return;
+    this.displayedTextForms.splice(searchedTextFormIndex, 1);
+    this.displayedTextFormsChange.emit(this.displayedTextForms);
+  }
+
+  undisplayAllTextForms(): void {
+    this.displayedTextForms = [];
     this.displayedTextFormsChange.emit(this.displayedTextForms);
   }
 }

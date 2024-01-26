@@ -21,6 +21,10 @@ export class StoryComponent {
 
   chapter!: Chapter | null;
 
+  get chapterId(): number {
+    return this.storyService.currentChapterId;
+  }
+
 
   getStoryFontSize(): string {
     return this.settingsService.storyFontSizeEm;

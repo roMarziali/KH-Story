@@ -10,7 +10,8 @@
           <app-move-chapter [currentChapterNumber]="chapter.order"></app-move-chapter>
 
           <app-adding-text></app-adding-text>
-          <app-text-form [action]="'adding'" [previousTitle]="0" [previousParagraph]="0"></app-text-form>
+          <app-text-form
+            [textFormIdentifier]="{action: 'adding', previousTitle : 0, previousParagraph : 0, chapterId}"></app-text-form>
 
           <ng-container *ngIf="chapter.sections.length">
             <ng-container *ngFor="let section of chapter.sections">
