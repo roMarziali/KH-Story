@@ -1,55 +1,55 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { TextFormIdentifier } from '../models/text-form-identifier';
+import { TextFormMetadata } from '../models/text-form-identifier';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TextFormService {
 
-  displayedTextForms: TextFormIdentifier[] = [];
-  displayedTextFormsChange: EventEmitter<TextFormIdentifier[]> = new EventEmitter();
+  displayedTextForms: TextFormMetadata[] = [];
+  displayedTextFormsChange: EventEmitter<TextFormMetadata[]> = new EventEmitter();
 
-  isDisplayedTextForm(textFormIdentifier: TextFormIdentifier): boolean {
-    if (textFormIdentifier.action === 'editing') {
+  isDisplayedTextForm(TextFormMetadata: TextFormMetadata): boolean {
+    if (TextFormMetadata.action === 'editing') {
       return this.displayedTextForms.some(tf => {
-        return tf.relatedTitle === textFormIdentifier.relatedTitle &&
-          tf.relatedParagraph === textFormIdentifier.relatedParagraph &&
-          tf.chapterId === textFormIdentifier.chapterId
+        return tf.relatedTitle === TextFormMetadata.relatedTitle &&
+          tf.relatedParagraph === TextFormMetadata.relatedParagraph &&
+          tf.chapterId === TextFormMetadata.chapterId
       });
-    } else if (textFormIdentifier.action === 'adding') {
+    } else if (TextFormMetadata.action === 'adding') {
       return this.displayedTextForms.some(tf => {
-        return tf.previousTitle === textFormIdentifier.previousTitle &&
-          tf.previousParagraph === textFormIdentifier.previousParagraph &&
-          tf.chapterId === textFormIdentifier.chapterId
+        return tf.previousTitle === TextFormMetadata.previousTitle &&
+          tf.previousParagraph === TextFormMetadata.previousParagraph &&
+          tf.chapterId === TextFormMetadata.chapterId
       });
     }
     return false;
   }
 
-  addDisplayedTextForm(textFormIdentifier: TextFormIdentifier): void {
-    if (this.isDisplayedTextForm(textFormIdentifier)) return;
-    this.displayedTextForms.push(textFormIdentifier);
+  addDisplayedTextForm(TextFormMetadata: TextFormMetadata): void {
+    if (this.isDisplayedTextForm(TextFormMetadata)) return;
+    this.displayedTextForms.push(TextFormMetadata);
     this.displayedTextFormsChange.emit(this.displayedTextForms);
   }
 
-  getDisplayedTextFormType(textFormIdentifier: TextFormIdentifier): 'title' | 'paragraph' {
+  getDisplayedTextFormType(TextFormMetadata: TextFormMetadata): 'title' | 'paragraph' {
     const displayedTextForm = this.displayedTextForms.find(tf => {
-      return tf.previousTitle === textFormIdentifier.previousTitle &&
-        tf.previousParagraph === textFormIdentifier.previousParagraph &&
-        tf.relatedTitle === textFormIdentifier.relatedTitle &&
-        tf.relatedParagraph === textFormIdentifier.relatedParagraph &&
-        tf.chapterId === textFormIdentifier.chapterId
+      return tf.previousTitle === TextFormMetadata.previousTitle &&
+        tf.previousParagraph === TextFormMetadata.previousParagraph &&
+        tf.relatedTitle === TextFormMetadata.relatedTitle &&
+        tf.relatedParagraph === TextFormMetadata.relatedParagraph &&
+        tf.chapterId === TextFormMetadata.chapterId
     });
     return displayedTextForm?.type || 'paragraph';
   }
 
-  removeDisplayedTextForm(textFormIdentifier: TextFormIdentifier): void {
+  removeDisplayedTextForm(TextFormMetadata: TextFormMetadata): void {
     const searchedTextFormIndex = this.displayedTextForms.findIndex(tf => {
-      return tf.previousTitle === textFormIdentifier.previousTitle &&
-        tf.previousParagraph === textFormIdentifier.previousParagraph &&
-        tf.relatedTitle === textFormIdentifier.relatedTitle &&
-        tf.relatedParagraph === textFormIdentifier.relatedParagraph &&
-        tf.chapterId === textFormIdentifier.chapterId
+      return tf.previousTitle === TextFormMetadata.previousTitle &&
+        tf.previousParagraph === TextFormMetadata.previousParagraph &&
+        tf.relatedTitle === TextFormMetadata.relatedTitle &&
+        tf.relatedParagraph === TextFormMetadata.relatedParagraph &&
+        tf.chapterId === TextFormMetadata.chapterId
     });
     if (searchedTextFormIndex === -1) return;
     this.displayedTextForms.splice(searchedTextFormIndex, 1);

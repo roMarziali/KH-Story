@@ -1,4 +1,4 @@
-export interface TextFormIdentifier {
+export interface TextFormMetadata {
   chapterId: number,
   previousTitle?: number,
   previousParagraph?: number,

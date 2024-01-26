@@ -3,7 +3,7 @@ import { TextFormService } from 'src/app/services/text-form.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
 import { StoryService } from 'src/app/services/story.service';
-import { TextFormIdentifier } from 'src/app/models/text-form-identifier';
+import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 
 @Component({
   selector: 'app-text-form',
@@ -12,15 +12,15 @@ import { TextFormIdentifier } from 'src/app/models/text-form-identifier';
 })
 export class TextFormComponent {
 
-  @Input() textFormIdentifier!: TextFormIdentifier;
+  @Input() TextFormMetadata!: TextFormMetadata;
   @Input() text!: string;
   displayed: boolean = false;
 
   constructor(private textFormService: TextFormService, private authService: AuthService, private api: ApiService,
     private storyService: StoryService) {
     this.textFormService.displayedTextFormsChange.subscribe(() => {
-      this.displayed = this.textFormService.isDisplayedTextForm(this.textFormIdentifier);
-      this.textFormIdentifier.type = this.textFormService.getDisplayedTextFormType(this.textFormIdentifier);
+      this.displayed = this.textFormService.isDisplayedTextForm(this.TextFormMetadata);
+      this.TextFormMetadata.type = this.textFormService.getDisplayedTextFormType(this.TextFormMetadata);
     });
   }
 
@@ -30,14 +30,14 @@ export class TextFormComponent {
 
   onSubmit() {
     const chapterId = this.storyService.currentChapterId;
-    this.api.post('story/text', { title: this.text, textFormIdentifier: this.textFormIdentifier }).subscribe((data) => {
+    this.api.post('story/text', { title: this.text, TextFormMetadata: this.TextFormMetadata }).subscribe((data) => {
       console.log(data);
     });
   }
 
   cancel() {
     this.text = '';
-    this.textFormService.removeDisplayedTextForm(this.textFormIdentifier);
+    this.textFormService.removeDisplayedTextForm(this.TextFormMetadata);
   }
 
 }
