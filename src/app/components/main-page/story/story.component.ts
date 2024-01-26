@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Chapter } from 'src/app/models/chapter';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -9,7 +10,7 @@ import { Chapter } from 'src/app/models/chapter';
 })
 export class StoryComponent {
 
-  constructor(private storyService: StoryService, private settingsService: SettingsService) {
+  constructor(private storyService: StoryService, private settingsService: SettingsService, private route: ActivatedRoute) {
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.loadChapter();
     });
@@ -18,7 +19,7 @@ export class StoryComponent {
     });
   }
 
-  chapter: Chapter | null = null;
+  chapter!: Chapter | null;
 
 
   getStoryFontSize(): string {
@@ -26,6 +27,6 @@ export class StoryComponent {
   }
 
   loadChapter() {
-    this.chapter = this.storyService.getChapter(this.storyService.chapterNumber);
+    this.chapter = this.storyService.getChapter();
   }
 }

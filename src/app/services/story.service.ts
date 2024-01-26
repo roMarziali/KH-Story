@@ -18,7 +18,7 @@ export class StoryService {
   annotations: Annotation[] = [];
   rawChapters: RawChapter[] = [];
   chapters: Chapter[] = [];
-  currentChapterNumber = 1;
+  currentChapterOrder!: number;
 
   updatedStoryEvent = new EventEmitter();
   changeChapterEvent = new EventEmitter();
@@ -30,18 +30,10 @@ export class StoryService {
       this.chapters = this.organizeChapters();
       this.updatedStoryEvent.emit();
     });
-
-    this.route.queryParams.subscribe(params => {
-      this.currentChapterNumber = (params['chapter']) ? parseInt(params['chapter']) : 1;
-      console.log(this.currentChapterNumber);
-      this.location.go('/', `chapter=${this.currentChapterNumber}`);
-      this.changeChapterEvent.emit();
-    });
-
   }
 
   get chapterNumber(): number {
-    return this.currentChapterNumber;
+    return this.currentChapterOrder;
   }
 
   getStoryData() {
@@ -52,6 +44,12 @@ export class StoryService {
         this.rawChapters = data;
         this.chapters = this.organizeChapters();
         this.updatedStoryEvent.emit();
+        const currentChapterOrder = this.route.snapshot.queryParamMap.get('chapter');
+        if (currentChapterOrder) {
+          this.changeChapter(Number(currentChapterOrder));
+        } else {
+          this.changeChapter(1);
+        }
       });
     });
   }
@@ -61,8 +59,9 @@ export class StoryService {
     return annotation ? annotation.content : 'Erreur : annotation non trouvée';
   }
 
-  getChapter(order: number): Chapter | null {
-    const chapter = this.chapters.find(c => c.order === order);
+  getChapter(chapterOrder?: number): Chapter | null {
+    const chapterToSearch: number = (chapterOrder) ? chapterOrder : this.currentChapterOrder;
+    const chapter = this.chapters.find(c => c.order === chapterToSearch);
     return (chapter) ? chapter : null;
   }
 
@@ -92,6 +91,15 @@ export class StoryService {
     return chapters;
   }
 
+  changeChapter(newChapterOrder: number) {
+    const chapter = this.getChapter(newChapterOrder);
+    if (chapter) {
+      this.currentChapterOrder = newChapterOrder;
+      this.location.go('/', `chapter=${this.currentChapterOrder}`);
+      this.changeChapterEvent.emit();
+    }
+  }
+
   getSectionsFromRawChapter(rawChapter: RawChapter): ChapterSection[] {
     const sections: ChapterSection[] = [];
     rawChapter.sections.forEach(rawSection => {
@@ -117,14 +125,6 @@ export class StoryService {
       }
     });
     return paragraphs;
-  }
-
-  changeChapter(chapterOrder: number) {
-    const chapter = this.getChapter(chapterOrder);
-    if (chapter) {
-      this.currentChapterNumber = chapterOrder;
-      this.changeChapterEvent.emit();
-    }
   }
 
 }
