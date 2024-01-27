@@ -15,6 +15,7 @@ export class TextFormComponent {
 
   @Input() textFormMetadata!: TextFormMetadata;
   displayed: boolean = false;
+  isLoading: boolean = false;
   titleForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
@@ -37,9 +38,11 @@ export class TextFormComponent {
 
   onSubmitTitle() {
     if (this.titleForm.invalid) return;
+    this.isLoading = true;
     const chapterId = this.storyService.currentChapterId;
     this.api.post('story/title', { value: this.titleForm.value, textFormMetada: this.textFormMetadata }).subscribe((data) => {
       console.log(data);
+      this.isLoading = false;
     });
   }
 
