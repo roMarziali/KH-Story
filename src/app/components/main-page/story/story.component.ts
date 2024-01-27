@@ -5,6 +5,7 @@ import { Chapter } from 'src/app/models/chapter';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StorySectionFormComponent } from './story-section-form/story-section-form.component';
+import { StoryParagraphFormComponent } from './story-paragraph-form/story-paragraph-form.component';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -45,7 +46,7 @@ export class StoryComponent {
   }
 
   openCreateSectionForm(previousSectionId: number) {
-    const textFormMetadata:TextFormMetadata = {
+    const textFormMetadata: TextFormMetadata = {
       chapterId: this.chapterId,
       previousSectionId: previousSectionId
     }
@@ -60,12 +61,12 @@ export class StoryComponent {
   }
 
   openEditSectionTitleForm(sectionId: number) {
-    const textFormMetadata:TextFormMetadata = {
+    const textFormMetadata: TextFormMetadata = {
       chapterId: this.chapterId,
       sectionId: sectionId
     }
     this.dialog.open(StorySectionFormComponent, {
-      data: { textFormMetadata, action: "editing", title: this.chapter?.sections.find(s => s.id === sectionId)?.title},
+      data: { textFormMetadata, action: "editing", title: this.chapter?.sections.find(s => s.id === sectionId)?.title },
       disableClose: true
     }).afterClosed().subscribe((data) => {
       if (data.modified) {
@@ -80,5 +81,21 @@ export class StoryComponent {
         this.storyService.getStoryData();
       });
     }
+  }
+
+  openCreateParagraphForm(sectionId: number, previousParagraphId: number) {
+    const textFormMetadata: TextFormMetadata = {
+      chapterId: this.chapterId,
+      sectionId,
+      previousParagraphId
+    }
+    this.dialog.open(StoryParagraphFormComponent, {
+      data: { textFormMetadata, action: "adding" },
+      disableClose: true
+    }).afterClosed().subscribe((data) => {
+      if (data.modified) {
+        this.storyService.getStoryData();
+      }
+    });
   }
 }

@@ -11,7 +11,8 @@
 
           <ng-container *ngIf="isAuthenticated">
             <div>
-              <button mat-stroked-button aria-label="Ajout" (click)="openCreateSectionForm(0)">
+              <button class="btn__editing-content" mat-stroked-button aria-label="Ajout section"
+                (click)="openCreateSectionForm(0)">
                 Ajout section
               </button>
             </div>
@@ -22,16 +23,26 @@
               <h1 [style.fontSize]="getStoryFontSize()">{{section.title}}
                 <button mat-icon-button *ngIf="isAuthenticated"
                   (click)="openEditSectionTitleForm(section.id)"><mat-icon>edit</mat-icon></button>
-                  <button mat-icon-button *ngIf="isAuthenticated"
+                <button mat-icon-button *ngIf="isAuthenticated"
                   (click)="deleteSection(section.id)"><mat-icon>delete</mat-icon></button>
               </h1>
+              <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
+                (click)="openCreateParagraphForm(section.id,0)">
+                Ajout paragraphe
+              </button>
               <ng-container *ngFor="let paragraph of section.paragraphs">
                 <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
+
+                <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
+                  (click)="openCreateParagraphForm(section.id, paragraph.id)">
+                  Ajout paragraphe
+                </button>
               </ng-container>
 
               <ng-container *ngIf="isAuthenticated">
                 <div>
-                  <button mat-stroked-button aria-label="Ajout" (click)="openCreateSectionForm(section.id)">
+                  <button class="btn__editing-content" mat-stroked-button aria-label="Ajout section"
+                    (click)="openCreateSectionForm(section.id)">
                     Ajout section
                   </button>
                 </div>

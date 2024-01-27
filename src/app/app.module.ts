@@ -38,6 +38,7 @@ import { MoveChapterComponent } from './components/main-page/story/move-chapter/
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { StorySectionFormComponent } from './components/main-page/story/story-section-form/story-section-form.component';
+import { StoryParagraphFormComponent } from './components/main-page/story/story-paragraph-form/story-paragraph-form.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { StorySectionFormComponent } from './components/main-page/story/story-se
     IntroComponent,
     MoveChapterComponent,
     LoginComponent,
-    StorySectionFormComponent
+    StorySectionFormComponent,
+    StoryParagraphFormComponent
   ],
   imports: [
     BrowserModule,
