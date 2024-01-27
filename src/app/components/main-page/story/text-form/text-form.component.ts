@@ -39,6 +39,8 @@ export class TextFormComponent {
     this.isLoading = true;
     this.api.post('story/title', { value: this.titleForm.value, textFormMetadata: this.textFormMetadata }).subscribe((data) => {
       if (data.status == "ok") {
+        this.isLoading = false;
+        this.titleForm.reset();
         this.textFormService.modifiedStoryEvent.emit();
         this.textFormService.undisplayedTextForm(this.textFormMetadata);
       }

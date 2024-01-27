@@ -8,13 +8,11 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class MoveChapterComponent {
 
-  @Input() currentChapterNumber!: number;
   nextChapter!: number | null;
   previousChapter!: number | null;
 
   constructor(private storyService: StoryService) {
     this.storyService.changeChapterEvent.subscribe((chapterNumber) => {
-      this.currentChapterNumber = chapterNumber;
       this.setNextChapter();
       this.setPreviousChapter();
     });
@@ -31,25 +29,29 @@ export class MoveChapterComponent {
 
   setNextChapter() {
     this.nextChapter = null;
-    const chapters = this.storyService.chapters;
-    const currentChapterIndex = chapters.findIndex(c => c.order === this.currentChapterNumber);
-    for (let i = currentChapterIndex + 1; i < chapters.length; i++) {
-      if (chapters[i].sections.length > 0) {
-        this.nextChapter = chapters[i].order;
-        return;
+    const chaptersAfterCurrentChapter = [];
+    for (const chapter of this.storyService.chapters) {
+      if (chapter.order > this.storyService.chapterNumber && chapter.sections.length) {
+        chaptersAfterCurrentChapter.push(chapter);
       }
+    }
+    if (chaptersAfterCurrentChapter.length) {
+      chaptersAfterCurrentChapter.sort((a, b) => a.order - b.order);
+      this.nextChapter = chaptersAfterCurrentChapter[0].order;
     }
   }
 
   setPreviousChapter() {
     this.previousChapter = null;
-    const chapters = this.storyService.chapters;
-    const currentChapterIndex = chapters.findIndex(c => c.order === this.currentChapterNumber);
-    for (let i = currentChapterIndex - 1; i >= 0; i--) {
-      if (chapters[i].sections.length > 0) {
-        this.previousChapter = chapters[i].order;
-        return;
+    const chaptersBeforeCurrentChapter = [];
+    for (const chapter of this.storyService.chapters) {
+      if (chapter.order < this.storyService.chapterNumber && chapter.sections.length) {
+        chaptersBeforeCurrentChapter.push(chapter);
       }
+    }
+    if (chaptersBeforeCurrentChapter.length) {
+      chaptersBeforeCurrentChapter.sort((a, b) => b.order - a.order);
+      this.previousChapter = chaptersBeforeCurrentChapter[0].order;
     }
   }
 

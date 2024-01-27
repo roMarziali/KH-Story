@@ -21,6 +21,7 @@ export class StoryService {
   rawChapters: RawChapter[] = [];
   chapters: Chapter[] = [];
   currentChapterOrder!: number;
+  firstChapterToDisplaySelected = false;
 
   updatedStoryEvent = new EventEmitter();
   changeChapterEvent = new EventEmitter();
@@ -53,14 +54,16 @@ export class StoryService {
         this.rawChapters = data;
         this.chapters = this.organizeChapters();
         this.updatedStoryEvent.emit();
-        const currentChapterOrder = this.route.snapshot.queryParamMap.get('chapter');
-        if (currentChapterOrder) {
-          this.changeChapter(Number(currentChapterOrder));
-        } else {
-          this.changeChapter(1);
-        }
+        if (!this.firstChapterToDisplaySelected) this.setFirstChapterToDisplay();
       });
     });
+  }
+
+  setFirstChapterToDisplay() {
+    const queryChapter = this.route.snapshot.queryParamMap.get('chapter');
+    const currentChapterOrder = (queryChapter) ? Number(queryChapter) : 1;
+    this.changeChapter(currentChapterOrder);
+    this.firstChapterToDisplaySelected = true;
   }
 
   getAnnotation(id: number): string {

@@ -7,7 +7,7 @@
       </mat-card-header>
       <mat-card-content>
         <div id="story" [style.fontSize]="getStoryFontSize()">
-          <app-move-chapter [currentChapterNumber]="chapter.order"></app-move-chapter>
+          <app-move-chapter></app-move-chapter>
 
           <app-adding-text></app-adding-text>
           <app-text-form
@@ -20,7 +20,7 @@
                 <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
               </ng-container>
             </ng-container>
-            <app-move-chapter [currentChapterNumber]="chapter.order"></app-move-chapter>
+            <app-move-chapter></app-move-chapter>
           </ng-container>
 
           <ng-container *ngIf="!chapter.sections.length">
