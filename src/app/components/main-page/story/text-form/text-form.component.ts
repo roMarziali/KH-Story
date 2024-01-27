@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
 import { StoryService } from 'src/app/services/story.service';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
+import { FormGroup, FormControl, Validators, ValidationErrors } from "@angular/forms";
 
 @Component({
   selector: 'app-text-form',
@@ -12,15 +13,17 @@ import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 })
 export class TextFormComponent {
 
-  @Input() TextFormMetadata!: TextFormMetadata;
-  @Input() text!: string;
+  @Input() textFormMetadata!: TextFormMetadata;
   displayed: boolean = false;
+  titleForm = new FormGroup({
+    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  });
 
   constructor(private textFormService: TextFormService, private authService: AuthService, private api: ApiService,
     private storyService: StoryService) {
     this.textFormService.displayedTextFormsChange.subscribe(() => {
-      this.displayed = this.textFormService.isDisplayedTextForm(this.TextFormMetadata);
-      this.TextFormMetadata.type = this.textFormService.getDisplayedTextFormType(this.TextFormMetadata);
+      this.displayed = this.textFormService.isDisplayedTextForm(this.textFormMetadata);
+      this.textFormMetadata.type = this.textFormService.getDisplayedTextFormType(this.textFormMetadata);
     });
   }
 
@@ -28,16 +31,20 @@ export class TextFormComponent {
     return this.authService.isAuthenticated;
   }
 
-  onSubmit() {
+  get submitButtonText() {
+    return this.textFormMetadata.action === 'editing' ? 'Modifier' : 'Ajouter';
+  }
+
+  onSubmitTitle() {
+    if (this.titleForm.invalid) return;
     const chapterId = this.storyService.currentChapterId;
-    this.api.post('story/text', { title: this.text, TextFormMetadata: this.TextFormMetadata }).subscribe((data) => {
+    this.api.post('story/title', { value: this.titleForm.value, textFormMetada: this.textFormMetadata }).subscribe((data) => {
       console.log(data);
     });
   }
 
-  cancel() {
-    this.text = '';
-    this.textFormService.removeDisplayedTextForm(this.TextFormMetadata);
+  onCancelTitle() {
+    this.titleForm.reset();
+    this.textFormService.undisplayedTextForm(this.textFormMetadata);
   }
-
 }

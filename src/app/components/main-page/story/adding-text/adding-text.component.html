@@ -5,6 +5,8 @@
 
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="addTitle()">Titre</button>
-    <button mat-menu-item (click)="addParagraph()">Paragraphe</button>
+    <ng-container *ngIf="previousTitle != 0">
+      <button mat-menu-item (click)="addParagraph()">Paragraphe</button>
+    </ng-container>
   </mat-menu>
 </div>

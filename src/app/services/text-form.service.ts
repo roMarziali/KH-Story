@@ -43,7 +43,7 @@ export class TextFormService {
     return displayedTextForm?.type || 'paragraph';
   }
 
-  removeDisplayedTextForm(TextFormMetadata: TextFormMetadata): void {
+  undisplayedTextForm(TextFormMetadata: TextFormMetadata): void {
     const searchedTextFormIndex = this.displayedTextForms.findIndex(tf => {
       return tf.previousTitle === TextFormMetadata.previousTitle &&
         tf.previousParagraph === TextFormMetadata.previousParagraph &&

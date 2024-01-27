@@ -11,7 +11,7 @@
 
           <app-adding-text></app-adding-text>
           <app-text-form
-            [TextFormMetadata]="{action: 'adding', previousTitle : 0, previousParagraph : 0, chapterId}"></app-text-form>
+            [textFormMetadata]="{action: 'adding', previousTitle : 0, previousParagraph : 0, chapterId}"></app-text-form>
 
           <ng-container *ngIf="chapter.sections.length">
             <ng-container *ngFor="let section of chapter.sections">
