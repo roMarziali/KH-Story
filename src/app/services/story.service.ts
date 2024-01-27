@@ -10,6 +10,7 @@ import { ChapterSectionParagraph } from '../models/chapter-section-paragraph';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TextFormService } from './text-form.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class StoryService {
   changeChapterEvent = new EventEmitter();
 
   constructor(private api: ApiService, private settingsService: SettingsService, private route: ActivatedRoute,
-    private location: Location, private textFormService: TextFormService) {
+    private location: Location, private textFormService: TextFormService, private authService: AuthService) {
     this.getStoryData();
     this.settingsService.filtersChange.subscribe(() => {
       this.chapters = this.organizeChapters();
@@ -117,7 +118,7 @@ export class StoryService {
         title: rawSection.title,
         paragraphs: this.getParagraphsFromRawSection(rawSection)
       };
-      if (section.paragraphs.length > 0) sections.push(section);
+      if (section.paragraphs.length > 0 || this.authService.isAuthenticated) sections.push(section);
     });
     return sections;
   }
