@@ -24,7 +24,7 @@ export class TextFormService {
     this.displayedTextFormsChange.emit(this.displayedTextForms);
   }
 
-  getDisplayedTextFormType(TextFormMetadata: TextFormMetadata): 'title' | 'paragraph' {
+  getDisplayedTextFormType(TextFormMetadata: TextFormMetadata): 'section' | 'paragraph' {
     const displayedTextForm = this.displayedTextForms.find(tf => {
       return tf.previousSectionId === TextFormMetadata.previousSectionId &&
         tf.previousParagraphId === TextFormMetadata.previousParagraphId &&

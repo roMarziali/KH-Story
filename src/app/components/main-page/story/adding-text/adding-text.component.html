@@ -1,14 +1,32 @@
-<div *ngIf="isAuthenticated && !isDisplayedTextForm">
-  <button mat-icon-button aria-label="Ajout" [matMenuTriggerFor]="menu" class="main-button">
-    <mat-icon>add</mat-icon>
-  </button>
+<ng-container *ngIf="isAuthenticated">
+  <div *ngIf="!isDisplayedTextForm">
+    <button mat-icon-button aria-label="Ajout" (click)="addSection()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="addTitle()">Titre</button>
-    <ng-container *ngIf="displayParagraphOption">
-      <button mat-menu-item (click)="addParagraph()">Paragraphe</button>
-    </ng-container>
-  </mat-menu>
-</div>
+  <div *ngIf="isDisplayedTextForm">
+    <div *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+      <ng-container *ngIf="textFormMetadata.type=='section'">
+        <form [formGroup]="titleForm" (ngSubmit)="onSubmitSection()">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Titre de la section" formControlName="title" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-raised-button color="primary" (click)="onSubmitSection()">{{submitButtonText}}</button>
+            <button mat-raised-button (click)="onCancelTitle()">Annuler</button>
+          </div>
+        </form>
+      </ng-container>
+    </div>
 
-<app-text-form [textFormMetadata]="textFormMetadata"></app-text-form>
+    <div>
+
+    </div>
+  </div>
+</ng-container>

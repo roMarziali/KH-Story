@@ -13,12 +13,12 @@ router.get("/annotations", async (req, res, next) => {
   res.send(annotations);
 });
 
-router.post("/title", checkAuth, async (req, res, next) => {
+router.post("/section", checkAuth, async (req, res, next) => {
   const action = req.body.textFormMetadata.action;
   if (action === "adding") {
-    await StoryManager.addTitle(req.body.value.title, req.body.textFormMetadata);
+    await StoryManager.addSection(req.body.value.title, req.body.textFormMetadata);
   } else if (action === "editing") {
-    await StoryManager.editTitle(req.body.value.title, req.body.textFormMetadata);
+    await StoryManager.editSection(req.body.value.title, req.body.textFormMetadata);
   }
   res.json({ status: "ok" });
 });

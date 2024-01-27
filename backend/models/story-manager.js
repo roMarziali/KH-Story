@@ -22,15 +22,16 @@ module.exports = class StoryManager {
     return jsonAnnotation;
   }
 
-  static async addTitle(title, metaDataText) {
+  static async addSection(title, metaDataText) {
     const story = await this.getStory();
     const chapterId = metaDataText.chapterId;
-    const previousTitle = metaDataText.previousTitle;
     const chapter = story.find(chapter => chapter.id === chapterId);
-    incrementSectionsOrder(chapter, previousTitle + 1);
+    const newSectionOrder = getNewSectionOrder(chapter, metaDataText.previousSectionId);
+    console.log(newSectionOrder);
+    incrementSectionsOrder(chapter, newSectionOrder);
     const id = getNextIdForSection(chapter);
     chapter.sections.push({
-      order: previousTitle + 1,
+      order: newSectionOrder,
       title: title,
       id: id,
       paragraphs: []
@@ -39,20 +40,22 @@ module.exports = class StoryManager {
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
-  static async editTitle(title, metaDataText) {
+  static async editSection(title, metaDataText) {
 
   }
 };
 
-function incrementSectionsOrder(chapter, sectionOrder) {
+function incrementSectionsOrder(chapter, incrementFromThisOrderNumber) {
+  //Add 1 to the order of all sections with order >= incrementFromThisOrderNumber
   for (let i = 0; i < chapter.sections.length; i++) {
-    if (chapter.sections[i].order >= sectionOrder) {
+    if (chapter.sections[i].order >= incrementFromThisOrderNumber) {
       chapter.sections[i].order++;
     }
   }
 }
 
 function getNextIdForSection(chapter) {
+  //Find the next available id for a section
   let id = 1;
   let validId = false;
   while (!validId) {
@@ -65,4 +68,12 @@ function getNextIdForSection(chapter) {
     }
   }
   return id;
+}
+
+function getNewSectionOrder(chapter, previousSectionId) {
+  if (previousSectionId === 0) return 1;
+  const previousSection  = chapter.sections.find(section => section.id === previousSectionId);
+  const previousSectionOrder = previousSection.order;
+  if (previousSectionOrder) return previousSectionOrder + 1;
+  return 1;
 }

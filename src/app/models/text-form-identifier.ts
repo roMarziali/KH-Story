@@ -5,6 +5,6 @@ export interface TextFormMetadata {
   relatedSectionId?: number,
   relatedParagraphId?: number,
   action?: 'editing' | 'adding',
-  type?: 'title' | 'paragraph'
+  type?: 'section' | 'paragraph'
 }
 

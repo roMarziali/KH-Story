@@ -37,7 +37,6 @@ import { IntroComponent } from './components/main-page/intro/intro.component';
 import { MoveChapterComponent } from './components/main-page/story/move-chapter/move-chapter.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddingTextComponent } from './components/main-page/story/adding-text/adding-text.component';
-import { TextFormComponent } from './components/main-page/story/text-form/text-form.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
@@ -54,8 +53,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     IntroComponent,
     MoveChapterComponent,
     LoginComponent,
-    AddingTextComponent,
-    TextFormComponent
+    AddingTextComponent
   ],
   imports: [
     BrowserModule,
