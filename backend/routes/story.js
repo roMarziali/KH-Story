@@ -22,6 +22,16 @@ router.post("/section", checkAuth, async (req, res, next) => {
   }
 });
 
+router.put("/section/:chapterId/:sectionId", checkAuth, async (req, res, next) => {
+  try {
+    console.log(req.params, req.body);
+    await StoryManager.editSection(req.body.title, req.params.chapterId, req.params.sectionId);
+    res.json({ status: "ok" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
 router.delete("/section/:chapterId/:sectionId", checkAuth, async (req, res, next) => {
   try {
     await StoryManager.deleteSection(req.params.chapterId, req.params.sectionId);

@@ -39,8 +39,14 @@ module.exports = class StoryManager {
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
-  static async editSection(title, metaDataText) {
-
+  static async editSection(title, chapterId, sectionId) {
+    chapterId = Number(chapterId);
+    sectionId = Number(sectionId);
+    const story = await this.getStory();
+    const chapter = story.find(chapter => chapter.id === chapterId);
+    const section = chapter.sections.find(section => section.id === sectionId);
+    section.title = title;
+    fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
   static async deleteSection(chapterId, sectionId) {
@@ -92,7 +98,7 @@ function getNextIdForSection(chapter) {
 
 function getNewSectionOrder(chapter, previousSectionId) {
   if (previousSectionId === 0) return 1;
-  const previousSection  = chapter.sections.find(section => section.id === previousSectionId);
+  const previousSection = chapter.sections.find(section => section.id === previousSectionId);
   const previousSectionOrder = previousSection.order;
   if (previousSectionOrder) return previousSectionOrder + 1;
   return 1;

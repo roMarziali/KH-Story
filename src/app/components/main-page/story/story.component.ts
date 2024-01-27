@@ -60,7 +60,18 @@ export class StoryComponent {
   }
 
   openEditSectionTitleForm(sectionId: number) {
-    console.log(sectionId, "openEditSectionTitleForm");
+    const textFormMetadata:TextFormMetadata = {
+      chapterId: this.chapterId,
+      sectionId: sectionId
+    }
+    this.dialog.open(StorySectionFormComponent, {
+      data: { textFormMetadata, action: "editing", title: this.chapter?.sections.find(s => s.id === sectionId)?.title},
+      disableClose: true
+    }).afterClosed().subscribe((data) => {
+      if (data.modified) {
+        this.storyService.getStoryData();
+      }
+    });
   }
 
   deleteSection(sectionId: number) {

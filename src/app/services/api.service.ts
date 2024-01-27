@@ -23,6 +23,12 @@ export class ApiService {
     return this.http.post(url, data);
   }
 
+  put(endpoint: string, data: any): Observable<any> {
+    const url = `${this.apiUrl}/${endpoint}`;
+    console.log(url);
+    return this.http.put(url, data);
+  }
+
   delete(endpoint: string): Observable<any> {
     const url = `${this.apiUrl}/${endpoint}`;
     return this.http.delete(url);
