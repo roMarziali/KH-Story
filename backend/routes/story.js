@@ -14,15 +14,12 @@ router.get("/annotations", async (req, res, next) => {
 });
 
 router.post("/title", checkAuth, async (req, res, next) => {
-  console.log(req.body);
-/*  const action = req.body.metaDataText.action;
-  const text = req.body.text;
-  const metaDataText = req.body.metaDataText;
+  const action = req.body.textFormMetadata.action;
   if (action === "adding") {
-    await StoryManager.addText(text, metaDataText);
+    await StoryManager.addTitle(req.body.value.title, req.body.textFormMetadata);
   } else if (action === "editing") {
-    await StoryManager.editText(text, metaDataText);
-  }*/
+    await StoryManager.editTitle(req.body.value.title, req.body.textFormMetadata);
+  }
   res.json({ status: "ok" });
 });
 

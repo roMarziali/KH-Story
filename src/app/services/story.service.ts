@@ -32,6 +32,13 @@ export class StoryService {
       this.chapters = this.organizeChapters();
       this.updatedStoryEvent.emit();
     });
+    this.authService.changeAuthenticationStatus.subscribe(() => {
+      this.chapters = this.organizeChapters();
+      this.updatedStoryEvent.emit();
+    });
+    this.textFormService.modifiedStoryEvent.subscribe(() => {
+      this.getStoryData();
+    });
   }
 
   get chapterNumber(): number {

@@ -8,6 +8,7 @@ export class TextFormService {
 
   displayedTextForms: TextFormMetadata[] = [];
   displayedTextFormsChange: EventEmitter<TextFormMetadata[]> = new EventEmitter();
+  modifiedStoryEvent: EventEmitter<void> = new EventEmitter();
 
   isDisplayedTextForm(TextFormMetadata: TextFormMetadata): boolean {
     if (TextFormMetadata.action === 'editing') {
