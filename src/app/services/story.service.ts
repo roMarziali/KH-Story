@@ -119,6 +119,7 @@ export class StoryService {
         paragraphs: this.getParagraphsFromRawSection(rawSection)
       };
       if (section.paragraphs.length > 0 || this.authService.isAuthenticated) sections.push(section);
+      // on autorise l'affichage des sections vides si l'utilisateur est connecté sinon il ne pourrait pas créer un paragraphe dans une section vide
     });
     return sections;
   }
