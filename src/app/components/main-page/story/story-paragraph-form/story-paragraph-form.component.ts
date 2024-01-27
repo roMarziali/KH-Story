@@ -3,6 +3,7 @@ import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
 import { FormGroup, FormControl, Validators, ValidationErrors, FormArray } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import games from 'src/assets/data/games.json';
 
 @Component({
   selector: 'app-story-paragraph-form',
@@ -13,6 +14,7 @@ export class StoryParagraphFormComponent {
   isLoading: boolean = false;
   textFormMetadata!: TextFormMetadata;
   action!: "adding" | "editing";
+  games = games;
 
   paragraphForm = new FormGroup({
     texts: new FormArray([]),
@@ -31,9 +33,9 @@ export class StoryParagraphFormComponent {
       text: new FormControl('', [Validators.required, Validators.minLength(3)]),
       relatedTo: new FormControl([], [Validators.required, Validators.minLength(1)]),
       image: new FormGroup({
-        game: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        alt: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        game: new FormControl('', [Validators.minLength(2)]),
+        name: new FormControl('', [Validators.minLength(3)]),
+        alt: new FormControl('', [Validators.minLength(3)]),
       }),
     });
     (this.paragraphForm.get('texts') as FormArray).push(newTextSubForm);
