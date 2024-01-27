@@ -40,4 +40,13 @@ router.delete("/section/:chapterId/:sectionId", checkAuth, async (req, res, next
   }
 });
 
+router.post("/paragraph", checkAuth, async (req, res, next) => {
+  try {
+    await StoryManager.addParagraph(req.body.paragraph, req.body.textFormMetadata);
+    res.json({ status: "ok" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
 module.exports = router;

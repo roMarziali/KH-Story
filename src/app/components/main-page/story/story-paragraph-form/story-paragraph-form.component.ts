@@ -42,9 +42,16 @@ export class StoryParagraphFormComponent {
   }
 
   onSubmitParagraph() {
-    console.log(this.paragraphForm.value);
     if (this.paragraphForm.invalid) return;
-    console.log("submission");
+    this.isLoading = true;
+    if (this.action == "adding") {
+      this.api.post('story/paragraph', { textFormMetadata: this.textFormMetadata, paragraph: this.paragraphForm.value }).subscribe((data) => {
+        if (data.status == "ok") {
+          this.isLoading = false;
+          this.dialogRef.close({ modified: true });
+        }
+      });
+    }
   }
 
   deleteTextFromForm(index: number) {
