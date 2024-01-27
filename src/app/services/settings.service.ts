@@ -1,24 +1,34 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Filter } from 'src/app/models/filter.model';
-import filters from '../../assets/data/filters.json';
+import games from 'src/assets/data/games.json';
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
 
-  settings: { filters: Filter[], visibility: any } = {
-    filters: filters as Filter[],
-    visibility: {
-      "darkMode": false,
-      "fontSizeEm": 1
-    }
-  }
+  settings!: { filters: Filter[], visibility: any };
 
   filtersChange = new EventEmitter();
   visibilityChange = new EventEmitter();
 
   constructor() {
+    const filters: Filter[] = [];
+    games.forEach(game => {
+      filters.push({
+        id: game.id,
+        name: game.name,
+        selected: false
+      });
+    });
+    this.settings = {
+      filters,
+      visibility: {
+        "darkMode": false,
+        "fontSizeEm": 1
+      }
+    }
     this.loadLocalParameters();
+
   }
 
   filterChanged() {
