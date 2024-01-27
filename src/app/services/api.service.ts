@@ -25,7 +25,6 @@ export class ApiService {
 
   put(endpoint: string, data: any): Observable<any> {
     const url = `${this.apiUrl}/${endpoint}`;
-    console.log(url);
     return this.http.put(url, data);
   }
 
