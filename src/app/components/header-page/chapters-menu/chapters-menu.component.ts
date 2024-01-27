@@ -11,15 +11,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ChaptersMenuComponent {
 
   chapters!: Chapter[];
-  currentChapterOrder!: number;
 
   constructor(private storyService: StoryService, private authService: AuthService) {
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.chapters = this.storyService.chapters;
     });
-    this.storyService.changeChapterEvent.subscribe((chapterNumber) => {
-      this.currentChapterOrder = chapterNumber;
-    });
+  }
+
+  get currentChapterOrder() {
+    return this.storyService.chapterNumber;
   }
 
   changeChapter(chapterOrder: number) {
