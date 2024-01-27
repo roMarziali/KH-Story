@@ -42,6 +42,18 @@ module.exports = class StoryManager {
   static async editSection(title, metaDataText) {
 
   }
+
+  static async deleteSection(chapterId, sectionId) {
+    chapterId = Number(chapterId);
+    sectionId = Number(sectionId);
+    const story = await this.getStory();
+    const chapter = story.find(chapter => chapter.id === chapterId);
+    const section = chapter.sections.find(section => section.id === sectionId);
+    const sectionOrder = section.order;
+    chapter.sections = chapter.sections.filter(section => section.id !== sectionId);
+    decrementSectionsOrder(chapter, sectionOrder);
+    fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
+  }
 };
 
 function incrementSectionsOrder(chapter, incrementFromThisOrderNumber) {
@@ -49,6 +61,15 @@ function incrementSectionsOrder(chapter, incrementFromThisOrderNumber) {
   for (let i = 0; i < chapter.sections.length; i++) {
     if (chapter.sections[i].order >= incrementFromThisOrderNumber) {
       chapter.sections[i].order++;
+    }
+  }
+}
+
+function decrementSectionsOrder(chapter, decrementFromThisOrderNumber) {
+  //Remove 1 to the order of all sections with order > decrementFromThisOrderNumber
+  for (let i = 0; i < chapter.sections.length; i++) {
+    if (chapter.sections[i].order > decrementFromThisOrderNumber) {
+      chapter.sections[i].order--;
     }
   }
 }

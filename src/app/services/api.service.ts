@@ -23,4 +23,9 @@ export class ApiService {
     return this.http.post(url, data);
   }
 
+  delete(endpoint: string): Observable<any> {
+    const url = `${this.apiUrl}/${endpoint}`;
+    return this.http.delete(url);
+  }
+
 }

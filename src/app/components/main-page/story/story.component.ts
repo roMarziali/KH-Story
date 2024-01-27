@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StorySectionFormComponent } from './story-section-form/story-section-form.component';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-story',
@@ -15,7 +16,7 @@ import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 export class StoryComponent {
 
   constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog, private api: ApiService) {
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.loadChapter();
     });
@@ -44,7 +45,7 @@ export class StoryComponent {
   }
 
   openCreateSectionForm(previousSectionId: number) {
-    const textFormMetadata = {
+    const textFormMetadata:TextFormMetadata = {
       chapterId: this.chapterId,
       previousSectionId: previousSectionId
     }
@@ -58,12 +59,15 @@ export class StoryComponent {
     });
   }
 
-
   openEditSectionTitleForm(sectionId: number) {
     console.log(sectionId, "openEditSectionTitleForm");
   }
 
   deleteSection(sectionId: number) {
-    console.log(sectionId, "deleteSection");
+    if (confirm("Êtes-vous sûr de vouloir supprimer cette section ?")) {
+      this.api.delete(`story/section/${this.chapterId}/${sectionId}`).subscribe(() => {
+        this.storyService.getStoryData();
+      });
+    }
   }
 }
