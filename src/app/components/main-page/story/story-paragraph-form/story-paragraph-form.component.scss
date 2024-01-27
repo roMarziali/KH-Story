@@ -1,3 +1,16 @@
-form button{
-  margin-right : 1rem;
+form button {
+  margin-right: 1rem;
+}
+
+.form-field__textarea {
+  width: 500px;
+}
+
+fieldset {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+mat-card {
+  max-height: 800px;
 }

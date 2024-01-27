@@ -10,8 +10,28 @@
     </div>
     <div *ngIf="!isLoading">
       <form [formGroup]="paragraphForm" (ngSubmit)="onSubmitParagraph()">
-        <div>
+        <ng-container *ngFor="let text of texts.controls, let index = index">
+          <fieldset [formGroup]="text">
+            <legend>Texte {{index +1 }}</legend>
+            <div>
+              <div>
+                <mat-form-field class="form-field__textarea">
+                  <textarea matInput placeholder="Texte" formControlName="text" required rows="4"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div>
+              <button mat-icon-button (click)="deleteTextFromForm(index)" type="button">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </fieldset>
+        </ng-container>
 
+        <div>
+          <button mat-icon-button (click)="addTextToForm()" type="button">
+            <mat-icon>add</mat-icon>
+          </button>
         </div>
         <div>
           <button mat-raised-button color="primary" (click)="onSubmitParagraph()">Sauvegarder</button>
