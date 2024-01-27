@@ -11,20 +11,11 @@ export class TextFormService {
   modifiedStoryEvent: EventEmitter<void> = new EventEmitter();
 
   isDisplayedTextForm(TextFormMetadata: TextFormMetadata): boolean {
-    if (TextFormMetadata.action === 'editing') {
-      return this.displayedTextForms.some(tf => {
-        return tf.relatedTitle === TextFormMetadata.relatedTitle &&
-          tf.relatedParagraph === TextFormMetadata.relatedParagraph &&
-          tf.chapterId === TextFormMetadata.chapterId
-      });
-    } else if (TextFormMetadata.action === 'adding') {
-      return this.displayedTextForms.some(tf => {
-        return tf.previousTitle === TextFormMetadata.previousTitle &&
-          tf.previousParagraph === TextFormMetadata.previousParagraph &&
-          tf.chapterId === TextFormMetadata.chapterId
-      });
-    }
-    return false;
+    return this.displayedTextForms.some(tf => {
+      return tf.previousSectionId === TextFormMetadata.previousSectionId &&
+        tf.previousParagraphId === TextFormMetadata.previousParagraphId &&
+        tf.chapterId === TextFormMetadata.chapterId
+    });
   }
 
   addDisplayedTextForm(TextFormMetadata: TextFormMetadata): void {
@@ -35,10 +26,10 @@ export class TextFormService {
 
   getDisplayedTextFormType(TextFormMetadata: TextFormMetadata): 'title' | 'paragraph' {
     const displayedTextForm = this.displayedTextForms.find(tf => {
-      return tf.previousTitle === TextFormMetadata.previousTitle &&
-        tf.previousParagraph === TextFormMetadata.previousParagraph &&
-        tf.relatedTitle === TextFormMetadata.relatedTitle &&
-        tf.relatedParagraph === TextFormMetadata.relatedParagraph &&
+      return tf.previousSectionId === TextFormMetadata.previousSectionId &&
+        tf.previousParagraphId === TextFormMetadata.previousParagraphId &&
+        tf.relatedSectionId === TextFormMetadata.relatedSectionId &&
+        tf.relatedParagraphId === TextFormMetadata.relatedParagraphId &&
         tf.chapterId === TextFormMetadata.chapterId
     });
     return displayedTextForm?.type || 'paragraph';
@@ -46,10 +37,10 @@ export class TextFormService {
 
   undisplayedTextForm(TextFormMetadata: TextFormMetadata): void {
     const searchedTextFormIndex = this.displayedTextForms.findIndex(tf => {
-      return tf.previousTitle === TextFormMetadata.previousTitle &&
-        tf.previousParagraph === TextFormMetadata.previousParagraph &&
-        tf.relatedTitle === TextFormMetadata.relatedTitle &&
-        tf.relatedParagraph === TextFormMetadata.relatedParagraph &&
+      return tf.previousSectionId === TextFormMetadata.previousSectionId &&
+        tf.previousParagraphId === TextFormMetadata.previousParagraphId &&
+        tf.relatedSectionId === TextFormMetadata.relatedSectionId &&
+        tf.relatedParagraphId === TextFormMetadata.relatedParagraphId &&
         tf.chapterId === TextFormMetadata.chapterId
     });
     if (searchedTextFormIndex === -1) return;

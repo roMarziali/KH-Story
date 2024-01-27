@@ -5,8 +5,10 @@
 
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="addTitle()">Titre</button>
-    <ng-container *ngIf="previousTitle != 0">
+    <ng-container *ngIf="displayParagraphOption">
       <button mat-menu-item (click)="addParagraph()">Paragraphe</button>
     </ng-container>
   </mat-menu>
 </div>
+
+<app-text-form [textFormMetadata]="textFormMetadata"></app-text-form>

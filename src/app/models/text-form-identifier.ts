@@ -1,9 +1,9 @@
 export interface TextFormMetadata {
   chapterId: number,
-  previousTitle?: number,
-  previousParagraph?: number,
-  relatedTitle?: number,
-  relatedParagraph?: number,
+  previousSectionId?: number,
+  previousParagraphId?: number,
+  relatedSectionId?: number,
+  relatedParagraphId?: number,
   action?: 'editing' | 'adding',
   type?: 'title' | 'paragraph'
 }

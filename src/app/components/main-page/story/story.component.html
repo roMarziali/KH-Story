@@ -9,9 +9,7 @@
         <div id="story" [style.fontSize]="getStoryFontSize()">
           <app-move-chapter></app-move-chapter>
 
-          <app-adding-text></app-adding-text>
-          <app-text-form
-            [textFormMetadata]="{action: 'adding', previousTitle : 0, previousParagraph : 0, chapterId}"></app-text-form>
+          <app-adding-text [textFormMetadata]="{action: 'adding', previousSectionId : 0, chapterId}"></app-adding-text>
 
           <ng-container *ngIf="chapter.sections.length">
             <ng-container *ngFor="let section of chapter.sections">
@@ -19,6 +17,8 @@
               <ng-container *ngFor="let paragraph of section.paragraphs">
                 <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
               </ng-container>
+              <app-adding-text [textFormMetadata]="{previousSectionId: section.id, chapterId}"></app-adding-text>
+
             </ng-container>
             <app-move-chapter></app-move-chapter>
           </ng-container>

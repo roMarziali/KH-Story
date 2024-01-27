@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { TextFormService } from 'src/app/services/text-form.service';
-import { StoryService } from 'src/app/services/story.service';
+import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 
 @Component({
   selector: 'app-adding-text',
@@ -10,29 +10,17 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class AddingTextComponent {
 
-  constructor(private authService: AuthService, private textFormService: TextFormService, private storyService: StoryService) { }
-
-  @Input() previousTitle: number = 0;
-  @Input() previousParagraph: number = 0;
+  constructor(private authService: AuthService, private textFormService: TextFormService) { }
+  @Input() relatedTo: 'section' | 'paragraph' = 'section';
+  @Input() textFormMetadata!: TextFormMetadata;
 
   addTitle() {
-    this.textFormService.addDisplayedTextForm({
-      previousTitle: this.previousTitle,
-      previousParagraph: this.previousParagraph,
-      type: 'title',
-      action: 'adding',
-      chapterId: this.storyService.currentChapterId
-    });
+    this.textFormMetadata.type = 'title';
+    this.textFormService.addDisplayedTextForm(this.textFormMetadata);
   }
 
   addParagraph() {
-    this.textFormService.addDisplayedTextForm({
-      previousTitle: this.previousTitle,
-      previousParagraph: this.previousParagraph,
-      type: 'paragraph',
-      action: 'adding',
-      chapterId: this.storyService.currentChapterId
-    });
+    console.log("add paragraph");
   }
 
   get isAuthenticated() {
@@ -40,12 +28,13 @@ export class AddingTextComponent {
   }
 
   get isDisplayedTextForm() {
-    return this.textFormService.isDisplayedTextForm({
-      previousTitle: this.previousTitle,
-      previousParagraph: this.previousParagraph,
-      action: 'adding',
-      chapterId: this.storyService.currentChapterId
-    });
+    if (!this.textFormMetadata) return false;
+    return this.textFormService.isDisplayedTextForm(this.textFormMetadata);
+  }
+
+  get displayParagraphOption() :boolean{
+    if (!this.textFormMetadata) return false;
+    return (this.textFormMetadata.previousSectionId !== 0);
   }
 
 }
