@@ -3,8 +3,6 @@ export interface TextFormMetadata {
   previousSectionId?: number,
   previousParagraphId?: number,
   relatedSectionId?: number,
-  relatedParagraphId?: number,
-  action?: 'editing' | 'adding',
-  type?: 'section' | 'paragraph'
+  relatedParagraphId?: number
 }
 

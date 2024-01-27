@@ -14,13 +14,12 @@ router.get("/annotations", async (req, res, next) => {
 });
 
 router.post("/section", checkAuth, async (req, res, next) => {
-  const action = req.body.textFormMetadata.action;
-  if (action === "adding") {
-    await StoryManager.addSection(req.body.value.title, req.body.textFormMetadata);
-  } else if (action === "editing") {
-    await StoryManager.editSection(req.body.value.title, req.body.textFormMetadata);
+  try {
+    await StoryManager.addSection(req.body.title, req.body.textFormMetadata);
+    res.json({ status: "ok" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur d'exécution" });
   }
-  res.json({ status: "ok" });
 });
 
 module.exports = router;

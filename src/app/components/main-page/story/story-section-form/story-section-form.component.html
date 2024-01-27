@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div>Édition de section</div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+      <form [formGroup]="titleForm" (ngSubmit)="onSubmitSection()">
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Titre de la section" formControlName="title" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" (click)="onSubmitSection()">Sauvegarder</button>
+          <button mat-raised-button mat-dialog-close>Annuler</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+
+    </div>
+  </mat-card-content>
+</mat-card>

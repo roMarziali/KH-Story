@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Chapter } from 'src/app/models/chapter';
-import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { StorySectionFormComponent } from './story-section-form/story-section-form.component';
+import { TextFormMetadata } from 'src/app/models/text-form-identifier';
+
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -10,7 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StoryComponent {
 
-  constructor(private storyService: StoryService, private settingsService: SettingsService, private route: ActivatedRoute) {
+  constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
+    private dialog: MatDialog) {
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.loadChapter();
     });
@@ -32,5 +37,33 @@ export class StoryComponent {
 
   loadChapter() {
     this.chapter = this.storyService.getChapter();
+  }
+
+  get isAuthenticated(): boolean {
+    return this.authService.isAuthenticated;
+  }
+
+  openCreateSectionForm(previousSectionId: number) {
+    const textFormMetadata = {
+      chapterId: this.chapterId,
+      previousSectionId: previousSectionId
+    }
+    this.dialog.open(StorySectionFormComponent, {
+      data: { textFormMetadata, action: "adding" },
+      disableClose: true
+    }).afterClosed().subscribe((data) => {
+      if (data.modified) {
+        this.storyService.getStoryData();
+      }
+    });
+  }
+
+
+  openEditSectionTitleForm(sectionId: number) {
+    console.log(sectionId, "openEditSectionTitleForm");
+  }
+
+  deleteSection(sectionId: number) {
+    console.log(sectionId, "deleteSection");
   }
 }

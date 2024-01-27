@@ -27,7 +27,6 @@ module.exports = class StoryManager {
     const chapterId = metaDataText.chapterId;
     const chapter = story.find(chapter => chapter.id === chapterId);
     const newSectionOrder = getNewSectionOrder(chapter, metaDataText.previousSectionId);
-    console.log(newSectionOrder);
     incrementSectionsOrder(chapter, newSectionOrder);
     const id = getNextIdForSection(chapter);
     chapter.sections.push({

@@ -36,8 +36,8 @@ import { ParagraphComponent } from './components/main-page/story/story-paragraph
 import { IntroComponent } from './components/main-page/intro/intro.component';
 import { MoveChapterComponent } from './components/main-page/story/move-chapter/move-chapter.component';
 import { LoginComponent } from './components/login/login.component';
-import { AddingTextComponent } from './components/main-page/story/adding-text/adding-text.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { StorySectionFormComponent } from './components/main-page/story/story-section-form/story-section-form.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     IntroComponent,
     MoveChapterComponent,
     LoginComponent,
-    AddingTextComponent
+    StorySectionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +79,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { hideRequiredMarker: 'true' } },

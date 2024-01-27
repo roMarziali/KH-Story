@@ -9,17 +9,33 @@
         <div id="story" [style.fontSize]="getStoryFontSize()">
           <app-move-chapter></app-move-chapter>
 
-          <app-adding-text
-            [textFormMetadata]="{action: 'adding', previousSectionId : 0, chapterId, type:'section'}"></app-adding-text>
+          <ng-container *ngIf="isAuthenticated">
+            <div>
+              <button mat-stroked-button aria-label="Ajout" (click)="openCreateSectionForm(0)">
+                Ajout section
+              </button>
+            </div>
+          </ng-container>
 
           <ng-container *ngIf="chapter.sections.length">
             <ng-container *ngFor="let section of chapter.sections">
-              <h1 [style.fontSize]="getStoryFontSize()">{{section.title}}</h1>
+              <h1 [style.fontSize]="getStoryFontSize()">{{section.title}}
+                <button mat-icon-button *ngIf="isAuthenticated"
+                  (click)="openEditSectionTitleForm(section.id)"><mat-icon>edit</mat-icon></button>
+                  <button mat-icon-button *ngIf="isAuthenticated"
+                  (click)="deleteSection(section.id)"><mat-icon>delete</mat-icon></button>
+              </h1>
               <ng-container *ngFor="let paragraph of section.paragraphs">
                 <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
               </ng-container>
-              <app-adding-text
-                [textFormMetadata]="{action: 'adding', previousSectionId: section.id, chapterId, type:'section'}"></app-adding-text>
+
+              <ng-container *ngIf="isAuthenticated">
+                <div>
+                  <button mat-stroked-button aria-label="Ajout" (click)="openCreateSectionForm(section.id)">
+                    Ajout section
+                  </button>
+                </div>
+              </ng-container>
 
             </ng-container>
             <app-move-chapter></app-move-chapter>
