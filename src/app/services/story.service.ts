@@ -102,7 +102,6 @@ export class StoryService {
       chapters.push(chapter);
     });
     chapters.sort((a, b) => a.order - b.order);
-    console.log(chapters);
     return chapters;
   }
 
