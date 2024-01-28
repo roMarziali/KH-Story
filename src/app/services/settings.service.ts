@@ -17,7 +17,7 @@ export class SettingsService {
       filters.push({
         id: game.id,
         name: game.name,
-        selected: false
+        selected: true
       });
     });
     this.settings = {
