@@ -98,4 +98,28 @@ export class StoryComponent {
       }
     });
   }
+
+  openEditParagraphForm(sectionId: number, paragraphId: number) {
+    const textFormMetadata: TextFormMetadata = {
+      chapterId: this.chapterId,
+      sectionId,
+      paragraphId
+    }
+    this.dialog.open(StoryParagraphFormComponent, {
+      data: { textFormMetadata, action: "editing" },
+      disableClose: true
+    }).afterClosed().subscribe((data) => {
+      if (data.modified) {
+        this.storyService.getStoryData();
+      }
+    });
+  }
+
+  deleteParagraph(sectionId: number, paragraphId: number) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce paragraphe ?")) {
+      this.api.delete(`story/paragraph/${this.chapterId}/${sectionId}/${paragraphId}`).subscribe(() => {
+        this.storyService.getStoryData();
+      });
+    }
+  }
 }

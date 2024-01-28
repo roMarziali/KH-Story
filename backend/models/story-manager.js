@@ -26,9 +26,9 @@ module.exports = class StoryManager {
     const story = await this.getStory();
     const chapterId = metaDataText.chapterId;
     const chapter = story.find(chapter => chapter.id === chapterId);
-    const newSectionOrder = getOrderFromSectionId(chapter, metaDataText.previousSectionId) + 1;
-    incrementSectionsOrder(chapter, newSectionOrder);
-    const id = getNextIdForSection(chapter);
+    const newSectionOrder = getOrderForElement(chapter, "sections", metaDataText.previousSectionId);
+    incrementOrderForElement(chapter, "sections", newSectionOrder);
+    const id = getNextIdForElement(chapter, "sections");
     chapter.sections.push({
       order: newSectionOrder,
       title: title,
@@ -57,7 +57,7 @@ module.exports = class StoryManager {
     const section = chapter.sections.find(section => section.id === sectionId);
     const sectionOrder = section.order;
     chapter.sections = chapter.sections.filter(section => section.id !== sectionId);
-    decrementSectionsOrder(chapter, sectionOrder);
+    decrementOrderForElement(chapter, "sections", sectionOrder);
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
@@ -70,9 +70,9 @@ module.exports = class StoryManager {
     const chapterId = metaDataText.chapterId;
     const sectionId = metaDataText.sectionId;
     const section = story.find(chapter => chapter.id === chapterId).sections.find(section => section.id === sectionId);
-    const paragraphOrder = getOrderFromParagraphId(section, metaDataText.previousParagraphId) + 1;
-    incrementParagraphsOrder(section, paragraphOrder);
-    const paragraphId = getNextIdForParagraph(section);
+    const paragraphOrder = getOrderForElement(section, "paragraphs", metaDataText.previousParagraphId);
+    incrementOrderForElement(section, "paragraphs", paragraphOrder);
+    const paragraphId = getNextIdForElement(section, "paragraphs");
     section.paragraphs.push({
       order: paragraphOrder,
       id: paragraphId,
@@ -80,43 +80,59 @@ module.exports = class StoryManager {
     });
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
+
+  static async editParagraph(paragraph, metaDataText) {
+    const story = await this.getStory();
+    const chapterId = metaDataText.chapterId;
+    const sectionId = metaDataText.sectionId;
+    const paragraphId = metaDataText.paragraphId;
+    const section = story.find(chapter => chapter.id === chapterId).sections.find(section => section.id === sectionId);
+    paragraph.texts = paragraph.texts.concat(paragraph.texts);
+    fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
+  }
+
+  static async deleteParagraph(chapterId, sectionId, paragraphId) {
+    chapterId = Number(chapterId);
+    sectionId = Number(sectionId);
+    paragraphId = Number(paragraphId);
+    const story = await this.getStory();
+    const chapter = story.find(chapter => chapter.id === chapterId);
+    const section = chapter.sections.find(section => section.id === sectionId);
+    const paragraph = section.paragraphs.find(paragraph => paragraph.id === paragraphId);
+    const paragraphOrder = paragraph.order;
+    section.paragraphs = section.paragraphs.filter(paragraph => paragraph.id !== paragraphId);
+    decrementOrderForElement(section, "paragraphs", paragraphOrder);
+    fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
+  }
 };
 
-function incrementSectionsOrder(chapter, incrementFromThisOrderNumber) {
-  //Add 1 to the order of all sections with order >= incrementFromThisOrderNumber
-  for (let i = 0; i < chapter.sections.length; i++) {
-    if (chapter.sections[i].order >= incrementFromThisOrderNumber) {
-      chapter.sections[i].order++;
+function incrementOrderForElement(parent, childName, incrementFromThisOrderNumber) {
+  //Add 1 to the order of all elements with order >= incrementFromThisOrderNumber
+  for (let i = 0; i < parent[childName].length; i++) {
+    if (parent[childName][i].order >= incrementFromThisOrderNumber) {
+      parent[childName][i].order++;
     }
   }
 }
 
-function decrementSectionsOrder(chapter, decrementFromThisOrderNumber) {
-  //Remove 1 to the order of all sections with order > decrementFromThisOrderNumber
-  for (let i = 0; i < chapter.sections.length; i++) {
-    if (chapter.sections[i].order > decrementFromThisOrderNumber) {
-      chapter.sections[i].order--;
+function decrementOrderForElement(parent, childName, decrementFromThisOrderNumber) {
+  //Remove 1 to the order of all elements with order > decrementFromThisOrderNumber
+  for (let i = 0; i < parent[childName].length; i++) {
+    if (parent[childName][i].order > decrementFromThisOrderNumber) {
+      parent[childName][i].order--;
     }
   }
 }
 
-function incrementParagraphsOrder(section, incrementFromThisOrderNumber) {
-  //Add 1 to the order of all paragraphs with order >= incrementFromThisOrderNumber
-  for (let i = 0; i < section.paragraphs.length; i++) {
-    if (section.paragraphs[i].order >= incrementFromThisOrderNumber) {
-      section.paragraphs[i].order++;
-    }
-  }
-}
 
-function getNextIdForSection(chapter) {
-  //Find the next available id for a section
+function getNextIdForElement(parent, childName) {
+  //Find the next available id for an element
   let id = 1;
   let validId = false;
   while (!validId) {
     validId = true;
-    for (let i = 0; i < chapter.sections.length; i++) {
-      if (chapter.sections[i].id === id) {
+    for (let i = 0; i < parent[childName].length; i++) {
+      if (parent[childName][i].id === id) {
         validId = false;
         id++;
       }
@@ -125,20 +141,10 @@ function getNextIdForSection(chapter) {
   return id;
 }
 
-function getNextIdForParagraph(section) {
-  //Find the next available id for a paragraph
-  let id = 1;
-  let validId = false;
-  while (!validId) {
-    validId = true;
-    for (let i = 0; i < section.paragraphs.length; i++) {
-      if (section.paragraphs[i].id === id) {
-        validId = false;
-        id++;
-      }
-    }
-  }
-  return id;
+
+function getOrderForElement(parent, childName, previousElementId) {
+  if (previousElementId == 0) return 1;
+  return parent[childName].find(element => element.id === previousElementId).order + 1;
 }
 
 function addOrderToTextsFromParagraph(paragraph) {
@@ -149,12 +155,3 @@ function addOrderToTextsFromParagraph(paragraph) {
   });
 }
 
-function getOrderFromSectionId(chapter, sectionId) {
-  if (sectionId == 0) return 0;
-  return chapter.sections.find(section => section.id === sectionId).order;
-}
-
-function getOrderFromParagraphId(section, paragraphId) {
-  if (paragraphId == 0) return 0;
-  return section.paragraphs.find(paragraph => paragraph.id === paragraphId).order;
-}

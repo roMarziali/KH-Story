@@ -49,4 +49,22 @@ router.post("/paragraph", checkAuth, async (req, res, next) => {
   }
 });
 
+router.put("/paragraph/:chapterId/:sectionId/:paragraphId", checkAuth, async (req, res, next) => {
+  try {
+    await StoryManager.editParagraph(req.body.paragraph, req.params.chapterId, req.params.sectionId, req.params.paragraphId);
+    res.json({ status: "ok" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
+router.delete("/paragraph/:chapterId/:sectionId/:paragraphId", checkAuth, async (req, res, next) => {
+  try {
+    await StoryManager.deleteParagraph(req.params.chapterId, req.params.sectionId, req.params.paragraphId);
+    res.json({ status: "ok" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
 module.exports = router;

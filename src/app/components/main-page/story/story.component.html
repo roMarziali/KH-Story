@@ -37,11 +37,19 @@
               </ng-container>
 
               <ng-container *ngFor="let paragraph of section.paragraphs">
-                <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
-
+                <div class="story__paragraph">
+                  <div>
+                    <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
+                  </div>
+                  <div *ngIf="isAuthenticated">
+                    <button mat-icon-button
+                      (click)="openEditParagraphForm(section.id, paragraph.id)"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button
+                      (click)="deleteParagraph(section.id, paragraph.id)"><mat-icon>delete</mat-icon></button>
+                  </div>
+                </div>
                 <ng-container *ngIf="isAuthenticated">
                   <div>
-
                     <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
                       (click)="openCreateParagraphForm(section.id, paragraph.id)">
                       Ajout paragraphe
