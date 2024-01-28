@@ -1,0 +1,58 @@
+[
+  {
+    "id": "KH1",
+    "name": "Kingdom Hearts I"
+  },
+  {
+    "id": "KHCoM",
+    "name": "KH: Chain of Memories"
+  },
+  {
+    "id": "KH2",
+    "name": "Kingdom Hearts II"
+  },
+  {
+    "id": "KH3582Days",
+    "name": "KH 358/2 Days"
+  },
+  {
+    "id": "KHBBS",
+    "name": "KH: Birth by Sleep"
+  },
+  {
+    "id": "KHCoded",
+    "name": "KH Coded"
+  },
+  {
+    "id": "KHDDD",
+    "name": "KH Dream Drop Distance"
+  },
+  {
+    "id": "KH0pt2",
+    "name": "KH 0.2 A Fragmentary Passage"
+  },
+  {
+    "id": "KHUX",
+    "name": "KH Union χ"
+  },
+  {
+    "id": "KHUXBackCover",
+    "name": "KH Union χ Back Cover"
+  },
+  {
+    "id": "KH3",
+    "name": "Kingdom Hearts III"
+  },
+  {
+    "id": "KHMoM",
+    "name": "KH: Melody of Memory"
+  },
+  {
+    "id": "Other",
+    "name": "Autre (interviews, livres, etc.)"
+  },
+  {
+    "id": "annotations",
+    "name": "Annotations"
+  }
+]

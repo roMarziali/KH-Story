@@ -3,7 +3,8 @@
     <mat-card>
 
       <mat-card-header>
-        <mat-card-title [style.fontSize]="getStoryFontSize()">{{chapter.title}}</mat-card-title>
+        <mat-card-title [style.fontSize]="getStoryFontSize()">Chapitre {{chapter.order}} :
+          {{chapter.title}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div id="story" [style.fontSize]="getStoryFontSize()">
