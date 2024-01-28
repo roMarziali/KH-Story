@@ -5,6 +5,5 @@ export interface ChapterSectionParagraph {
     "game": string;
     "name": string;
     "alt": string;
-    "caption": string;
   }
 }

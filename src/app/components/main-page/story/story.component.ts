@@ -8,6 +8,7 @@ import { StorySectionFormComponent } from './story-section-form/story-section-fo
 import { StoryParagraphFormComponent } from './story-paragraph-form/story-paragraph-form.component';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
+import { RawParagraph } from 'src/app/models/raw-section';
 
 @Component({
   selector: 'app-story',
@@ -100,18 +101,20 @@ export class StoryComponent {
   }
 
   openEditParagraphForm(sectionId: number, paragraphId: number) {
-    const textFormMetadata: TextFormMetadata = {
-      chapterId: this.chapterId,
-      sectionId,
-      paragraphId
-    }
-    this.dialog.open(StoryParagraphFormComponent, {
-      data: { textFormMetadata, action: "editing" },
-      disableClose: true
-    }).afterClosed().subscribe((data) => {
-      if (data.modified) {
-        this.storyService.getStoryData();
+    this.api.get(`story/paragraph/${this.chapterId}/${sectionId}/${paragraphId}`).subscribe((paragraph: RawParagraph) => {
+      const textFormMetadata: TextFormMetadata = {
+        chapterId: this.chapterId,
+        sectionId,
+        paragraphId
       }
+      this.dialog.open(StoryParagraphFormComponent, {
+        data: { textFormMetadata, action: "editing", paragraph },
+        disableClose: true
+      }).afterClosed().subscribe((data) => {
+        if (data.modified) {
+          this.storyService.getStoryData();
+        }
+      });
     });
   }
 

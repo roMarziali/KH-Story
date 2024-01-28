@@ -131,14 +131,18 @@ export class StoryService {
 
   getParagraphsFromRawSection(rawSection: RawSection): ChapterSectionParagraph[] {
     const paragraphs: ChapterSectionParagraph[] = [];
-    rawSection.paragraphs.forEach(rawParagraph => {
-      for (const rawText of rawParagraph.texts) {
+    if (!rawSection.paragraphs.length) return paragraphs;
+    const rawParagraphs = rawSection.paragraphs;
+
+    rawParagraphs.forEach(rawParagraph => {
+      const rawTexts = rawParagraph.texts;
+      for (const rawText of rawTexts) {
         if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) {
           paragraphs.push({ id: rawParagraph.id, text: rawText.text, image: rawText.image });
           break;
         }
       }
-    });
+    })
     return paragraphs;
   }
 

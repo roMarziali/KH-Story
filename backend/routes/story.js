@@ -73,4 +73,14 @@ router.delete("/paragraph/:chapterId/:sectionId/:paragraphId", checkAuth, async 
   }
 });
 
+router.get("/paragraph/:chapterId/:sectionId/:paragraphId", checkAuth, async (req, res, next) => {
+  try {
+    const paragraph = await StoryManager.getParagraph(req.params.chapterId, req.params.sectionId, req.params.paragraphId);
+    res.json(paragraph);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
 module.exports = router;

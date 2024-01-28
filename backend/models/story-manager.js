@@ -81,13 +81,14 @@ module.exports = class StoryManager {
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
-  static async editParagraph(paragraph, metaDataText) {
+  static async editParagraph(paragraph, chapterId, sectionId, paragraphId) {
+    for (const text of paragraph.texts) {
+      if (!text.image || !text.image.game || !text.image.alt || !text.image.name) delete text.image;
+    }
     const story = await this.getStory();
-    const chapterId = metaDataText.chapterId;
-    const sectionId = metaDataText.sectionId;
-    const paragraphId = metaDataText.paragraphId;
-    const section = story.find(chapter => chapter.id === chapterId).sections.find(section => section.id === sectionId);
-    paragraph.texts = paragraph.texts.concat(paragraph.texts);
+    const section = story.find(chapter => chapter.id == chapterId).sections.find(section => section.id == sectionId);
+    const indexParagraphToEdit = section.paragraphs.findIndex(paragraph => paragraph.id == paragraphId);
+    section.paragraphs[indexParagraphToEdit].texts = paragraph.texts;
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
@@ -103,6 +104,17 @@ module.exports = class StoryManager {
     section.paragraphs = section.paragraphs.filter(paragraph => paragraph.id !== paragraphId);
     decrementOrderForElement(section, "paragraphs", paragraphOrder);
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
+  }
+
+  static async getParagraph(chapterId, sectionId, paragraphId) {
+    chapterId = Number(chapterId);
+    sectionId = Number(sectionId);
+    paragraphId = Number(paragraphId);
+    const story = await this.getStory();
+    const chapter = story.find(chapter => chapter.id === chapterId);
+    const section = chapter.sections.find(section => section.id === sectionId);
+    const paragraph = section.paragraphs.find(paragraph => paragraph.id === paragraphId);
+    return paragraph;
   }
 };
 
