@@ -26,17 +26,29 @@
                 <button mat-icon-button *ngIf="isAuthenticated"
                   (click)="deleteSection(section.id)"><mat-icon>delete</mat-icon></button>
               </h1>
-              <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
-                (click)="openCreateParagraphForm(section.id,0)">
-                Ajout paragraphe
-              </button>
+
+              <ng-container *ngIf="isAuthenticated">
+                <div>
+                  <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
+                    (click)="openCreateParagraphForm(section.id,0)">
+                    Ajout paragraphe
+                  </button>
+                </div>
+              </ng-container>
+
               <ng-container *ngFor="let paragraph of section.paragraphs">
                 <p><app-paragraph [paragraph]="paragraph"></app-paragraph></p>
 
-                <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
-                  (click)="openCreateParagraphForm(section.id, paragraph.id)">
-                  Ajout paragraphe
-                </button>
+                <ng-container *ngIf="isAuthenticated">
+                  <div>
+
+                    <button class="btn__editing-content" mat-stroked-button aria-label="Ajout paragraphe"
+                      (click)="openCreateParagraphForm(section.id, paragraph.id)">
+                      Ajout paragraphe
+                    </button>
+                  </div>
+                </ng-container>
+
               </ng-container>
 
               <ng-container *ngIf="isAuthenticated">

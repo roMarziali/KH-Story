@@ -26,7 +26,7 @@ module.exports = class StoryManager {
     const story = await this.getStory();
     const chapterId = metaDataText.chapterId;
     const chapter = story.find(chapter => chapter.id === chapterId);
-    const newSectionOrder = metaDataText.previousSectionId + 1;
+    const newSectionOrder = getOrderFromSectionId(chapter, metaDataText.previousSectionId) + 1;
     incrementSectionsOrder(chapter, newSectionOrder);
     const id = getNextIdForSection(chapter);
     chapter.sections.push({
@@ -63,15 +63,14 @@ module.exports = class StoryManager {
 
   static async addParagraph(paragraph, metaDataText) {
     const story = await this.getStory();
-
     for (const text of paragraph.texts) {
       if (!text.image || !text.image.game || !text.image.alt || !text.image.name) delete text.image;
     }
     addOrderToTextsFromParagraph(paragraph);
     const chapterId = metaDataText.chapterId;
     const sectionId = metaDataText.sectionId;
-    const paragraphOrder = metaDataText.previousParagraphId + 1;
     const section = story.find(chapter => chapter.id === chapterId).sections.find(section => section.id === sectionId);
+    const paragraphOrder = getOrderFromParagraphId(section, metaDataText.previousParagraphId) + 1;
     incrementParagraphsOrder(section, paragraphOrder);
     const paragraphId = getNextIdForParagraph(section);
     section.paragraphs.push({
@@ -103,9 +102,9 @@ function decrementSectionsOrder(chapter, decrementFromThisOrderNumber) {
 
 function incrementParagraphsOrder(section, incrementFromThisOrderNumber) {
   //Add 1 to the order of all paragraphs with order >= incrementFromThisOrderNumber
-  for (let i = 0; i < section.length; i++) {
-    if (section.paragraph[i].order >= incrementFromThisOrderNumber) {
-      section.paragraph[i].order++;
+  for (let i = 0; i < section.paragraphs.length; i++) {
+    if (section.paragraphs[i].order >= incrementFromThisOrderNumber) {
+      section.paragraphs[i].order++;
     }
   }
 }
@@ -148,4 +147,14 @@ function addOrderToTextsFromParagraph(paragraph) {
     element.order = i;
     i++;
   });
+}
+
+function getOrderFromSectionId(chapter, sectionId) {
+  if (sectionId == 0) return 0;
+  return chapter.sections.find(section => section.id === sectionId).order;
+}
+
+function getOrderFromParagraphId(section, paragraphId) {
+  if (paragraphId == 0) return 0;
+  return section.paragraphs.find(paragraph => paragraph.id === paragraphId).order;
 }

@@ -102,6 +102,7 @@ export class StoryService {
       chapters.push(chapter);
     });
     chapters.sort((a, b) => a.order - b.order);
+    console.log(chapters);
     return chapters;
   }
 
@@ -134,7 +135,7 @@ export class StoryService {
     rawSection.paragraphs.forEach(rawParagraph => {
       for (const rawText of rawParagraph.texts) {
         if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) {
-          paragraphs.push({ id: rawText.id, text: rawText.text, image: rawText.image });
+          paragraphs.push({ id: rawParagraph.id, text: rawText.text, image: rawText.image });
           break;
         }
       }
