@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-content>
+    <span>Texte :</span>
+    <span id="reduce-font-size">
+      <app-icon [alt]="'Réduire la taille de la police'" [height]="30" [iconeName]="'keyblade.png'"
+        (click)="settingsService.decreaseFontSize()">
+      </app-icon></span>
+    <span>
+      <app-icon [alt]="'Augmenter la taille de la police'" [height]="40" [iconeName]="'keyblade.png'"
+        (click)="settingsService.increaseFontSize()">
+      </app-icon>
+    </span>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    Annotations
+  </mat-card-content>
+</mat-card>

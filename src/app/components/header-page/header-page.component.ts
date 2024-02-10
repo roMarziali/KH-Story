@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderPageComponent {
 
+  displaySettingsMenu: boolean = false;
+
   constructor(public settingsService: SettingsService, private matDialog: MatDialog, private authService: AuthService) { }
 
   openLoginDialog() {
@@ -22,5 +24,9 @@ export class HeaderPageComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  triggerSettingsMenu() {
+    this.displaySettingsMenu = !this.displaySettingsMenu;
   }
 }

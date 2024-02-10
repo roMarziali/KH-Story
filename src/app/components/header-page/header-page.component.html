@@ -30,24 +30,25 @@
       <span class="spacer"></span>
 
 
-      <app-download-menu style ="display : none"></app-download-menu>
+      <app-download-menu></app-download-menu>
 
       <span class="mini-spacer"></span>
 
-      <span class="second-header-text">Texte :</span>
-      <app-icon id="reduce-font-size" [alt]="'Réduire la taille de la police'" [height]="40"
-        [iconeName]="'keyblade.png'" (click)="settingsService.decreaseFontSize()">
-      </app-icon>
-      <app-icon [alt]="'Augmenter la taille de la police'" [height]="40" [iconeName]="'keyblade.png'"
-        (click)="settingsService.increaseFontSize()">
-      </app-icon>
+      <div>
+        <button mat-icon-button aria-label="Réglages" (click)="triggerSettingsMenu()">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <div *ngIf="displaySettingsMenu">
+          <app-settings-menu></app-settings-menu>
+        </div>
+      </div>
 
       <span class="mini-spacer"></span>
 
       <mat-slide-toggle [(ngModel)]="settingsService.settings.visibility.darkMode"
         (ngModelChange)="settingsService.visibilityChanged()">
       </mat-slide-toggle>
-      <mat-icon (click)="settingsService.toggleDarkMode()">wb_sunny</mat-icon>
+      <button mat-icon-button (click)="settingsService.toggleDarkMode()"><mat-icon>wb_sunny</mat-icon></button>
 
     </mat-toolbar-row>
   </mat-toolbar>
