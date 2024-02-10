@@ -20,11 +20,11 @@ export class ParagraphComponent {
 
   private apiImage: string = environment.apiImage;
   subStrings: subStrings[] = [];
-  displayAnnotations: boolean = this.settingsService.isFilterSelected("annotations");
+  displayAnnotations: boolean = this.settingsService.displayAnnotations;
 
   constructor(private settingsService: SettingsService, private storyService: StoryService) {
-    this.settingsService.filtersChange.subscribe(() => {
-      this.displayAnnotations = this.settingsService.isFilterSelected("annotations");
+    this.settingsService.visibilityChange.subscribe(() => {
+      this.displayAnnotations = this.settingsService.displayAnnotations;
     });
   }
 

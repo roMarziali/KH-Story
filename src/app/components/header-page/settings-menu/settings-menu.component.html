@@ -1,18 +1,14 @@
 <mat-card>
   <mat-card-content>
-    <span>Texte :</span>
-    <span id="reduce-font-size">
-      <app-icon [alt]="'Réduire la taille de la police'" [height]="30" [iconeName]="'keyblade.png'"
-        (click)="settingsService.decreaseFontSize()">
-      </app-icon></span>
-    <span>
-      <app-icon [alt]="'Augmenter la taille de la police'" [height]="40" [iconeName]="'keyblade.png'"
-        (click)="settingsService.increaseFontSize()">
-      </app-icon>
-    </span>
+    Taille du texte
+    <button mat-icon-button (click)="settingsService.increaseFontSize()"><mat-icon>add</mat-icon></button>
+    <button mat-icon-button (click)="settingsService.decreaseFontSize()"><mat-icon>remove</mat-icon></button>
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-content>
     Annotations
+    <mat-slide-toggle [(ngModel)]="settingsService.settings.visibility.displayAnnotations"
+    (ngModelChange)="settingsService.visibilityChanged()">
+  </mat-slide-toggle>
   </mat-card-content>
 </mat-card>

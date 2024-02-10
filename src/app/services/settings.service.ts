@@ -24,7 +24,8 @@ export class SettingsService {
       filters,
       visibility: {
         "darkMode": false,
-        "fontSizeEm": 1
+        "fontSizeEm": 1,
+        displayAnnotations : true
       }
     }
     this.loadLocalParameters();
@@ -98,6 +99,10 @@ export class SettingsService {
   toggleDarkMode() {
     this.settings.visibility.darkMode = !this.settings.visibility.darkMode;
     this.visibilityChanged();
+  }
+
+  get displayAnnotations(): boolean {
+    return this.settings.visibility.displayAnnotations;
   }
 
 }
