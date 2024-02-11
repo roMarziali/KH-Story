@@ -35,7 +35,7 @@
       <span class="mini-spacer"></span>
 
       <div>
-        <button mat-icon-button aria-label="Réglages" (click)="triggerSettingsMenu()">
+        <button mat-icon-button aria-label="Réglages" (click)="toggleSettingsMenu()" [color]="displaySettingsMenu ? 'primary' : '' ">
           <mat-icon>settings</mat-icon>
         </button>
         <div *ngIf="displaySettingsMenu">

@@ -26,7 +26,7 @@ export class HeaderPageComponent {
     this.authService.logout();
   }
 
-  triggerSettingsMenu() {
+  toggleSettingsMenu() {
     this.displaySettingsMenu = !this.displaySettingsMenu;
   }
 }
