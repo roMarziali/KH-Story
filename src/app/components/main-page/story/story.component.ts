@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , HostListener} from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Chapter } from 'src/app/models/chapter';
@@ -16,6 +16,8 @@ import { RawParagraph } from 'src/app/models/raw-section';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent {
+
+  scrolledPage:boolean = false;
 
   constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
     private dialog: MatDialog, private api: ApiService) {
@@ -125,4 +127,17 @@ export class StoryComponent {
       });
     }
   }
+
+  @HostListener('window:scroll', ['$event']) getScrollHeight(event:Event) {
+    if (window.scrollY > 100) {
+      this.scrolledPage = true;
+    } else {
+      this.scrolledPage = false;
+    }
+ }
+
+ goOnTopPage(){
+  window.scrollTo(0, 0);
+ }
 }
+
