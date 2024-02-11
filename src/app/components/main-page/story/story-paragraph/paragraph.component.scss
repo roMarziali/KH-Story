@@ -12,8 +12,9 @@ p {
   margin-bottom: 1rem;
 }
 
-.annotated {
-  text-decoration: underline dotted;
+sup{
+  font-size: 0.7em;
+  cursor : pointer;
 }
 
 @media screen and (max-width: 839.9px) {
