@@ -1,6 +1,7 @@
 const helmet = require("helmet");
 const app = require("./app");
 const config = require("config");
+require('./startup/cron');
 
 app.use(helmet());
 
