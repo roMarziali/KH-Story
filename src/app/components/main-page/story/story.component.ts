@@ -1,4 +1,4 @@
-import { Component , HostListener} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Chapter } from 'src/app/models/chapter';
@@ -17,8 +17,9 @@ import { RawParagraph } from 'src/app/models/raw-section';
 })
 export class StoryComponent {
 
-  scrolledPage:boolean = false;
-  timeOutId:any;
+  displayTopButton: boolean = false;
+  timeOut!: any;
+  chapter!: Chapter | null;
 
   constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
     private dialog: MatDialog, private api: ApiService) {
@@ -30,7 +31,6 @@ export class StoryComponent {
     });
   }
 
-  chapter!: Chapter | null;
 
   get chapterId(): number {
     return this.storyService.currentChapterId;
@@ -129,22 +129,20 @@ export class StoryComponent {
     }
   }
 
-  @HostListener('window:scroll', ['$event']) getScrollHeight(event:Event) {
+  @HostListener('window:scroll', ['$event']) getScrollHeight(event: Event) {
+    clearTimeout(this.timeOut);
     if (window.scrollY > 100) {
-      this.scrolledPage = true;
-      if (this.timeOutId) {
-        clearTimeout(this.timeOutId);
-      }
-      this.timeOutId = setTimeout(() => {
-        this.scrolledPage = false;
+      this.displayTopButton = true;
+      this.timeOut = setTimeout(() => {
       }, 2000);
     } else {
-      this.scrolledPage = false;
+      this.displayTopButton = false;
     }
- }
+  }
 
- goOnTopPage(){
-  window.scrollTo(0, 0);
- }
+  goOnTopPage() {
+    window.scrollTo(0, 0);
+  }
+
 }
 

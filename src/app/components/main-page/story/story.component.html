@@ -84,8 +84,8 @@
 
         </div>
 
-        <div id="return-to-top-container" [ngClass]="{'hidden' : !scrolledPage, 'visible' : scrolledPage }">
-          <button mat-mini-fab id="return-to-top"
+        <div id="return-to-top-container">
+          <button mat-mini-fab id="return-to-top" *ngIf="displayTopButton"
             (click)="goOnTopPage()"><mat-icon>keyboard_arrow_up</mat-icon></button>
         </div>
       </mat-card-content>

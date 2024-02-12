@@ -57,7 +57,6 @@ button[mat-icon-button] {
 }
 
 #return-to-top-container {
-  margin-top: 50px;
   display: flex;
   justify-content: center;
 
@@ -73,12 +72,3 @@ button[mat-icon-button] {
 
 }
 
-.visible {
-  opacity: 1;
-  transition: opacity 0.25s linear;
-}
-
-.hidden {
-  opacity: 0;
-  transition: opacity 0.25s linear;
-}
