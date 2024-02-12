@@ -4,6 +4,9 @@
 </button>
 
 <mat-menu #menu="matMenu">
+  <ng-container *ngIf="isAuthenticated">
+    <button mat-menu-item (click)="openManageChaptersForm()"><mat-icon>settings</mat-icon></button>
+  </ng-container>
   <ng-container *ngFor="let chapter of chapters">
     <ng-container *ngIf="chapter.sections.length || isAuthenticated">
       <!--On laisse l'accès en mode authentifié afin de pouvoir modifier créer du texte dans les chapitres-->

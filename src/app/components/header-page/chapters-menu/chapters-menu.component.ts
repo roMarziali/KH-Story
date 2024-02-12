@@ -30,6 +30,9 @@ export class ChaptersMenuComponent {
     return this.authService.isAuthenticated;
   }
 
+  openManageChaptersForm(){
+    console.log("open !")
+  }
 
 
 
