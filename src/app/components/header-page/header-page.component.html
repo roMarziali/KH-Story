@@ -26,6 +26,20 @@
 
   <mat-toolbar>
     <mat-toolbar-row>
+
+      <ng-container *ngIf="isAuthenticated"> <button mat-icon-button aria-label="Formulaires"
+          [matMenuTriggerFor]="formsMenu">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <mat-menu #formsMenu="matMenu">
+          <button mat-menu-item>Gestion des Chapitres</button>
+          <button mat-menu-item>Gestion des Images</button>
+        </mat-menu>
+      </ng-container>
+
+
+
       <app-chapters-menu></app-chapters-menu>
       <span class="spacer"></span>
 
@@ -35,7 +49,8 @@
       <span class="mini-spacer"></span>
 
       <div>
-        <button mat-icon-button aria-label="Réglages" (click)="toggleSettingsMenu()" [color]="displaySettingsMenu ? 'primary' : '' ">
+        <button mat-icon-button aria-label="Réglages" (click)="toggleSettingsMenu()"
+          [color]="displaySettingsMenu ? 'primary' : '' ">
           <mat-icon>settings</mat-icon>
         </button>
         <div *ngIf="displaySettingsMenu">
