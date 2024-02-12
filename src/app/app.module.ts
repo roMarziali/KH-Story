@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,7 +41,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { StorySectionFormComponent } from './components/main-page/story/story-section-form/story-section-form.component';
 import { StoryParagraphFormComponent } from './components/main-page/story/story-paragraph-form/story-paragraph-form.component';
 import { SettingsMenuComponent } from './components/header-page/settings-menu/settings-menu.component';
-import { MatDividerModule } from '@angular/material/divider';
+import { ChapterManagerComponent } from './components/chapter-manager/chapter-manager.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { MatDividerModule } from '@angular/material/divider';
     LoginComponent,
     StorySectionFormComponent,
     StoryParagraphFormComponent,
-    SettingsMenuComponent
+    SettingsMenuComponent,
+    ChapterManagerComponent
   ],
   imports: [
     BrowserModule,
