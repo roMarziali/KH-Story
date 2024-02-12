@@ -134,6 +134,7 @@ export class StoryComponent {
     if (window.scrollY > 100) {
       this.displayTopButton = true;
       this.timeOut = setTimeout(() => {
+        this.displayTopButton = false;
       }, 2000);
     } else {
       this.displayTopButton = false;
