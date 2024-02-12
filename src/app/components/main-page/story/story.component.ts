@@ -18,6 +18,7 @@ import { RawParagraph } from 'src/app/models/raw-section';
 export class StoryComponent {
 
   scrolledPage:boolean = false;
+  timeOutId:any;
 
   constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
     private dialog: MatDialog, private api: ApiService) {
@@ -131,6 +132,12 @@ export class StoryComponent {
   @HostListener('window:scroll', ['$event']) getScrollHeight(event:Event) {
     if (window.scrollY > 100) {
       this.scrolledPage = true;
+      if (this.timeOutId) {
+        clearTimeout(this.timeOutId);
+      }
+      this.timeOutId = setTimeout(() => {
+        this.scrolledPage = false;
+      }, 2000);
     } else {
       this.scrolledPage = false;
     }
