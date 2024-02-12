@@ -84,7 +84,7 @@
 
         </div>
 
-        <div id="return-to-top-container" [style]="{'visibility' : scrolledPage ? 'visible' : 'hidden' }">
+        <div id="return-to-top-container" [ngClass]="{'hidden' : !scrolledPage, 'visible' : scrolledPage }">
           <button mat-mini-fab id="return-to-top"
             (click)="goOnTopPage()"><mat-icon>keyboard_arrow_up</mat-icon></button>
         </div>
