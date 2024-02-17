@@ -1,9 +1,16 @@
-mat-card-title {
- min-width: 320px;
-  display: flex;
-  justify-content: space-between;
+ ::ng-deep .mat-mdc-card-header-text {
+   width: 100%;
+ }
 
-  div:nth-child(2) button{
-    margin-top : -7px;
-  }
-}
+ mat-card-title {
+   display: flex;
+   justify-content: space-between;
+
+   div:nth-child(2) button {
+     margin-top: -7px;
+   }
+ }
+
+ th{
+    text-align: center;
+ }
