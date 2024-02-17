@@ -15,7 +15,7 @@ export interface ChapterMetaData {
 export class ChapterManagerComponent {
 
   chaptersMetadata!: ChapterMetaData[];
-  displayedColumns = ['order', 'title'];
+  displayedColumns = ['order', 'title', 'delete'];
 
 
   constructor(private storyService: StoryService) { }
@@ -31,6 +31,18 @@ export class ChapterManagerComponent {
       }
       this.chaptersMetadata.push(chapterMetadata);
     }
+  }
+
+  addChapter(){
+    console.log("add chapter");
+  }
+
+  deleteChapter(id: number){
+    console.log("delete chapter", id);
+  }
+
+  onSubmit(){
+    console.log(this.chaptersMetadata);
   }
 
 }
