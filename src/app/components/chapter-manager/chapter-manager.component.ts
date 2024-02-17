@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
+import { CdkDragDrop, moveItemInArray, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 export interface ChapterMetaData {
   title: string;
@@ -24,7 +25,7 @@ export class ChapterManagerComponent {
     this.chaptersMetadata = [];
     const chapters = this.storyService.chapters;
     for (const chapter of chapters) {
-      const chapterMetadata:ChapterMetaData ={
+      const chapterMetadata: ChapterMetaData = {
         title: chapter.title,
         order: chapter.order,
         id: chapter.id
@@ -33,16 +34,20 @@ export class ChapterManagerComponent {
     }
   }
 
-  addChapter(){
+  addChapter() {
     console.log("add chapter");
   }
 
-  deleteChapter(id: number){
+  deleteChapter(id: number) {
     console.log("delete chapter", id);
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.chaptersMetadata);
+  }
+
+  drop(event: CdkDragDrop<ChapterMetaData>) {
+
   }
 
 }
