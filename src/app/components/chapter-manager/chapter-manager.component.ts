@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { CdkDragDrop, moveItemInArray, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
+import { MatTable } from '@angular/material/table';
 
 export interface ChapterMetaData {
   title: string;
@@ -14,6 +15,7 @@ export interface ChapterMetaData {
 })
 
 export class ChapterManagerComponent {
+  @ViewChild('table', { static: true }) table!: MatTable<ChapterMetaData>;
 
   chaptersMetadata!: ChapterMetaData[];
   displayedColumns = ['order', 'title', 'delete'];
@@ -47,7 +49,11 @@ export class ChapterManagerComponent {
   }
 
   drop(event: CdkDragDrop<ChapterMetaData>) {
-
+    moveItemInArray(this.chaptersMetadata, event.previousIndex, event.currentIndex);
+    for(let i = 0; i < this.chaptersMetadata.length; i++) {
+      this.chaptersMetadata[i].order = i+1;
+    }
+    this.table.renderRows();
   }
 
 }
