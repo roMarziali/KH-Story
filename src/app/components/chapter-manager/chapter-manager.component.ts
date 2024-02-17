@@ -19,6 +19,7 @@ export class ChapterManagerComponent {
 
   chaptersMetadata!: ChapterMetaData[];
   displayedColumns = ['order', 'title', 'delete'];
+  dragDisabled = true;
 
 
   constructor(private storyService: StoryService) { }
@@ -37,23 +38,40 @@ export class ChapterManagerComponent {
   }
 
   addChapter() {
-    console.log("add chapter");
+    this.chaptersMetadata.push({
+      title: "Nouveau chapitre",
+      order: this.chaptersMetadata.length + 1,
+      id: -1
+    });
+    this.table.renderRows();
   }
 
   deleteChapter(id: number) {
-    console.log("delete chapter", id);
+    this.chaptersMetadata = this.chaptersMetadata.filter(chapter => chapter.id !== id);
+    this.redoChaptersOrder();
+    this.table.renderRows();
   }
 
   onSubmit() {
+    if (this.chaptersMetadata.some(chapter => chapter.title === "")) {
+      alert("Un chapitre n'a pas de titre");
+      return;
+    }
+
     console.log(this.chaptersMetadata);
   }
 
   drop(event: CdkDragDrop<ChapterMetaData>) {
+    this.dragDisabled = true;
     moveItemInArray(this.chaptersMetadata, event.previousIndex, event.currentIndex);
+    this.redoChaptersOrder();
+    this.table.renderRows();
+  }
+
+  redoChaptersOrder() {
     for(let i = 0; i < this.chaptersMetadata.length; i++) {
       this.chaptersMetadata[i].order = i+1;
     }
-    this.table.renderRows();
   }
 
 }

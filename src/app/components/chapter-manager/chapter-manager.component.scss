@@ -11,9 +11,9 @@
    }
  }
 
- th {
-   text-align: center;
- }
+mat-cell{
+  flex : auto;
+}
 
  mat-form-field {
    width: 500px;
@@ -21,6 +21,11 @@
 
  section {
    max-height: 400px;
-   overflow : auto;
-   margin-bottom : 1rem;
+   overflow: auto;
+   margin-bottom: 1rem;
+ }
+
+ .dragCursor {
+   margin-right: 1rem;
+   cursor: move;
  }

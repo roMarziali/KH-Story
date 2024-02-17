@@ -9,32 +9,36 @@
   <mat-card-content>
 
     <section class="mat-elevation-z8" tabindex="0">
-      <mat-table #table mat-table [dataSource]="chaptersMetadata" cdkDropList (cdkDropListDropped)="drop($event)">
+      <mat-table #table mat-table [dataSource]="chaptersMetadata" cdkDropList (cdkDropListDropped)="drop($event)"
+        [cdkDropListDisabled]="dragDisabled">
 
         <ng-container matColumnDef="order">
-          <th mat-header-cell *matHeaderCellDef> Ordre </th>
-          <td mat-cell *matCellDef="let chapterMetadata">{{chapterMetadata.order}}</td>
+          <mat-header-cell *matHeaderCellDef> Ordre </mat-header-cell>
+          <mat-cell *matCellDef="let chapterMetadata">
+            <mat-icon class="dragCursor" (mousedown)="dragDisabled = false;">reorder</mat-icon>
+            <span>{{chapterMetadata.order}}</span>
+          </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef> Titre </th>
-          <td mat-cell *matCellDef="let chapterMetadata">
+          <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
+          <mat-cell *matCellDef="let chapterMetadata">
             <mat-form-field subscriptSizing="dynamic">
               <input matInput type="string" maxlength="80" [(ngModel)]="chapterMetadata.title" />
             </mat-form-field>
-          </td>
+          </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let chapterMetadata"> <button mat-icon-button
-              (click)="deleteChapter(chapterMetadata.id)"><mat-icon>delete</mat-icon></button> </td>
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let chapterMetadata"> <button mat-icon-button
+              (click)="deleteChapter(chapterMetadata.id)"><mat-icon>delete</mat-icon></button> </mat-cell>
         </ng-container>
 
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag></tr>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag [cdkDragData]="row"></mat-row>
 
       </mat-table>
     </section>
