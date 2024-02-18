@@ -8,7 +8,12 @@
   </mat-card-header>
   <mat-card-content>
 
-    <section class="mat-elevation-z8" tabindex="0">
+    <div *ngIf="isLoading">
+      <mat-spinner [diameter]="200"></mat-spinner>
+    </div>
+
+    <section class="mat-elevation-z8" tabindex="0" [style.visibility]="!isLoading ? 'visible' : 'hidden'"
+      id="table-container">
       <mat-table #table mat-table [dataSource]="chaptersMetadata" cdkDropList (cdkDropListDropped)="drop($event)"
         [cdkDropListDisabled]="dragDisabled">
 
@@ -24,7 +29,8 @@
           <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
           <mat-cell *matCellDef="let chapterMetadata">
             <mat-form-field subscriptSizing="dynamic">
-              <input matInput type="string" maxlength="80" [(ngModel)]="chapterMetadata.title" />
+              <input matInput type="string" maxlength="80" [(ngModel)]="chapterMetadata.title"
+                placeholder="Titre du chapitre" />
             </mat-form-field>
           </mat-cell>
         </ng-container>

@@ -83,4 +83,14 @@ router.get("/paragraph/:chapterId/:sectionId/:paragraphId", checkAuth, async (re
   }
 });
 
+router.post("/chapters-manager", checkAuth, async (req, res, next) => {
+  try {
+    await StoryManager.updateChaptersMetadata(req.body.chaptersMetadata);
+    res.json({ status: "ok" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
 module.exports = router;

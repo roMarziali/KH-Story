@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
-import { CdkDragDrop, moveItemInArray, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatTable } from '@angular/material/table';
+import { ApiService } from 'src/app/services/api.service';
+import { MatDialogRef } from "@angular/material/dialog";
 
 export interface ChapterMetaData {
   title: string;
@@ -20,9 +22,10 @@ export class ChapterManagerComponent {
   chaptersMetadata!: ChapterMetaData[];
   displayedColumns = ['order', 'title', 'delete'];
   dragDisabled = true;
+  isLoading: boolean = false;
 
 
-  constructor(private storyService: StoryService) { }
+  constructor(private storyService: StoryService, private api: ApiService, private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit() {
     this.chaptersMetadata = [];
@@ -38,12 +41,15 @@ export class ChapterManagerComponent {
   }
 
   addChapter() {
+    const maxId = Math.max(...this.chaptersMetadata.map(chapter => chapter.id));
     this.chaptersMetadata.push({
-      title: "Nouveau chapitre",
+      title: "",
       order: this.chaptersMetadata.length + 1,
-      id: -1
+      id: maxId + 1
     });
     this.table.renderRows();
+    const tableContainer = document.getElementById('table-container');
+    tableContainer?.scrollTo(0, tableContainer.scrollHeight);
   }
 
   deleteChapter(id: number) {
@@ -58,7 +64,16 @@ export class ChapterManagerComponent {
       return;
     }
 
-    console.log(this.chaptersMetadata);
+    this.api.post('story/chapters-manager', { chaptersMetadata: this.chaptersMetadata }).subscribe((data) => {
+      if (data.status == "ok") {
+        this.isLoading = false;
+        this.storyService.getStoryData();
+        this.dialogRef.close();
+      } else {
+        alert("Erreur lors de la sauvegarde");
+      }
+    });
+
   }
 
   drop(event: CdkDragDrop<ChapterMetaData>) {
@@ -69,8 +84,8 @@ export class ChapterManagerComponent {
   }
 
   redoChaptersOrder() {
-    for(let i = 0; i < this.chaptersMetadata.length; i++) {
-      this.chaptersMetadata[i].order = i+1;
+    for (let i = 0; i < this.chaptersMetadata.length; i++) {
+      this.chaptersMetadata[i].order = i + 1;
     }
   }
 

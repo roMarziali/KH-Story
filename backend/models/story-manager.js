@@ -116,6 +116,36 @@ module.exports = class StoryManager {
     const paragraph = section.paragraphs.find(paragraph => paragraph.id === paragraphId);
     return paragraph;
   }
+
+  static async updateChaptersMetadata(chaptersMetadata) {
+    console.log(chaptersMetadata);
+    const story = await this.getStory();
+    for (let i = 0; i < story.length; i++) {
+      const storyId = story[i].id;
+      const relatedChapterMetadata = chaptersMetadata.find(chapterMetadata => chapterMetadata.id === storyId);
+      if (!relatedChapterMetadata) {
+        story.splice(i, 1);
+        i--;
+        continue;
+      }
+      story[i].title = relatedChapterMetadata.title;
+      story[i].order = relatedChapterMetadata.order;
+    }
+    for (let i = 0; i < chaptersMetadata.length; i++) {
+      const chapterMetadata = chaptersMetadata[i];
+      const relatedChapter = story.find(chapter => chapter.id === chapterMetadata.id);
+      if (!relatedChapter) {
+        story.push({
+          id: chapterMetadata.id,
+          title: chapterMetadata.title,
+          order: chapterMetadata.order,
+          sections: []
+        });
+      }
+    }
+    story.sort((a, b) => a.order - b.order);
+    fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
+  }
 };
 
 function incrementOrderForElement(parent, childName, incrementFromThisOrderNumber) {
