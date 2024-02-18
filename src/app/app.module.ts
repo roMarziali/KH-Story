@@ -32,7 +32,6 @@ import { HeaderPageComponent } from './components/header-page/header-page.compon
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { SettingsFiltersComponent } from './components/main-page/settings-filters/settings-filters.component';;
 import { StoryComponent } from './components/main-page/story/story.component';
-import { DownloadMenuComponent } from './components/header-page/download-menu/download-menu.component';
 import { IconComponent } from './components/shared/icon/icon.component';
 import { ChaptersMenuComponent } from './components/header-page/chapters-menu/chapters-menu.component';
 import { ParagraphComponent } from './components/main-page/story/story-paragraph/paragraph.component';
@@ -52,7 +51,6 @@ import { ChapterManagerComponent } from './components/chapter-manager/chapter-ma
     MainPageComponent,
     SettingsFiltersComponent,
     StoryComponent,
-    DownloadMenuComponent,
     IconComponent,
     ChaptersMenuComponent,
     ParagraphComponent,
