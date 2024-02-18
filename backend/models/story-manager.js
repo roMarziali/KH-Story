@@ -118,7 +118,6 @@ module.exports = class StoryManager {
   }
 
   static async updateChaptersMetadata(chaptersMetadata) {
-    console.log(chaptersMetadata);
     const story = await this.getStory();
     for (let i = 0; i < story.length; i++) {
       const storyId = story[i].id;

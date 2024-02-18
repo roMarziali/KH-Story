@@ -18,7 +18,6 @@ import { RawParagraph } from 'src/app/models/raw-section';
 export class StoryComponent {
 
   displayTopButton: boolean = false;
-  timeOut!: any;
   chapter!: Chapter | null;
 
   constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
@@ -130,12 +129,8 @@ export class StoryComponent {
   }
 
   @HostListener('window:scroll', ['$event']) getScrollHeight(event: Event) {
-    clearTimeout(this.timeOut);
     if (window.scrollY > 100) {
       this.displayTopButton = true;
-      this.timeOut = setTimeout(() => {
-        this.displayTopButton = false;
-      }, 2000);
     } else {
       this.displayTopButton = false;
     }
