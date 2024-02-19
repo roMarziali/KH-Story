@@ -16,13 +16,11 @@ module.exports = class InformationManager {
   }
 
   static async addInformation(information) {
-    console.log(information);
     const data = await this.getInformation();
     const id = data.length > 0 ? data[data.length-1].id + 1 : 1;
     const date = new Date();
     information.date = date;
     information.id = id;
-    console.log(information);
     data.push(information);
     fs.writeFileSync(INFORMATION_FILE_PATH, JSON.stringify(data));
   }

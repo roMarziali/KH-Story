@@ -8,14 +8,14 @@
   </mat-card-header>
   <mat-card-content>
     <div id="intro">
-      <div><img src="assets/images/mog_black_coat.png" alt="Mog manteau noir"></div>
-      <div>
+      <div id = "illustration-intro"><img src="assets/images/mog_black_coat.png" alt="Mog manteau noir"></div>
+      <div id="info-site">
         <ng-container *ngIf="isAuthenticated">
           <div *ngIf="!openedInfoForm">
             <button mat-icon-button (click)="openAddInfoForm()"><mat-icon>add</mat-icon></button>
           </div>
-          <div>
-            <form *ngIf="openedInfoForm">
+          <div *ngIf="openedInfoForm">
+            <form>
               <mat-form-field>
                 <input matInput placeholder="Titre" [(ngModel)]="title" name="title">
               </mat-form-field>
@@ -27,9 +27,10 @@
           </div>
         </ng-container>
         <div *ngFor="let info of infos">
-          <div>
-            <div>{{info.date | date:'dd/MM/yyyy'}}</div>
-            <div>{{info.title}}</div>
+          <div class = "info">
+
+            <h2>{{info.title}}</h2>
+            <div class = "info-date">{{info.date | date:'dd/MM/yyyy'}}</div>
             <div>{{info.content}}</div>
           </div>
         </div>
