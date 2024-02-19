@@ -2,5 +2,6 @@
 export interface information {
   date: Date,
   title: string,
-  content: string
+  content: string,
+  id: number
 }

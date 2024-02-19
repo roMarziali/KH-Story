@@ -3,7 +3,8 @@ import { SettingsService } from 'src/app/services/settings.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { IntroComponent } from '../main-page/intro/intro.component';
+import { InformationService } from 'src/app/services/information.service';
+
 @Component({
   selector: 'app-header-page',
   templateUrl: './header-page.component.html',
@@ -13,7 +14,8 @@ export class HeaderPageComponent {
 
   displaySettingsMenu: boolean = false;
 
-  constructor(public settingsService: SettingsService, private matDialog: MatDialog, private authService: AuthService) { }
+  constructor(public settingsService: SettingsService, private matDialog: MatDialog, private authService: AuthService,
+    private informationService : InformationService) { }
 
   openLoginDialog() {
     this.matDialog.open(LoginComponent, {});
@@ -32,6 +34,6 @@ export class HeaderPageComponent {
   }
 
   openIntroDialog() {
-    this.matDialog.open(IntroComponent)
+    this.informationService.openIntroDialog();
   }
 }
