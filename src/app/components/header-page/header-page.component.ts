@@ -3,6 +3,7 @@ import { SettingsService } from 'src/app/services/settings.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { IntroComponent } from '../main-page/intro/intro.component';
 @Component({
   selector: 'app-header-page',
   templateUrl: './header-page.component.html',
@@ -28,5 +29,9 @@ export class HeaderPageComponent {
 
   toggleSettingsMenu() {
     this.displaySettingsMenu = !this.displaySettingsMenu;
+  }
+
+  openIntroDialog() {
+    this.matDialog.open(IntroComponent)
   }
 }

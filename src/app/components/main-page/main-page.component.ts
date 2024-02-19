@@ -13,10 +13,7 @@ export class MainPageComponent {
 
   ngOnInit() {
     if (!localStorage.getItem('introSeen')) {
-      this.dialog.open(IntroComponent, {
-        maxWidth: '350px',
-        maxHeight: '310px'
-      });
+      this.dialog.open(IntroComponent);
       localStorage.setItem('introSeen', 'true');
     }
   }

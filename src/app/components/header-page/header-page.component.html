@@ -4,8 +4,14 @@
     <mat-toolbar-row>
       <span id="app-title">KH Story</span>
       <span class="spacer"></span>
-      <span>
 
+      <span>
+        <button mat-icon-button aria-label="Info" (click)="openIntroDialog()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </span>
+
+      <span>
         <a mat-icon-button href="mailto:contact@kh-story.com">
           <mat-icon>email</mat-icon>
         </a>
