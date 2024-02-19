@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const StoryManager = require("../models/story-manager");
 const checkAuth = require("../middleware/check-auth");
+const InformationManager = require("../models/information-manager");
 
 router.get("/story", async (req, res, next) => {
   const story = await StoryManager.getStory();
@@ -86,6 +87,21 @@ router.get("/paragraph/:chapterId/:sectionId/:paragraphId", checkAuth, async (re
 router.post("/chapters-manager", checkAuth, async (req, res, next) => {
   try {
     await StoryManager.updateChaptersMetadata(req.body.chaptersMetadata);
+    res.json({ status: "ok" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: "Erreur d'exécution" });
+  }
+});
+
+router.get("/information", async (req, res, next) => {
+  const information = await InformationManager.getInformation();
+  res.send(information);
+});
+
+router.post("/information", checkAuth, async (req, res, next) => {
+  try {
+    await InformationManager.addInformation(req.body);
     res.json({ status: "ok" });
   } catch (err) {
     console.log(err);

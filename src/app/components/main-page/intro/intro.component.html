@@ -1,16 +1,38 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <div>Bienvenue sur KH Story !</div>
-      <div><button mat-icon-button mat-dialog-close aria-label="Fermer la fenêtre" tabindex="-1"><mat-icon>close</mat-icon></button></div>
+      <div>Dernières informations du site</div>
+      <div><button mat-icon-button mat-dialog-close aria-label="Fermer la fenêtre"
+          tabindex="-1"><mat-icon>close</mat-icon></button></div>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div id="intro">
       <div><img src="assets/images/mog_black_coat.png" alt="Mog manteau noir"></div>
       <div>
-        Vous trouverez sur ce site un résumé intégral (en construction) de l'histoire de Kingdom Hearts. N'hésitez pas à
-        utiliser les filtres pour ne pas vous spoiler le contenu d'un jeu.
+        <ng-container *ngIf="isAuthenticated">
+          <div *ngIf="!openedInfoForm">
+            <button mat-icon-button (click)="openAddInfoForm()"><mat-icon>add</mat-icon></button>
+          </div>
+          <div>
+            <form *ngIf="openedInfoForm">
+              <mat-form-field>
+                <input matInput placeholder="Titre" [(ngModel)]="title" name="title">
+              </mat-form-field>
+              <mat-form-field>
+                <textarea matInput placeholder="Contenu" [(ngModel)]="content" name="content" rows="6"></textarea>
+              </mat-form-field>
+              <button mat-raised-button (click)="addInfo()">Ajouter</button>
+            </form>
+          </div>
+        </ng-container>
+        <div *ngFor="let info of infos">
+          <div>
+            <div>{{info.date | date:'dd/MM/yyyy'}}</div>
+            <div>{{info.title}}</div>
+            <div>{{info.content}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </mat-card-content>
