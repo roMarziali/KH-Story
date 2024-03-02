@@ -14,6 +14,16 @@ router.get("/annotations", async (req, res, next) => {
   res.send(annotations);
 });
 
+router.post("/annotations", checkAuth, async (req, res, next) => {
+  try {
+    await StoryManager.addAnnotation(req.body.content);
+    res.json({ status: "ok" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: "Erreur d'ajout" });
+  }
+});
+
 router.post("/section", checkAuth, async (req, res, next) => {
   try {
     await StoryManager.addSection(req.body.title, req.body.textFormMetadata);

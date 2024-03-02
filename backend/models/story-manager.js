@@ -22,6 +22,17 @@ module.exports = class StoryManager {
     return jsonAnnotation;
   }
 
+  static async addAnnotation(annotationContent) {
+    const annotations = await this.getAnnotations();
+    const idMax = annotations.reduce((acc, annotation) => annotation.id > acc ? annotation.id : acc, 0);
+    annotations.push({
+      id: idMax + 1,
+      content: annotationContent
+    })
+    fs.writeFileSync(ANNOTATION_FILE_PATH, JSON.stringify(annotations));
+    return { status: "ok" };
+  }
+
   static async addSection(title, metaDataText) {
     const story = await this.getStory();
     const chapterId = metaDataText.chapterId;
