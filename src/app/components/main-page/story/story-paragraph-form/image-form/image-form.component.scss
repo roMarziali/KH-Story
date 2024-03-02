@@ -1,0 +1,12 @@
+mat-card-title {
+  display: flex;
+  justify-content: space-between;
+
+  div:nth-child(2) button {
+    margin-top: -7px;
+  }
+}
+
+mat-card-content div {
+  margin-bottom: 1rem;
+}

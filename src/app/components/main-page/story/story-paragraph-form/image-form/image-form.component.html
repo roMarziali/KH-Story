@@ -1,1 +1,36 @@
-<p>image-form works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div>Images</div>
+      <div><button mat-icon-button mat-dialog-close aria-label="Fermer la fenêtre"
+          tabindex="-1"><mat-icon>close</mat-icon></button></div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+
+    <div>
+      <input #imageInput type="file" accept="image/png" (change)="onImageSelected($event)">
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nom de l'image</mat-label>
+        <input matInput [(ngModel)]="imageName">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Relier aux jeux</mat-label>
+        <mat-select [(ngModel)]="gameId">
+          <mat-option *ngFor="let game of games" [value]="game.id">{{game.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" (click)="onSubmit()">Enregistrer</button>
+    </div>
+
+  </mat-card-content>

@@ -119,4 +119,15 @@ router.post("/information", checkAuth, async (req, res, next) => {
   }
 });
 
+router.post("/image", checkAuth, async (req, res, next) => {
+  try {
+    console.log(req.body);
+    //await InformationManager.addImage(req.body);
+    res.json({ status: "ok" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: "Erreur d'ajout" });
+  }
+});
+
 module.exports = router;

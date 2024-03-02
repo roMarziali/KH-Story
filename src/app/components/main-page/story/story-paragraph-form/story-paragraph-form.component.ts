@@ -100,6 +100,8 @@ export class StoryParagraphFormComponent {
   openImageComponent() {
     this.dialog.open(ImageFormComponent, {
       disableClose: true
+    }).afterClosed().subscribe(() => {
+      console.log("refresh image");
     });
   }
 }
