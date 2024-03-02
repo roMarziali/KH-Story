@@ -5,6 +5,9 @@ import { FormGroup, FormControl, Validators, ValidationErrors, FormArray } from 
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import games from 'src/assets/data/games.json';
 import { RawParagraph } from 'src/app/models/raw-section';
+import { MatDialog } from '@angular/material/dialog';
+import { AnnotationFormComponent } from './annotation-form/annotation-form.component';
+import { ImageFormComponent } from './image-form/image-form.component';
 
 @Component({
   selector: 'app-story-paragraph-form',
@@ -22,7 +25,8 @@ export class StoryParagraphFormComponent {
     texts: new FormArray([]),
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph?: RawParagraph }, private api: ApiService, public dialogRef: MatDialogRef<any>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph?: RawParagraph },
+    private dialog: MatDialog, private api: ApiService, public dialogRef: MatDialogRef<any>) {
     this.textFormMetadata = data.textFormMetadata;
     this.action = data.action;
     if (this.action == "adding") {
@@ -85,5 +89,17 @@ export class StoryParagraphFormComponent {
 
   get texts() {
     return this.paragraphForm.controls.texts;
+  }
+
+  openAnnotationComponent() {
+    this.dialog.open(AnnotationFormComponent, {
+      disableClose: true
+    });
+  }
+
+  openImageComponent() {
+    this.dialog.open(ImageFormComponent, {
+      disableClose: true
+    });
   }
 }

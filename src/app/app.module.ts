@@ -24,6 +24,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,8 @@ import { StorySectionFormComponent } from './components/main-page/story/story-se
 import { StoryParagraphFormComponent } from './components/main-page/story/story-paragraph-form/story-paragraph-form.component';
 import { SettingsMenuComponent } from './components/header-page/settings-menu/settings-menu.component';
 import { ChapterManagerComponent } from './components/chapter-manager/chapter-manager.component';
+import { ImageFormComponent } from './components/main-page/story/story-paragraph-form/image-form/image-form.component';
+import { AnnotationFormComponent } from './components/main-page/story/story-paragraph-form/annotation-form/annotation-form.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import { ChapterManagerComponent } from './components/chapter-manager/chapter-ma
     StorySectionFormComponent,
     StoryParagraphFormComponent,
     SettingsMenuComponent,
-    ChapterManagerComponent
+    ChapterManagerComponent,
+    ImageFormComponent,
+    AnnotationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +94,8 @@ import { ChapterManagerComponent } from './components/chapter-manager/chapter-ma
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginator
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { hideRequiredMarker: 'true' } },

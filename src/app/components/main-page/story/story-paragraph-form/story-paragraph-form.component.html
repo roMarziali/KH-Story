@@ -9,6 +9,12 @@
       <mat-spinner></mat-spinner>
     </div>
     <div *ngIf="!isLoading">
+
+      <div id="buttons-for-dialog">
+        <button mat-raised-button (click)="openAnnotationComponent()" tabindex="-1" color="primary">Annotations</button>
+        <button mat-raised-button (click)="openImageComponent()" tabindex="-1" color="primary">Images</button>
+      </div>
+
       <form [formGroup]="paragraphForm" (ngSubmit)="onSubmitParagraph()">
         <ng-container *ngFor="let text of texts.controls, let index = index">
           <fieldset [formGroup]="text">

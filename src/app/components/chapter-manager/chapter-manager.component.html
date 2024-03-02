@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-header class="full-line-title">
+  <mat-card-header>
     <mat-card-title>
       <div>Gestion des chapitres</div>
       <div><button mat-icon-button mat-dialog-close aria-label="Fermer la fenêtre"
@@ -40,8 +40,6 @@
           <mat-cell *matCellDef="let chapterMetadata"> <button mat-icon-button
               (click)="deleteChapter(chapterMetadata.id)"><mat-icon>delete</mat-icon></button> </mat-cell>
         </ng-container>
-
-
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag [cdkDragData]="row"></mat-row>

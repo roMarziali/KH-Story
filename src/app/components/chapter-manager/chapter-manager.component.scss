@@ -1,31 +1,27 @@
-::ng-deep .full-line-title .mat-mdc-card-header-text {
-  width: 100%;
+mat-card-title {
+  display: flex;
+  justify-content: space-between;
+
+  div:nth-child(2) button {
+    margin-top: -7px;
+  }
 }
 
- mat-card-title {
-   display: flex;
-   justify-content: space-between;
-
-   div:nth-child(2) button {
-     margin-top: -7px;
-   }
- }
-
-mat-cell{
-  flex : auto;
+mat-cell {
+  flex: auto;
 }
 
- mat-form-field {
-   width: 500px;
- }
+mat-form-field {
+  width: 500px;
+}
 
- section {
-   max-height: 400px;
-   overflow: auto;
-   margin-bottom: 1rem;
- }
+section {
+  max-height: 400px;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
 
- .dragCursor {
-   margin-right: 1rem;
-   cursor: move;
- }
+.dragCursor {
+  margin-right: 1rem;
+  cursor: move;
+}

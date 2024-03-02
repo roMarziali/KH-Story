@@ -11,6 +11,15 @@ fieldset {
   display: flex;
 }
 
-mat-card {
-  max-height: 800px;
+form {
+  overflow-y: scroll;
+  max-height: 85vh;
+}
+
+#buttons-for-dialog {
+  button {
+    margin-right: 1rem;
+  }
+
+  margin-bottom : 1rem;
 }
