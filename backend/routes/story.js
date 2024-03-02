@@ -3,6 +3,10 @@ const router = express.Router();
 const StoryManager = require("../models/story-manager");
 const checkAuth = require("../middleware/check-auth");
 const InformationManager = require("../models/information-manager");
+const multer = require("multer");
+const upload = multer();
+const path = require("path");
+const fs = require("fs");
 
 router.get("/story", async (req, res, next) => {
   const story = await StoryManager.getStory();
@@ -119,11 +123,11 @@ router.post("/information", checkAuth, async (req, res, next) => {
   }
 });
 
-router.post("/image", checkAuth, async (req, res, next) => {
+router.post("/image", upload.single('image'), checkAuth, async (req, res, next) => {
   try {
-    console.log(req.body);
-    //await InformationManager.addImage(req.body);
-    res.json({ status: "ok" });
+    const image = req.file;
+    const gameId = req.body.gameId;
+    await StoryManager.addImage(image, gameId);
   } catch (err) {
     console.log(err);
     res.status(400).json({ error: "Erreur d'ajout" });

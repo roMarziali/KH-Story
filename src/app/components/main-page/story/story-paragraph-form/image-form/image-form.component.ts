@@ -32,8 +32,7 @@ export class ImageFormComponent {
       return;
     }
     const formData = new FormData();
-    formData.append('image', this.imageFile);
-    formData.append('name', this.imageName);
+    formData.append('image', this.imageFile, this.imageName);
     formData.append('gameId', this.gameId);
     this.api.post('story/image', formData).subscribe((res) => {
       console.log(res);

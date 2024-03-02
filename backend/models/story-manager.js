@@ -156,6 +156,21 @@ module.exports = class StoryManager {
     story.sort((a, b) => a.order - b.order);
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
+
+  static addImage(image, gameId) {
+    const allowedExtensions = ['png'];
+    const mimeType = image.mimetype.split('/')[1];
+    if (!allowedExtensions.includes(mimeType)) {
+      throw new Error('Invalid file type');
+    }
+    const fileName = image.originalname + ".png";
+    const gameFolder = gameId.toLowerCase();
+    const imagePath = path.join(__dirname, `../public/images/${gameFolder}`);
+    if (!fs.existsSync(imagePath)) {
+      fs.mkdirSync(imagePath);
+    }
+    fs.writeFileSync(path.join(imagePath, fileName), image.buffer);
+  }
 };
 
 function incrementOrderForElement(parent, childName, incrementFromThisOrderNumber) {
