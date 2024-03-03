@@ -3,7 +3,7 @@ form button {
 }
 
 .form-field__textarea {
-  width: 500px;
+  width: 665px;
 }
 
 fieldset {
@@ -22,4 +22,12 @@ form {
   }
 
   margin-bottom : 1rem;
+}
+
+.image-subform {
+  display: flex;
+
+  div {
+    margin-right: 1rem;
+  }
 }

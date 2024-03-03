@@ -1,13 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
-import { FormGroup, FormControl, Validators, ValidationErrors, FormArray } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import games from 'src/assets/data/games.json';
 import { RawParagraph } from 'src/app/models/raw-section';
 import { MatDialog } from '@angular/material/dialog';
 import { AnnotationFormComponent } from './annotation-form/annotation-form.component';
 import { ImageFormComponent } from './image-form/image-form.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface ImageInfo {
   game: string;
@@ -32,7 +33,7 @@ export class StoryParagraphFormComponent {
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph?: RawParagraph },
-    private dialog: MatDialog, private api: ApiService, public dialogRef: MatDialogRef<any>) {
+    private dialog: MatDialog, private api: ApiService, public dialogRef: MatDialogRef<any>, private snackBar: MatSnackBar) {
     this.textFormMetadata = data.textFormMetadata;
     this.action = data.action;
     if (this.action == "adding") {
@@ -81,6 +82,15 @@ export class StoryParagraphFormComponent {
 
   onSubmitParagraph() {
     if (this.paragraphForm.invalid) return;
+    if (!this.paragraphForm.value.texts || this.paragraphForm.value.texts.length == 0) return;
+    for (let i = 0; i < this.paragraphForm.value.texts.length; i++) {
+      const imageSection = (this.paragraphForm.get('texts') as FormArray).at(i).get('image');
+      if (!imageSection) continue;
+      if (imageSection.get('game')?.value && (!imageSection.get('name')?.value || !imageSection.get('alt')?.value)) {
+        this.snackBar.open("Certaines données d'image sont incomplètes", "Fermer", { duration: 2000 });
+        return;
+      }
+    }
     this.isLoading = true;
     if (this.action == "adding") {
       this.api.post('story/paragraph', { textFormMetadata: this.textFormMetadata, paragraph: this.paragraphForm.value }).subscribe((data) => {
@@ -95,6 +105,7 @@ export class StoryParagraphFormComponent {
           if (data.status == "ok") {
             this.isLoading = false;
             this.dialogRef.close({ modified: true });
+            this.snackBar.open("Paragraphe modifié", "Fermer", { duration: 2000 });
           }
         });
     }
@@ -124,7 +135,7 @@ export class StoryParagraphFormComponent {
 
   refreshGamesWithImages() {
     this.gamesWithImages = [];
-    const gamesId:string[] = [];
+    const gamesId: string[] = [];
     for (const existingImage of this.existingImages) {
       if (!gamesId.includes(existingImage.game)) {
         gamesId.push(existingImage.game);

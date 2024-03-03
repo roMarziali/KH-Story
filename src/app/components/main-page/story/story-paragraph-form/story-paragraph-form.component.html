@@ -20,12 +20,9 @@
           <fieldset [formGroup]="text">
             <legend>Texte {{index +1 }}</legend>
             <div>
+
               <div>
-                <mat-form-field class="form-field__textarea">
-                  <textarea matInput placeholder="Texte" formControlName="text" required rows="4"></textarea>
-                </mat-form-field>
-              </div>
-              <div>
+
                 <mat-form-field>
                   <mat-label>Relier aux jeux</mat-label>
                   <mat-select formControlName="relatedTo" multiple>
@@ -33,34 +30,40 @@
                   </mat-select>
                 </mat-form-field>
 
-                <div formGroupName="image">
-                  <div>
-                    <mat-form-field>
-                      <mat-label>Jeu de l'image</mat-label>
-                      <mat-select formControlName="game">
-                        <mat-option *ngFor="let game of gamesWithImages" [value]="game.id">{{game.name}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div>
-                    <mat-form-field>
-                      <input matInput type="text" formControlName="name" placeholder="Nom de l'image"
-                      value="" [matAutocomplete]="auto">
+              </div>
+              <div>
+                <mat-form-field class="form-field__textarea">
+                  <textarea matInput placeholder="Texte" formControlName="text" required rows="6"></textarea>
+                </mat-form-field>
+              </div>
 
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let image of getImagesForGame(getSelectedImageGame(index))" [value]="image.name">
-                          {{image.name}}
-                        </mat-option>
-                      </mat-autocomplete>
+              <div formGroupName="image" class="image-subform">
+                <div>
+                  <mat-form-field>
+                    <mat-label>Jeu de l'image</mat-label>
+                    <mat-select formControlName="game">
+                      <mat-option *ngFor="let game of gamesWithImages" [value]="game.id">{{game.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput type="text" formControlName="name" placeholder="Nom de l'image" value=""
+                      [matAutocomplete]="auto">
 
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let image of getImagesForGame(getSelectedImageGame(index))"
+                        [value]="image.name">
+                        {{image.name}}
+                      </mat-option>
+                    </mat-autocomplete>
 
-                    </mat-form-field>
-                  </div>
-                  <div>
-                    <mat-form-field>
-                      <input matInput formControlName="alt" placeholder="Alt de l'image" value="">
-                    </mat-form-field>
-                  </div>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput formControlName="alt" placeholder="Alt de l'image" value="">
+                  </mat-form-field>
                 </div>
               </div>
             </div>
