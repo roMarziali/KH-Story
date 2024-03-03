@@ -12,7 +12,7 @@
       <div id="info-site">
         <ng-container *ngIf="isAuthenticated">
           <div *ngIf="!openedInfoForm">
-            <button mat-icon-button (click)="openAddInfoForm()"><mat-icon>add</mat-icon></button>
+            <button mat-icon-button (click)="openAddInfoForm()" tabindex="-1"><mat-icon>add</mat-icon></button>
           </div>
           <div *ngIf="openedInfoForm">
             <form>
