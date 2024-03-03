@@ -20,3 +20,8 @@ mat-card-title {
     margin-top: -7px;
   }
 }
+
+mat-card-content{
+  max-height : 90vh;
+  overflow-y: scroll;
+}

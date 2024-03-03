@@ -128,6 +128,7 @@ router.post("/image", upload.single('image'), checkAuth, async (req, res, next) 
     const image = req.file;
     const gameId = req.body.gameId;
     await StoryManager.addImage(image, gameId);
+    res.json({ status: "ok" });
   } catch (err) {
     console.log(err);
     res.status(400).json({ error: "Erreur d'ajout" });

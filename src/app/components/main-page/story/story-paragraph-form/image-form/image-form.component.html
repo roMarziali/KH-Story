@@ -10,7 +10,7 @@
 
 
     <div>
-      <input #imageInput type="file" accept="image/png" (change)="onImageSelected($event)">
+      <input [(ngModel)]="imageInputName" #imageInput type="file" accept="image/png" (change)="onImageSelected($event)">
     </div>
 
     <div>
