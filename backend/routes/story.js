@@ -135,4 +135,9 @@ router.post("/image", upload.single('image'), checkAuth, async (req, res, next) 
   }
 });
 
+router.get("/list-images", async (req, res, next) => {
+  const images = await StoryManager.getListImages();
+  res.send(images);
+});
+
 module.exports = router;

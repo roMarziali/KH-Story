@@ -171,6 +171,22 @@ module.exports = class StoryManager {
     }
     fs.writeFileSync(path.join(imagePath, fileName), image.buffer);
   }
+
+  static getListImages(){
+    const images = [];
+    const games = fs.readdirSync(path.join(__dirname, `../public/images`));
+    for (const game of games) {
+      const gamePath = path.join(__dirname, `../public/images/${game}`);
+      const gameImages = fs.readdirSync(gamePath);
+      for (const gameImage of gameImages) {
+        images.push({
+          game: game,
+          name: gameImage
+        });
+      }
+    }
+    return images;
+  }
 };
 
 function incrementOrderForElement(parent, childName, incrementFromThisOrderNumber) {
