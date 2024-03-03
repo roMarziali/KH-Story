@@ -50,9 +50,5 @@
   {
     "id": "Other",
     "name": "Autre (interviews, livres, etc.)"
-  },
-  {
-    "id": "annotations",
-    "name": "Annotations"
   }
 ]
