@@ -9,6 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { AnnotationFormComponent } from './annotation-form/annotation-form.component';
 import { ImageFormComponent } from './image-form/image-form.component';
 
+export interface ImageInfo {
+  game: string;
+  name: string;
+}
 @Component({
   selector: 'app-story-paragraph-form',
   templateUrl: './story-paragraph-form.component.html',
@@ -20,6 +24,8 @@ export class StoryParagraphFormComponent {
   action!: "adding" | "editing";
   games = games;
   rawParagraph!: RawParagraph;
+  existingImages: ImageInfo[] = [];
+  gamesWithImages: { id: string, name: string }[] = [];
 
   paragraphForm = new FormGroup({
     texts: new FormArray([]),
@@ -47,6 +53,17 @@ export class StoryParagraphFormComponent {
         (this.paragraphForm.get('texts') as FormArray).push(newTextSubForm);
       });
     }
+  }
+
+  ngOnInit() {
+    this.getImageList();
+  }
+
+  getImageList() {
+    this.api.get('story/images').subscribe((data) => {
+      this.existingImages = data;
+      this.refreshGamesWithImages();
+    });
   }
 
   addTextToForm() {
@@ -101,7 +118,28 @@ export class StoryParagraphFormComponent {
     this.dialog.open(ImageFormComponent, {
       disableClose: true
     }).afterClosed().subscribe(() => {
-      console.log("refresh image");
+      this.getImageList();
     });
+  }
+
+  refreshGamesWithImages() {
+    this.gamesWithImages = [];
+    const gamesId:string[] = [];
+    for (const existingImage of this.existingImages) {
+      if (!gamesId.includes(existingImage.game)) {
+        gamesId.push(existingImage.game);
+        const gameName = this.games.find((game) => game.id.toLowerCase() == existingImage.game.toLowerCase())?.name;
+        if (!gameName) continue;
+        this.gamesWithImages.push({ id: existingImage.game, name: gameName });
+      }
+    }
+  }
+
+  getSelectedImageGame(index: number) {
+    return (this.paragraphForm.get('texts') as FormArray).at(index).get('image.game')?.value;
+  }
+
+  getImagesForGame(game: string) {
+    return this.existingImages.filter((image) => image.game == game);
   }
 }
