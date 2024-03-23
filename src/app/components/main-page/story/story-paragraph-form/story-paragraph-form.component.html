@@ -23,7 +23,7 @@
 
               <div>
 
-                <mat-form-field>
+                <mat-form-field class="selection-games">
                   <mat-label>Relier aux jeux</mat-label>
                   <mat-select formControlName="relatedTo" multiple>
                     <mat-option *ngFor="let game of games" [value]="game.id">{{game.name}}</mat-option>
