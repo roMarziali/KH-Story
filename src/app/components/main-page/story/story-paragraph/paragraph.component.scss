@@ -1,5 +1,5 @@
 p {
-  line-height: 1.2em;
+  line-height: 1.4em;
   text-align: justify;
   white-space: pre-line;
 }
@@ -10,9 +10,9 @@ p {
   justify-content: center;
 }
 
-sup{
+sup {
   font-size: 0.7em;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 839.9px) {
@@ -60,4 +60,9 @@ img {
   text-align: center;
   font-size: 0.8em;
   line-height: 1em;
+}
+
+.annotated {
+  text-decoration: underline;
+  text-decoration-style: dashed;
 }

@@ -3,7 +3,7 @@
     <ng-container *ngFor="let subString of subStrings">
       <ng-container *ngIf="!subString.annotation || !displayAnnotations">{{subString.text}}</ng-container>
       <ng-container *ngIf="subString.annotation && displayAnnotations">
-        <span >{{subString.text}}</span><sup [matTooltip]="subString.annotation" class="annotated">?</sup></ng-container>
+        <span [matTooltip]="subString.annotation" class="annotated">{{subString.text}}</span></ng-container>
     </ng-container>
   </p>
 
