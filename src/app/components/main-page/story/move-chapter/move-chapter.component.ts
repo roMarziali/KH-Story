@@ -57,5 +57,6 @@ export class MoveChapterComponent {
 
   moveToChapter(chapterNumber: number) {
     this.storyService.changeChapter(chapterNumber);
+    window.scrollTo(0, 0);
   }
 }
