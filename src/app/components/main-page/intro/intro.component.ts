@@ -23,7 +23,6 @@ export class IntroComponent {
       this.infos = this.informationService.informationList;
     });
     this.infos = this.informationService.informationList;
-    console.log(this.infos);
   }
 
   openAddInfoForm() {
