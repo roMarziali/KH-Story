@@ -25,7 +25,7 @@ export class SettingsService {
       visibility: {
         "darkMode": false,
         "fontSizeEm": 1,
-        displayAnnotations : true
+        displayAnnotations: true
       }
     }
     this.loadLocalParameters();
@@ -72,8 +72,12 @@ export class SettingsService {
     return filter ? filter.selected : false;
   }
 
-  isAtLeastOneFilterSelected(filters: string[]): boolean {
-    return filters.some(f => this.isFilterSelected(f));
+  isTextToDisplay(filters: { [index: number]: string[] }): boolean {
+    for (const filterId in filters) {
+      if (!filters[filterId].length) continue;
+      if (!filters[filterId].some(f => this.isFilterSelected(f))) return false;
+    }
+    return true;
   }
 
   isDarkMode(): boolean {

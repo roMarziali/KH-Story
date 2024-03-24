@@ -21,11 +21,18 @@
             <legend>Texte {{index +1 }}</legend>
             <div>
 
-              <div>
+              <div formGroupName="relatedTo">
 
                 <mat-form-field class="selection-games">
                   <mat-label>Relier aux jeux</mat-label>
-                  <mat-select formControlName="relatedTo" multiple>
+                  <mat-select formControlName="1" multiple>
+                    <mat-option *ngFor="let game of games" [value]="game.id">{{game.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="selection-games">
+                  <mat-label>Relier aux jeux (supp. optionnel)</mat-label>
+                  <mat-select formControlName="2" multiple>
                     <mat-option *ngFor="let game of games" [value]="game.id">{{game.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>

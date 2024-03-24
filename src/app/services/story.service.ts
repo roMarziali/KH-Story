@@ -137,7 +137,7 @@ export class StoryService {
     rawParagraphs.forEach(rawParagraph => {
       const rawTexts = rawParagraph.texts;
       for (const rawText of rawTexts) {
-        if (this.settingsService.isAtLeastOneFilterSelected(rawText.relatedTo)) {
+        if (this.settingsService.isTextToDisplay(rawText.relatedTo)) {
           paragraphs.push({ id: rawParagraph.id, text: rawText.text, image: rawText.image });
           break;
         }

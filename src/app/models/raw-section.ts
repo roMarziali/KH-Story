@@ -11,7 +11,7 @@ export interface RawParagraph{
   texts: {
     id: number,
     text: string,
-    relatedTo: string[],
+    relatedTo: {[index:number] : string[]},
     image?: {
       "game": string;
       "name": string;

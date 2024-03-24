@@ -44,7 +44,10 @@ export class StoryParagraphFormComponent {
       this.rawParagraph.texts.forEach((text) => {
         const newTextSubForm = new FormGroup({
           text: new FormControl(text.text, [Validators.required, Validators.minLength(3)]),
-          relatedTo: new FormControl(text.relatedTo, [Validators.required, Validators.minLength(1)]),
+          relatedTo: new FormGroup({
+            1: new FormControl(text.relatedTo[1], [Validators.required, Validators.minLength(1)]),
+            2: new FormControl(text.relatedTo[2]),
+          }),
           image: new FormGroup({
             game: new FormControl(text.image?.game, [Validators.minLength(2)]),
             name: new FormControl(text.image?.name, [Validators.minLength(3)]),
