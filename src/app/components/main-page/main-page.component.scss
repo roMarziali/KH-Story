@@ -1,47 +1,16 @@
-@media screen and (min-width: 850px) {
-main {
-  margin-top: 148px;
-  display: flex;
-}
-
-#filters {
-  white-space: nowrap;
-  margin-right: 1rem;
-  position: fixed;
-}
-
-#story {
-  margin-left: 310px;
-  margin-right: 1rem;
-  width : 95%;
-  max-width: 1200px;
-}
-
-.filter-small {
-  display: none;
-}
-
-.filter-large {
-  margin-left: 1rem;
-  overflow-y: auto;
-  max-height: 75vh;
-}
-}
-
-@media screen and (max-width: 599px) {
   main {
     margin-top: 112px;
+    width : 100%;
   }
-}
 
-@media screen and (max-width: 850px) and (min-width: 600px){
-  main {
-    margin-top: 129px;
+  @media screen and (min-width: 600px) {
+    main {
+      margin-top: 129px;
+    }
   }
-}
 
 
-@media screen and (max-width: 850px) {
+
   .filter-large {
     display: none;
   }
@@ -50,8 +19,43 @@ main {
     margin-bottom: 1rem;
     display: inline-block;
   }
-}
 
-.filter-small{
-  width : 100%;
-}
+
+  .filter-small {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 850px) {
+    main {
+      margin-top: 148px;
+      display: flex;
+    }
+
+    .filter-large {
+      display: block;
+    }
+
+
+    #filters {
+      white-space: nowrap;
+      margin-right: 1rem;
+      position: fixed;
+    }
+
+    #story {
+      margin-left: 310px;
+      margin-right: 1rem;
+      width: 95%;
+      max-width: 1200px;
+    }
+
+    .filter-small {
+      display: none;
+    }
+
+    .filter-large {
+      margin-left: 1rem;
+      overflow-y: auto;
+      max-height: 75vh;
+    }
+  }
