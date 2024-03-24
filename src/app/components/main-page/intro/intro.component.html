@@ -31,7 +31,7 @@
 
             <h2>{{info.title}}</h2>
             <div class="info-date">{{info.date | date:'dd/MM/yyyy'}}</div>
-            <div>{{info.content}}</div>
+            <div [innerHTML]="info.content" style="white-space:pre-wrap;"></div>
           </div>
         </div>
       </div>
