@@ -73,7 +73,10 @@ export class StoryParagraphFormComponent {
   addTextToForm() {
     const newTextSubForm = new FormGroup({
       text: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      relatedTo: new FormControl([], [Validators.required, Validators.minLength(1)]),
+      relatedTo: new FormGroup({
+        1: new FormControl('', [Validators.required, Validators.minLength(1)]),
+        2: new FormControl(''),
+      }),
       image: new FormGroup({
         game: new FormControl('', [Validators.minLength(2)]),
         name: new FormControl('', [Validators.minLength(3)]),
