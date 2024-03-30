@@ -21,7 +21,6 @@ export class StoryService {
   firstChapterToDisplaySelected = false;
 
   updatedStoryEvent = new EventEmitter();
-  changeChapterEvent = new EventEmitter();
 
   constructor(private api: ApiService, private settingsService: SettingsService,
     private router: Router, private authService: AuthService) {
@@ -97,7 +96,7 @@ export class StoryService {
 
   changeChapter(newChapterOrder: number) {
     this.router.navigate(['/chapitre', newChapterOrder]);
-    this.changeChapterEvent.emit();
+    window.scrollTo(0, 0);
   }
 
   getSectionsFromRawChapter(rawChapter: RawChapter): ChapterSection[] {

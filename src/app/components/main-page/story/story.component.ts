@@ -9,6 +9,7 @@ import { StoryParagraphFormComponent } from './story-paragraph-form/story-paragr
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
 import { RawParagraph } from 'src/app/models/raw-section';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-story',
@@ -21,15 +22,14 @@ export class StoryComponent {
   chapter!: Chapter | null;
 
   constructor(private storyService: StoryService, private settingsService: SettingsService, private authService: AuthService,
-    private dialog: MatDialog, private api: ApiService) {
+    private dialog: MatDialog, private api: ApiService, private router: Router) {
+    this.router.events.subscribe(() => {
+      this.loadChapter();
+    });
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.loadChapter();
     });
-    this.storyService.changeChapterEvent.subscribe(() => {
-      this.loadChapter();
-    });
   }
-
 
   get chapterId(): number {
     return this.storyService.currentChapterId;

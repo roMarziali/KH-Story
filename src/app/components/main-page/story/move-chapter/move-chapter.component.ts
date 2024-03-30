@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-move-chapter',
@@ -11,8 +12,8 @@ export class MoveChapterComponent {
   nextChapter!: number | null;
   previousChapter!: number | null;
 
-  constructor(private storyService: StoryService) {
-    this.storyService.changeChapterEvent.subscribe((chapterNumber) => {
+  constructor(private storyService: StoryService, private router: Router) {
+    this.router.events.subscribe(() => {
       this.setNextChapter();
       this.setPreviousChapter();
     });
@@ -57,6 +58,5 @@ export class MoveChapterComponent {
 
   moveToChapter(chapterNumber: number) {
     this.storyService.changeChapter(chapterNumber);
-    window.scrollTo(0, 0);
   }
 }
