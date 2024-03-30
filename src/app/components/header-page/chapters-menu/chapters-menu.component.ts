@@ -4,6 +4,7 @@ import { Chapter } from 'src/app/models/chapter';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChapterManagerComponent } from '../../chapter-manager/chapter-manager.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chapters-menu',
@@ -15,7 +16,7 @@ export class ChaptersMenuComponent {
   chapters!: Chapter[];
 
   constructor(private storyService: StoryService, private authService: AuthService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog, private router: Router) {
     this.storyService.updatedStoryEvent.subscribe(() => {
       this.chapters = this.storyService.chapters;
     });
@@ -26,7 +27,7 @@ export class ChaptersMenuComponent {
   }
 
   changeChapter(chapterOrder: number) {
-    this.storyService.changeChapter(chapterOrder);
+    this.router.navigate(['/chapitre/' + chapterOrder]);
   }
 
   get isAuthenticated() {

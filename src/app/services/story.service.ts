@@ -7,8 +7,7 @@ import { SettingsService } from './settings.service';
 import { Chapter } from '../models/chapter';
 import { ChapterSection } from '../models/chapter-section';
 import { ChapterSectionParagraph } from '../models/chapter-section-paragraph';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -19,14 +18,13 @@ export class StoryService {
   annotations: Annotation[] = [];
   rawChapters: RawChapter[] = [];
   chapters: Chapter[] = [];
-  currentChapterOrder!: number;
   firstChapterToDisplaySelected = false;
 
   updatedStoryEvent = new EventEmitter();
   changeChapterEvent = new EventEmitter();
 
-  constructor(private api: ApiService, private settingsService: SettingsService, private route: ActivatedRoute,
-    private location: Location, private authService: AuthService) {
+  constructor(private api: ApiService, private settingsService: SettingsService,
+    private router: Router, private authService: AuthService) {
     this.getStoryData();
     this.settingsService.filtersChange.subscribe(() => {
       this.chapters = this.organizeChapters();
@@ -39,7 +37,7 @@ export class StoryService {
   }
 
   get chapterNumber(): number {
-    return this.currentChapterOrder;
+    return Number(this.router.url.split('/')[2]);
   }
 
   getStoryData() {
@@ -50,16 +48,8 @@ export class StoryService {
         this.rawChapters = data;
         this.chapters = this.organizeChapters();
         this.updatedStoryEvent.emit();
-        if (!this.firstChapterToDisplaySelected) this.setFirstChapterToDisplay();
       });
     });
-  }
-
-  setFirstChapterToDisplay() {
-    const queryChapter = this.route.snapshot.queryParamMap.get('chapter');
-    const currentChapterOrder = (queryChapter) ? Number(queryChapter) : 1;
-    this.changeChapter(currentChapterOrder);
-    this.firstChapterToDisplaySelected = true;
   }
 
   getAnnotation(id: number): string {
@@ -67,8 +57,8 @@ export class StoryService {
     return annotation ? annotation.content : 'Erreur : annotation non trouvée';
   }
 
-  getChapter(chapterOrder?: number): Chapter | null {
-    const chapterToSearch: number = (chapterOrder) ? chapterOrder : this.currentChapterOrder;
+  getChapter(): Chapter | null {
+    const chapterToSearch = Number(this.chapterNumber);
     const chapter = this.chapters.find(c => c.order === chapterToSearch);
     return (chapter) ? chapter : null;
   }
@@ -106,12 +96,8 @@ export class StoryService {
   }
 
   changeChapter(newChapterOrder: number) {
-    const chapter = this.getChapter(newChapterOrder);
-    if (chapter) {
-      this.currentChapterOrder = newChapterOrder;
-      this.location.go('/', `chapter=${this.currentChapterOrder}`);
-      this.changeChapterEvent.emit();
-    }
+    this.router.navigate(['/chapitre', newChapterOrder]);
+    this.changeChapterEvent.emit();
   }
 
   getSectionsFromRawChapter(rawChapter: RawChapter): ChapterSection[] {
