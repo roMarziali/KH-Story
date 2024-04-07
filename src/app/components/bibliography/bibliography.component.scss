@@ -6,3 +6,12 @@ mat-card{
 a {
   color: inherit;
 }
+ul {
+  list-style-type: none; /* Masquer les points par défaut */
+  padding-left : 1rem;
+}
+
+li::before {
+  content: "※";
+  margin-right: 0.5em;
+}
