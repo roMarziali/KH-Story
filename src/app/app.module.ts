@@ -49,6 +49,7 @@ import { SettingsMenuComponent } from './components/header-page/settings-menu/se
 import { ChapterManagerComponent } from './components/chapter-manager/chapter-manager.component';
 import { ImageFormComponent } from './components/main-page/story/story-paragraph-form/image-form/image-form.component';
 import { AnnotationFormComponent } from './components/main-page/story/story-paragraph-form/annotation-form/annotation-form.component';
+import { BibliographyComponent } from './components/bibliography/bibliography.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { AnnotationFormComponent } from './components/main-page/story/story-para
     SettingsMenuComponent,
     ChapterManagerComponent,
     ImageFormComponent,
-    AnnotationFormComponent
+    AnnotationFormComponent,
+    BibliographyComponent
   ],
   imports: [
     BrowserModule,
