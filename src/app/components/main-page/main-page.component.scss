@@ -1,16 +1,7 @@
   main {
-    margin-top: 112px;
     width : 100%;
     padding-bottom : 1rem;
   }
-
-  @media screen and (min-width: 600px) {
-    main {
-      margin-top: 129px;
-    }
-  }
-
-
 
   .filter-large {
     display: none;
@@ -28,7 +19,7 @@
 
   @media screen and (min-width: 850px) {
     main {
-      margin-top: 148px;
+      margin-top: 1rem;
       display: flex;
     }
 
