@@ -180,11 +180,13 @@ module.exports = class StoryManager {
 
   static getListImages(){
     const images = [];
-    const games = fs.readdirSync(path.join(__dirname, `../public/images`));
+    const games = fs.readdirSync(path.join(__dirname, `../public/images/original`));
     for (const game of games) {
-      const gamePath = path.join(__dirname, `../public/images/${game}`);
+      if (game == ".gitkeep") continue;
+      const gamePath = path.join(__dirname, `../public/images/original/${game}`);
       const gameImages = fs.readdirSync(gamePath);
       for (const gameImage of gameImages) {
+        if (gameImage == ".gitkeep") continue;
         images.push({
           game: game,
           name: gameImage
