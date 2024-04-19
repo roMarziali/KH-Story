@@ -3,6 +3,8 @@ import { ChapterSectionParagraph } from 'src/app/models/chapter-section-paragrap
 import { SettingsService } from 'src/app/services/settings.service';
 import { environment } from 'src/environments/environment';
 import { StoryService } from 'src/app/services/story.service';
+import { ZoomImageComponent } from './zoom-image/zoom-image.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface subStrings {
   text: string;
@@ -22,7 +24,7 @@ export class ParagraphComponent {
   subStrings: subStrings[] = [];
   displayAnnotations: boolean = this.settingsService.displayAnnotations;
 
-  constructor(private settingsService: SettingsService, private storyService: StoryService) {
+  constructor(private settingsService: SettingsService, private storyService: StoryService, private dialog: MatDialog) {
     this.settingsService.visibilityChange.subscribe(() => {
       this.displayAnnotations = this.settingsService.displayAnnotations;
     });
@@ -47,9 +49,17 @@ export class ParagraphComponent {
     this.subStrings.push({ text: mainString.slice(lastIndex) });
   }
 
-  get relatedImageSource(): string {
+  get resizedImageSource(): string {
     if (!this.paragraph.image) return "";
-    return `${this.apiImage}/${this.paragraph.image.game}/${this.paragraph.image.name}`.toLowerCase();
+    return `${this.apiImage}/resized/${this.paragraph.image.game}/${this.paragraph.image.name}`.toLowerCase();
   }
+
+  openZoomImage() {
+    this.dialog.open(ZoomImageComponent, {
+      data: { image: this.paragraph.image },
+      panelClass: 'zoom-image-dialog',
+    });
+  }
+
 
 }

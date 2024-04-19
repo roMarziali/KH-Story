@@ -9,7 +9,7 @@
 
   <div class="illustration-container">
     <div class="illustration" *ngIf="paragraph.image">
-      <img class="image" [src]="relatedImageSource" [alt]="paragraph.image.alt">
+      <img class="image" [src]="resizedImageSource" [alt]="paragraph.image.alt" (click)="openZoomImage()">
       <div class="caption">{{paragraph.image.alt}}</div>
     </div>
   </div>
