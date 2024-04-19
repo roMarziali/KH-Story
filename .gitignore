@@ -1,8 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 /backend/node_modules
-/backend/public/images
-
+/backend/public/images/original/*
+/backend/public/images/resized/*
+!/backend/public/images/original/.gitkeep
+!/backend/public/images/resized/.gitkeep
 # Compiled output
 /dist
 /tmp

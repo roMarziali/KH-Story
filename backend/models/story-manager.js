@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const shartp = require('sharp');
 
 const STORY_FILE_PATH = path.join(__dirname, '../data/story.json');
 const ANNOTATION_FILE_PATH = path.join(__dirname, '../data/annotations.json');
@@ -165,11 +166,16 @@ module.exports = class StoryManager {
     }
     const fileName = image.originalname + ".png";
     const gameFolder = gameId.toLowerCase();
-    const imagePath = path.join(__dirname, `../public/images/${gameFolder}`);
+    const imagePath = path.join(__dirname, `../public/images/original/${gameFolder}`);
+    const imagePathResized = path.join(__dirname, `../public/images/resized/${gameFolder}`);
     if (!fs.existsSync(imagePath)) {
       fs.mkdirSync(imagePath);
     }
+    if (!fs.existsSync(imagePathResized)) {
+      fs.mkdirSync(imagePathResized);
+    }
     fs.writeFileSync(path.join(imagePath, fileName), image.buffer);
+    shartp(image.buffer).resize(500).toFile(path.join(imagePathResized, fileName));
   }
 
   static getListImages(){
