@@ -1,7 +1,10 @@
-<button mat-icon-button aria-label="Chapitre" [matMenuTriggerFor]="menu" class="main-button">
-  <app-icon [alt]="'Chapitres'" [iconeName]="'book_prophecies.png'">
-  </app-icon>
-</button>
+<div [matMenuTriggerFor]="menu" id = "chapter-button">
+  <button mat-icon-button aria-label="Chapitre" class="main-button">
+    <app-icon [alt]="'Chapitres'" [iconeName]="'book_prophecies.png'">
+    </app-icon>
+  </button>
+  <span id="chapter-button-txt">Liste des chapitres</span>
+</div>
 
 <mat-menu #menu="matMenu">
   <ng-container *ngIf="isAuthenticated">
