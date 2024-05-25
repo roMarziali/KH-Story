@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
-import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import games from 'src/assets/data/games.json';
-import {Story, Chapter, ChapterSection, Paragraph} from 'src/app/models/story';
+import { Story, Chapter, ChapterSection, Paragraph, Image } from 'src/app/models/story';
 import { MatDialog } from '@angular/material/dialog';
 import { AnnotationFormComponent } from './annotation-form/annotation-form.component';
 import { ImageFormComponent } from './image-form/image-form.component';
@@ -27,36 +27,28 @@ export class StoryParagraphFormComponent {
   paragraph!: Paragraph;
   existingImages: ImageInfo[] = [];
   gamesWithImages: { id: string, name: string }[] = [];
-
-  paragraphForm = new FormGroup({
-    texts: new FormArray([]),
+  form = new FormGroup({
+    text: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    image: new FormGroup({
+      game: new FormControl('', [Validators.minLength(2)]),
+      name: new FormControl('', [Validators.minLength(3)]),
+      alt: new FormControl('', [Validators.minLength(3)]),
+    }),
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph: Paragraph },
     private dialog: MatDialog, private api: ApiService, public dialogRef: MatDialogRef<any>, private snackBar: MatSnackBar) {
-  /*  this.textFormMetadata = data.textFormMetadata;
+    this.textFormMetadata = data.textFormMetadata;
     this.action = data.action;
-    if (this.action == "adding") {
-      this.addTextToForm();
-    }
     if (this.action == "editing" && data.paragraph) {
-      this.rawParagraph = data.paragraph;
-      this.rawParagraph.texts.forEach((text) => {
-        const newTextSubForm = new FormGroup({
-          text: new FormControl(text.text, [Validators.required, Validators.minLength(3)]),
-          relatedTo: new FormGroup({
-            1: new FormControl(text.relatedTo[1], [Validators.required, Validators.minLength(1)]),
-            2: new FormControl(text.relatedTo[2]),
-          }),
-          image: new FormGroup({
-            game: new FormControl(text.image?.game, [Validators.minLength(2)]),
-            name: new FormControl(text.image?.name, [Validators.minLength(3)]),
-            alt: new FormControl(text.image?.alt, [Validators.minLength(3)]),
-          }),
-        });
-        (this.paragraphForm.get('texts') as FormArray).push(newTextSubForm);
-      });
-    }*/
+      this.paragraph = data.paragraph;
+      this.form.get('text')?.setValue(data.paragraph.text);
+      if (data.paragraph.image) {
+        this.form.get('image')?.get('game')?.setValue(data.paragraph.image.game);
+        this.form.get('image')?.get('name')?.setValue(data.paragraph.image.name);
+        this.form.get('image')?.get('alt')?.setValue(data.paragraph.image.alt);
+      }
+    }
   }
 
   ngOnInit() {
@@ -70,36 +62,20 @@ export class StoryParagraphFormComponent {
     });
   }
 
-  addTextToForm() {
-    const newTextSubForm = new FormGroup({
-      text: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      relatedTo: new FormGroup({
-        1: new FormControl('', [Validators.required, Validators.minLength(1)]),
-        2: new FormControl(''),
-      }),
-      image: new FormGroup({
-        game: new FormControl('', [Validators.minLength(2)]),
-        name: new FormControl('', [Validators.minLength(3)]),
-        alt: new FormControl('', [Validators.minLength(3)]),
-      }),
-    });
-    (this.paragraphForm.get('texts') as FormArray).push(newTextSubForm);
-  }
-
   onSubmitParagraph() {
-    if (this.paragraphForm.invalid) return;
-    if (!this.paragraphForm.value.texts || this.paragraphForm.value.texts.length == 0) return;
-    for (let i = 0; i < this.paragraphForm.value.texts.length; i++) {
-      const imageSection = (this.paragraphForm.get('texts') as FormArray).at(i).get('image');
-      if (!imageSection) continue;
+    if (this.form.invalid) return;
+    const imageSection = this.form.get('image');
+    if (imageSection) {
       if (imageSection.get('game')?.value && (!imageSection.get('name')?.value || !imageSection.get('alt')?.value)) {
         this.snackBar.open("Certaines données d'image sont incomplètes", "Fermer", { duration: 2000 });
         return;
       }
     }
+
+
     this.isLoading = true;
     if (this.action == "adding") {
-      this.api.post('story/paragraph', { textFormMetadata: this.textFormMetadata, paragraph: this.paragraphForm.value }).subscribe((data) => {
+      this.api.post('story/paragraph', { textFormMetadata: this.textFormMetadata, paragraph: this.form.value }).subscribe((data) => {
         if (data.status == "ok") {
           this.isLoading = false;
           this.dialogRef.close({ modified: true });
@@ -107,7 +83,7 @@ export class StoryParagraphFormComponent {
       });
     } else if (this.action == "editing") {
       this.api.put(`story/paragraph/${this.textFormMetadata.chapterId}/${this.textFormMetadata.sectionId}/${this.textFormMetadata.paragraphId}`,
-        { paragraph: this.paragraphForm.value }).subscribe((data) => {
+        { paragraph: this.form.value }).subscribe((data) => {
           if (data.status == "ok") {
             this.isLoading = false;
             this.dialogRef.close({ modified: true });
@@ -115,14 +91,6 @@ export class StoryParagraphFormComponent {
           }
         });
     }
-  }
-
-  deleteTextFromForm(index: number) {
-    (this.paragraphForm.get('texts') as FormArray).removeAt(index);
-  }
-
-  get texts() {
-    return this.paragraphForm.controls.texts;
   }
 
   openAnnotationComponent() {
@@ -152,11 +120,10 @@ export class StoryParagraphFormComponent {
     }
   }
 
-  getSelectedImageGame(index: number) {
-    return (this.paragraphForm.get('texts') as FormArray).at(index).get('image.game')?.value;
-  }
-
-  getImagesForGame(game: string) {
-    return this.existingImages.filter((image) => image.game == game);
+  getImagesForSelectedGame(): string[]{
+    const selectedGameForImage = this.form.get('image')?.get('game')?.value;
+    if (!selectedGameForImage) return [];
+    const imagesForSelectedGame = this.existingImages.filter((image) => image.game.toLowerCase() == selectedGameForImage.toLowerCase());
+    return imagesForSelectedGame.map((image) => image.name);
   }
 }
