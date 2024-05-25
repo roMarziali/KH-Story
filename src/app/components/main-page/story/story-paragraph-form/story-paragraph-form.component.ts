@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import games from 'src/assets/data/games.json';
-import { RawParagraph } from 'src/app/models/raw-section';
+import {Story, Chapter, ChapterSection, Paragraph} from 'src/app/models/story';
 import { MatDialog } from '@angular/material/dialog';
 import { AnnotationFormComponent } from './annotation-form/annotation-form.component';
 import { ImageFormComponent } from './image-form/image-form.component';
@@ -24,7 +24,7 @@ export class StoryParagraphFormComponent {
   textFormMetadata!: TextFormMetadata;
   action!: "adding" | "editing";
   games = games;
-  rawParagraph!: RawParagraph;
+  paragraph!: Paragraph;
   existingImages: ImageInfo[] = [];
   gamesWithImages: { id: string, name: string }[] = [];
 
@@ -32,9 +32,9 @@ export class StoryParagraphFormComponent {
     texts: new FormArray([]),
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph?: RawParagraph },
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph: Paragraph },
     private dialog: MatDialog, private api: ApiService, public dialogRef: MatDialogRef<any>, private snackBar: MatSnackBar) {
-    this.textFormMetadata = data.textFormMetadata;
+  /*  this.textFormMetadata = data.textFormMetadata;
     this.action = data.action;
     if (this.action == "adding") {
       this.addTextToForm();
@@ -56,7 +56,7 @@ export class StoryParagraphFormComponent {
         });
         (this.paragraphForm.get('texts') as FormArray).push(newTextSubForm);
       });
-    }
+    }*/
   }
 
   ngOnInit() {

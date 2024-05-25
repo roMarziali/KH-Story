@@ -1,27 +1,15 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Filter } from 'src/app/models/filter.model';
-import games from 'src/assets/data/games.json';
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
 
-  settings!: { filters: Filter[], visibility: any };
+  settings!: { visibility: any };
 
-  filtersChange = new EventEmitter();
   visibilityChange = new EventEmitter();
 
   constructor() {
-    const filters: Filter[] = [];
-    games.forEach(game => {
-      filters.push({
-        id: game.id,
-        name: game.name,
-        selected: true
-      });
-    });
     this.settings = {
-      filters,
       visibility: {
         "darkMode": false,
         "fontSizeEm": 1,
@@ -30,11 +18,6 @@ export class SettingsService {
     }
     this.loadLocalParameters();
 
-  }
-
-  filterChanged() {
-    this.saveParameters();
-    this.filtersChange.emit();
   }
 
   visibilityChanged() {
@@ -51,13 +34,7 @@ export class SettingsService {
     if (localSettings && localSettings !== 'undefined') {
       const localSettingsParsed = JSON.parse(localSettings);
       for (const settingCategory in localSettingsParsed) {
-        if (settingCategory === 'filters') {
-          for (const setting of localSettingsParsed[settingCategory]) {
-            const relatedSettings = this.settings[settingCategory].find(s => s.id === setting.id);
-            if (relatedSettings) relatedSettings.selected = setting.selected;
-          }
-        }
-        else if (settingCategory === 'visibility') {
+        if (settingCategory === 'visibility') {
           for (const setting of Object.keys(localSettingsParsed[settingCategory])) {
             const value = localSettingsParsed[settingCategory][setting];
             this.settings['visibility'][setting] = value;
@@ -65,19 +42,6 @@ export class SettingsService {
         }
       }
     }
-  }
-
-  isFilterSelected(filterId: string): boolean {
-    const filter = this.settings.filters.find(f => f.id === filterId);
-    return filter ? filter.selected : false;
-  }
-
-  isTextToDisplay(filters: { [index: number]: string[] }): boolean {
-    for (const filterId in filters) {
-      if (!filters[filterId].length) continue;
-      if (!filters[filterId].some(f => this.isFilterSelected(f))) return false;
-    }
-    return true;
   }
 
   isDarkMode(): boolean {

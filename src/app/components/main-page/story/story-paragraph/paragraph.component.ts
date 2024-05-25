@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ChapterSectionParagraph } from 'src/app/models/chapter-section-paragraph';
+import { Story, Chapter, ChapterSection, Paragraph } from 'src/app/models/story';
 import { SettingsService } from 'src/app/services/settings.service';
 import { environment } from 'src/environments/environment';
 import { StoryService } from 'src/app/services/story.service';
@@ -18,7 +18,7 @@ export interface subStrings {
 })
 export class ParagraphComponent {
 
-  @Input() paragraph!: ChapterSectionParagraph;
+  @Input() paragraph!: Paragraph;
 
   private apiImage: string = environment.apiImage;
   subStrings: subStrings[] = [];

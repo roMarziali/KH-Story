@@ -1,14 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { SettingsService } from 'src/app/services/settings.service';
-import { Chapter } from 'src/app/models/chapter';
+import { Story, Chapter, ChapterSection, Paragraph } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StorySectionFormComponent } from './story-section-form/story-section-form.component';
 import { StoryParagraphFormComponent } from './story-paragraph-form/story-paragraph-form.component';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
-import { RawParagraph } from 'src/app/models/raw-section';
 import { Router } from '@angular/router';
 
 @Component({
@@ -103,7 +102,7 @@ export class StoryComponent {
   }
 
   openEditParagraphForm(sectionId: number, paragraphId: number) {
-    this.api.get(`story/paragraph/${this.chapterId}/${sectionId}/${paragraphId}`).subscribe((paragraph: RawParagraph) => {
+    this.api.get(`story/paragraph/${this.chapterId}/${sectionId}/${paragraphId}`).subscribe((paragraph: Paragraph) => {
       const textFormMetadata: TextFormMetadata = {
         chapterId: this.chapterId,
         sectionId,

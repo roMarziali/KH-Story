@@ -3,35 +3,10 @@
     padding-bottom : 1rem;
   }
 
-  .filter-large {
-    display: none;
-  }
-
-  .filter-small {
-    margin-bottom: 1rem;
-    display: inline-block;
-  }
-
-
-  .filter-small {
-    width: 100%;
-  }
-
   @media screen and (min-width: 850px) {
     main {
       margin-top: 1rem;
       display: flex;
-    }
-
-    .filter-large {
-      display: block;
-    }
-
-
-    #filters {
-      white-space: nowrap;
-      margin-right: 1rem;
-      position: fixed;
     }
 
     #story {
@@ -41,13 +16,4 @@
       max-width: 1200px;
     }
 
-    .filter-small {
-      display: none;
-    }
-
-    .filter-large {
-      margin-left: 1rem;
-      overflow-y: auto;
-      max-height: calc(100vh - 147px - 1rem);
-    }
   }

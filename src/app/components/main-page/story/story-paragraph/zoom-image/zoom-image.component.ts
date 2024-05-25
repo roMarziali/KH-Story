@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { Image } from 'src/app/models/chapter-section-paragraph';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Image } from 'src/app/models/story';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
 @Component({

@@ -34,7 +34,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { SettingsFiltersComponent } from './components/main-page/settings-filters/settings-filters.component';;
 import { StoryComponent } from './components/main-page/story/story.component';
 import { IconComponent } from './components/shared/icon/icon.component';
 import { ChaptersMenuComponent } from './components/header-page/chapters-menu/chapters-menu.component';
@@ -56,7 +55,6 @@ import { BibliographyComponent } from './components/bibliography/bibliography.co
     AppComponent,
     HeaderPageComponent,
     MainPageComponent,
-    SettingsFiltersComponent,
     StoryComponent,
     IconComponent,
     ChaptersMenuComponent,

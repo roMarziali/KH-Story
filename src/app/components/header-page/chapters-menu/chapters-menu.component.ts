@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
-import { Chapter } from 'src/app/models/chapter';
+import { Chapter } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChapterManagerComponent } from '../../chapter-manager/chapter-manager.component';
 import { MatDialog } from '@angular/material/dialog';
