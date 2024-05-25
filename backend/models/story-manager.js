@@ -40,7 +40,7 @@ module.exports = class StoryManager {
     const chapter = story.find(chapter => chapter.id === chapterId);
     const newSectionOrder = getOrderForElement(chapter, "sections", metaDataText.previousSectionId);
     incrementOrderForElement(chapter, "sections", newSectionOrder);
-    const id = getNextIdForElement(chapter, "sections");
+    const id = getNextIdForElement(chapter.sections);
     chapter.sections.push({
       order: newSectionOrder,
       title: title,
@@ -75,32 +75,31 @@ module.exports = class StoryManager {
 
   static async addParagraph(paragraph, metaDataText) {
     const story = await this.getStory();
-    for (const text of paragraph.texts) {
-      if (!text.image || !text.image.game || !text.image.alt || !text.image.name) delete text.image;
-    }
-    addOrderToTextsFromParagraph(paragraph);
     const chapterId = metaDataText.chapterId;
     const sectionId = metaDataText.sectionId;
     const section = story.find(chapter => chapter.id === chapterId).sections.find(section => section.id === sectionId);
-    const paragraphOrder = getOrderForElement(section, "paragraphs", metaDataText.previousParagraphId);
-    incrementOrderForElement(section, "paragraphs", paragraphOrder);
-    const paragraphId = getNextIdForElement(section, "paragraphs");
-    section.paragraphs.push({
-      order: paragraphOrder,
-      id: paragraphId,
-      texts: paragraph.texts
-    });
+    if (!this.areCompleteDataImage(paragraph)) delete paragraph.image;
+    paragraph.order = getOrderForElement(section, "paragraphs", metaDataText.previousParagraphId);
+    incrementOrderForElement(section, "paragraphs", paragraph.order);
+    paragraph.id = getNextIdForElement(section.paragraphs);
+    section.paragraphs.push(paragraph);
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
+  static areCompleteDataImage(paragraph) {
+    return (paragraph.image.game && paragraph.image.name && paragraph.image.alt);
+  }
+
   static async editParagraph(paragraph, chapterId, sectionId, paragraphId) {
-    for (const text of paragraph.texts) {
-      if (!text.image || !text.image.game || !text.image.alt || !text.image.name) delete text.image;
-    }
     const story = await this.getStory();
     const section = story.find(chapter => chapter.id == chapterId).sections.find(section => section.id == sectionId);
     const indexParagraphToEdit = section.paragraphs.findIndex(paragraph => paragraph.id == paragraphId);
-    section.paragraphs[indexParagraphToEdit].texts = paragraph.texts;
+    section.paragraphs[indexParagraphToEdit].text = paragraph.text;
+    if (this.areCompleteDataImage(paragraph)) {
+      section.paragraphs[indexParagraphToEdit].image = paragraph.image;
+    } else {
+      delete section.paragraphs[indexParagraphToEdit].image;
+    }
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
@@ -119,21 +118,17 @@ module.exports = class StoryManager {
   }
 
   static async getParagraph(chapterId, sectionId, paragraphId) {
-    chapterId = Number(chapterId);
-    sectionId = Number(sectionId);
-    paragraphId = Number(paragraphId);
     const story = await this.getStory();
-    const chapter = story.find(chapter => chapter.id === chapterId);
-    const section = chapter.sections.find(section => section.id === sectionId);
-    const paragraph = section.paragraphs.find(paragraph => paragraph.id === paragraphId);
-    return paragraph;
+    const chapter = story.find(chapter => chapter.id == chapterId);
+    const section = chapter.sections.find(section => section.id == sectionId);
+    return section.paragraphs.find(paragraph => paragraph.id == paragraphId);
   }
 
   static async updateChaptersMetadata(chaptersMetadata) {
     const story = await this.getStory();
     for (let i = 0; i < story.length; i++) {
-      const storyId = story[i].id;
-      const relatedChapterMetadata = chaptersMetadata.find(chapterMetadata => chapterMetadata.id === storyId);
+      const chapterId = story[i].id;
+      const relatedChapterMetadata = chaptersMetadata.find(chapterMetadata => chapterMetadata.id === chapterId);
       if (!relatedChapterMetadata) {
         story.splice(i, 1);
         i--;
@@ -142,12 +137,12 @@ module.exports = class StoryManager {
       story[i].title = relatedChapterMetadata.title;
       story[i].order = relatedChapterMetadata.order;
     }
-    for (let i = 0; i < chaptersMetadata.length; i++) {
-      const chapterMetadata = chaptersMetadata[i];
+    for (const chapterMetadata of chaptersMetadata) {
       const relatedChapter = story.find(chapter => chapter.id === chapterMetadata.id);
+      const id = getNextIdForElement(story);
       if (!relatedChapter) {
         story.push({
-          id: chapterMetadata.id,
+          id,
           title: chapterMetadata.title,
           order: chapterMetadata.order,
           sections: []
@@ -179,7 +174,7 @@ module.exports = class StoryManager {
     shartp(image.buffer).resize(500).toFile(path.join(imagePathResized, fileName));
   }
 
-  static getListImages(){
+  static getListImages() {
     const images = [];
     const games = fs.readdirSync(path.join(__dirname, `../public/images/original`));
     for (const game of games) {
@@ -217,17 +212,12 @@ function decrementOrderForElement(parent, childName, decrementFromThisOrderNumbe
 }
 
 
-function getNextIdForElement(parent, childName) {
+function getNextIdForElement(parent) {
   //Find the next available id for an element
-  let id = 1;
-  let validId = false;
-  while (!validId) {
-    validId = true;
-    for (let i = 0; i < parent[childName].length; i++) {
-      if (parent[childName][i].id === id) {
-        validId = false;
-        id++;
-      }
+  let id = parent.length + 1;
+  for (const element of parent) {
+    if (element.id >= id) {
+      id = element.id + 1;
     }
   }
   return id;
@@ -237,13 +227,5 @@ function getNextIdForElement(parent, childName) {
 function getOrderForElement(parent, childName, previousElementId) {
   if (previousElementId == 0) return 1;
   return parent[childName].find(element => element.id === previousElementId).order + 1;
-}
-
-function addOrderToTextsFromParagraph(paragraph) {
-  let i = 1;
-  paragraph.texts.forEach(element => {
-    element.order = i;
-    i++;
-  });
 }
 
