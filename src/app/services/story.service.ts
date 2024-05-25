@@ -21,7 +21,6 @@ export class StoryService {
     private router: Router, private authService: AuthService) {
     this.getStoryData();
     this.authService.changeAuthenticationStatus.subscribe(() => {
-      this.chapters.sort((a, b) => a.order - b.order);
       this.updatedStoryEvent.emit();
     });
   }
@@ -36,6 +35,7 @@ export class StoryService {
       // Récupération des chapitres après les annotations car les chapitres vont utiliser les annotations
       this.api.get('story/story').subscribe((data: Chapter[]) => {
         this.chapters = data;
+        this.formatStory();
         this.updatedStoryEvent.emit();
       });
     });
@@ -71,5 +71,15 @@ export class StoryService {
   changeChapter(newChapterOrder: number) {
     this.router.navigate(['/chapitre', newChapterOrder]);
     window.scrollTo(0, 0);
+  }
+
+  formatStory() {
+    this.chapters.sort((a, b) => a.order - b.order);
+    for (const chapter of this.chapters) {
+      chapter.sections.sort((a, b) => a.order - b.order);
+      for (const section of chapter.sections) {
+        section.paragraphs.sort((a, b) => a.order - b.order);
+      }
+    }
   }
 }

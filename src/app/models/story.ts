@@ -11,6 +11,7 @@ export interface Chapter {
 
 export interface ChapterSection {
   id: number,
+  order: number,
   title: string,
   paragraphs: Paragraph[]
 }
