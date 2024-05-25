@@ -2,6 +2,7 @@ p {
   line-height: 1.5em;
   text-align: justify;
   white-space: pre-line;
+  width : 98%;
 }
 
 .illustration-container {
@@ -15,7 +16,17 @@ sup {
   cursor: pointer;
 }
 
-@media screen and (max-width: 839.9px) {
+
+.illustration {
+  width: 480px;
+  height: 270px;
+}
+
+.caption {
+  width: 464px;
+}
+
+@media screen and (max-width: 600px) {
   .illustration {
     width: 320px;
     height: 180px;
@@ -23,17 +34,6 @@ sup {
 
   .caption {
     width: 304px;
-  }
-}
-
-@media screen and (min-width: 840px) {
-  .illustration {
-    width: 480px;
-    height: 270px;
-  }
-
-  .caption {
-    width: 464px;
   }
 }
 
@@ -49,7 +49,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .caption {
@@ -66,5 +66,5 @@ img {
 .annotated {
   text-decoration: underline;
   text-decoration-style: dotted;
-  text-underline-offset : 3px;
+  text-underline-offset: 3px;
 }
