@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-//const shartp = require('sharp');
+const shartp = require('sharp');
 
 const STORY_FILE_PATH = path.join(__dirname, '../data/story.json');
 const ANNOTATION_FILE_PATH = path.join(__dirname, '../data/annotations.json');
@@ -159,7 +159,6 @@ module.exports = class StoryManager {
   }
 
   static addImage(image, gameId) {
-    return false;
     const allowedExtensions = ['png'];
     const mimeType = image.mimetype.split('/')[1];
     if (!allowedExtensions.includes(mimeType)) {

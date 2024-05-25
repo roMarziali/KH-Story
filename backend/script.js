@@ -6,10 +6,13 @@ const story = JSON.parse(storyFile);
 for (const chapter of story) {
   for (const section of chapter.sections) {
     for (const paragraph of section.paragraphs) {
-      for (const text of paragraph.texts) {
-        const newRelatedTo = { 1: text.relatedTo, 2: [] };
-        text.relatedTo = newRelatedTo;
+      const texts = paragraph.texts;
+      const firstText = texts[0].text;
+      paragraph.text = firstText;
+      if (texts[0].image){
+        paragraph.image = texts[0].image;
       }
+      delete paragraph.texts;
     }
   }
 }
