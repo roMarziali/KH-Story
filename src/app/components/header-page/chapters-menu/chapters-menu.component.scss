@@ -12,12 +12,13 @@
   display: flex;
   align-items: center;
 
-  #chapter-button-txt {
-    height: 100%;
-  }
 }
 
-@media screen and (max-width: 600px){
+#chapter-button:hover {
+    color: #2585c9;
+}
+
+@media screen and (max-width: 600px) {
   #chapter-button-txt {
     display: none;
   }
