@@ -88,10 +88,10 @@ module.exports = class StoryManager {
 
   static deleteIncompleteImages(paragraph) {
     if (paragraph.images) {
-      for (const index in paragraph.images) {
-        const image = paragraph.images[index];
-        if (!this.areCompleteDataImage(image)){
-          paragraph.images.splice(index, 1);
+      for (let i = paragraph.images.length - 1; i >= 0; i--) {
+        const image = paragraph.images[i];
+        if (!this.areCompleteDataImage(image)) {
+          paragraph.images.splice(i, 1);
         }
       }
       if (!paragraph.images.length) delete paragraph.images;
@@ -108,7 +108,7 @@ module.exports = class StoryManager {
     const indexParagraphToEdit = section.paragraphs.findIndex(paragraph => paragraph.id == paragraphId);
     section.paragraphs[indexParagraphToEdit].text = paragraph.text;
     this.deleteIncompleteImages(paragraph);
-    if (paragraph.images){
+    if (paragraph.images) {
       section.paragraphs[indexParagraphToEdit].images = paragraph.images;
     } else {
       delete section.paragraphs[indexParagraphToEdit].images;
