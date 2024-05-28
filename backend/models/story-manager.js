@@ -90,7 +90,9 @@ module.exports = class StoryManager {
     if (paragraph.images) {
       for (const index in paragraph.images) {
         const image = paragraph.images[index];
-        if (!this.areCompleteDataImage(image)) delete paragraph.images[index];
+        if (!this.areCompleteDataImage(image)){
+          paragraph.images.splice(index, 1);
+        }
       }
       if (!paragraph.images.length) delete paragraph.images;
     }
