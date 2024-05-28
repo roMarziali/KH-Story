@@ -10,29 +10,18 @@ p {
   justify-content: center;
 }
 
-sup {
-  font-size: 0.7em;
-  cursor: pointer;
-}
-
-
 .illustration {
-  width: 480px;
-  height: 270px;
+  max-width: 480px;
+  margin : 2rem;
 }
 
-.caption {
-  width: 464px;
+.caption{
+  width : 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .illustration {
-    width: 320px;
-    height: 180px;
-  }
-
-  .caption {
-    width: 304px;
+   margin : 0.5rem;
   }
 }
 

@@ -7,12 +7,12 @@
     </ng-container>
   </p>
 
-  <div class="illustration-container">
-    <div class="illustration" *ngIf="paragraph.images">
-      <ng-container *ngFor="let image of paragraph.images">
+  <div class="illustration-container" *ngIf="paragraph.images">
+    <ng-container *ngFor="let image of paragraph.images">
+    <div class = "illustration">
         <img class="image" [src]="resizedImageSource(image)" [alt]="image.alt" (click)="openZoomImage(image)">
         <div class="caption">{{image.alt}}</div>
-      </ng-container>
     </div>
+  </ng-container>
   </div>
 </ng-container>
