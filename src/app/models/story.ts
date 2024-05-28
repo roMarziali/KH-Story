@@ -20,7 +20,7 @@ export interface Paragraph {
   id: number,
   order: number,
   text: string,
-  image?: Image
+  images?: Image[]
 }
 
 export interface Image {

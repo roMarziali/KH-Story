@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Story, Chapter, ChapterSection, Paragraph } from 'src/app/models/story';
+import { Story, Chapter, ChapterSection, Paragraph, Image } from 'src/app/models/story';
 import { SettingsService } from 'src/app/services/settings.service';
 import { environment } from 'src/environments/environment';
 import { StoryService } from 'src/app/services/story.service';
@@ -49,14 +49,13 @@ export class ParagraphComponent {
     this.subStrings.push({ text: mainString.slice(lastIndex) });
   }
 
-  get resizedImageSource(): string {
-    if (!this.paragraph.image) return "";
-    return `${this.apiImage}/resized/${this.paragraph.image.game}/${this.paragraph.image.name}`.toLowerCase();
+   resizedImageSource(image:Image): string {
+    return `${this.apiImage}/resized/${image.game}/${image.name}`.toLowerCase();
   }
 
-  openZoomImage() {
+  openZoomImage(image:Image) {
     this.dialog.open(ZoomImageComponent, {
-      data: { image: this.paragraph.image },
+      data: { image },
       panelClass: 'zoom-image-dialog',
     });
   }

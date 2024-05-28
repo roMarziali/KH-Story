@@ -16,45 +16,48 @@
       </div>
 
       <form [formGroup]="form" (ngSubmit)="onSubmitParagraph()">
-            <div>
+        <div>
 
+          <div>
+            <mat-form-field class="form-field__textarea">
+              <textarea matInput placeholder="Texte" formControlName="text" required rows="8"></textarea>
+            </mat-form-field>
+          </div>
+
+          <ng-container *ngFor="let image of images.controls, let i = index">
+            <div [formGroup]="image" class = "image-subform">
               <div>
-                <mat-form-field class="form-field__textarea">
-                  <textarea matInput placeholder="Texte" formControlName="text" required rows="8"></textarea>
+                <mat-form-field>
+                  <mat-label>Jeu de l'image {{i+1}}</mat-label>
+                  <mat-select formControlName="game">
+                    <mat-option *ngFor="let game of gamesWithImages" [value]="game.id">{{game.name}}</mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
+              <div>
+                <mat-form-field>
+                  <input matInput type="text" formControlName="name" placeholder="Nom de l'image  {{i+1}}" value=""
+                    [matAutocomplete]="auto">
 
-              <div formGroupName="image" class="image-subform">
-                <div>
-                  <mat-form-field>
-                    <mat-label>Jeu de l'image</mat-label>
-                    <mat-select formControlName="game">
-                      <mat-option *ngFor="let game of gamesWithImages" [value]="game.id">{{game.name}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div>
-                  <mat-form-field>
-                    <input matInput type="text" formControlName="name" placeholder="Nom de l'image" value=""
-                      [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let imageName of getImagesForSelectedGame(image)" [value]="imageName">
+                      {{imageName}}
+                    </mat-option>
+                  </mat-autocomplete>
 
-                    <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let image of getImagesForSelectedGame()"
-                        [value]="image">
-                        {{image}}
-                      </mat-option>
-                    </mat-autocomplete>
-
-                  </mat-form-field>
-                </div>
-                <div>
-                  <mat-form-field>
-                    <input matInput formControlName="alt" placeholder="Alt de l'image" value="">
-                  </mat-form-field>
-                </div>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <input matInput formControlName="alt" placeholder="Alt de l'image {{i+1}}" value="">
+                </mat-form-field>
               </div>
             </div>
-       <div>
+          </ng-container>
+
+        </div>
+
+        <div>
           <button mat-raised-button color="primary" (click)="onSubmitParagraph()">Sauvegarder</button>
           <button mat-raised-button mat-dialog-close>Annuler</button>
         </div>

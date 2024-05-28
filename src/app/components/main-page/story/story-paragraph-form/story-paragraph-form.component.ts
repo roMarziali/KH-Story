@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { TextFormMetadata } from 'src/app/models/text-form-identifier';
 import { ApiService } from 'src/app/services/api.service';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormArray, AbstractControl } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import games from 'src/assets/data/games.json';
 import { Story, Chapter, ChapterSection, Paragraph, Image } from 'src/app/models/story';
@@ -29,30 +29,43 @@ export class StoryParagraphFormComponent {
   gamesWithImages: { id: string, name: string }[] = [];
   form = new FormGroup({
     text: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    image: new FormGroup({
-      game: new FormControl('', [Validators.minLength(2)]),
-      name: new FormControl('', [Validators.minLength(3)]),
-      alt: new FormControl('', [Validators.minLength(3)]),
-    }),
+    images: new FormArray([])
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { textFormMetadata: TextFormMetadata, action: "adding" | "editing", paragraph: Paragraph },
     private dialog: MatDialog, private api: ApiService, public dialogRef: MatDialogRef<any>, private snackBar: MatSnackBar) {
     this.textFormMetadata = data.textFormMetadata;
     this.action = data.action;
+    this.addTwoImageGroupInForm();
     if (this.action == "editing" && data.paragraph) {
       this.paragraph = data.paragraph;
       this.form.get('text')?.setValue(data.paragraph.text);
-      if (data.paragraph.image) {
-        this.form.get('image')?.get('game')?.setValue(data.paragraph.image.game);
-        this.form.get('image')?.get('name')?.setValue(data.paragraph.image.name);
-        this.form.get('image')?.get('alt')?.setValue(data.paragraph.image.alt);
+      if (data.paragraph.images && data.paragraph.images.length) {
+        const imagesFormArray = this.form.get('images') as FormArray;
+        let index = 0;
+        for (const image of data.paragraph.images) {
+          imagesFormArray.controls[index].get('game')?.setValue(image.game);
+          imagesFormArray.controls[index].get('name')?.setValue(image.name);
+          imagesFormArray.controls[index].get('alt')?.setValue(image.alt);
+          index++;
+        }
       }
     }
   }
 
   ngOnInit() {
     this.getImageList();
+  }
+
+  addTwoImageGroupInForm(){
+    const imagesFormArray = this.form.get('images') as FormArray;
+    for (let i = 0; i < 2; i++) {
+      imagesFormArray.push(new FormGroup({
+        game: new FormControl(''),
+        name: new FormControl(''),
+        alt: new FormControl('')
+      }));
+    }
   }
 
   getImageList() {
@@ -71,7 +84,6 @@ export class StoryParagraphFormComponent {
         return;
       }
     }
-
 
     this.isLoading = true;
     if (this.action == "adding") {
@@ -107,6 +119,10 @@ export class StoryParagraphFormComponent {
     });
   }
 
+  get images() {
+    return this.form.controls.images;
+  }
+
   refreshGamesWithImages() {
     this.gamesWithImages = [];
     const gamesId: string[] = [];
@@ -120,10 +136,10 @@ export class StoryParagraphFormComponent {
     }
   }
 
-  getImagesForSelectedGame(): string[]{
-    const selectedGameForImage = this.form.get('image')?.get('game')?.value;
-    if (!selectedGameForImage) return [];
-    const imagesForSelectedGame = this.existingImages.filter((image) => image.game.toLowerCase() == selectedGameForImage.toLowerCase());
+  getImagesForSelectedGame(image: AbstractControl<any, any>): string[] {
+    const selectedGame = image.get('game')?.value;
+    if (!selectedGame) return [];
+    const imagesForSelectedGame = this.existingImages.filter((image) => image.game.toLowerCase() == selectedGame.toLowerCase());
     return imagesForSelectedGame.map((image) => image.name);
   }
 }
