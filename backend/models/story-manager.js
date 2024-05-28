@@ -78,7 +78,7 @@ module.exports = class StoryManager {
     const chapterId = metaDataText.chapterId;
     const sectionId = metaDataText.sectionId;
     const section = story.find(chapter => chapter.id === chapterId).sections.find(section => section.id === sectionId);
-    if (!this.areCompleteDataImage(paragraph)) delete paragraph.image;
+    this.deleteIncompleteImages(paragraph);
     paragraph.order = getOrderForElement(section, "paragraphs", metaDataText.previousParagraphId);
     incrementOrderForElement(section, "paragraphs", paragraph.order);
     paragraph.id = getNextIdForElement(section.paragraphs);
@@ -86,8 +86,18 @@ module.exports = class StoryManager {
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
 
-  static areCompleteDataImage(paragraph) {
-    return (paragraph.image.game && paragraph.image.name && paragraph.image.alt);
+  static deleteIncompleteImages(paragraph) {
+    if (paragraph.images) {
+      for (const index in paragraph.images) {
+        const image = paragraph.images[index];
+        if (!this.areCompleteDataImage(image)) delete paragraph.images[index];
+      }
+      if (!paragraph.images.length) delete paragraph.images;
+    }
+  }
+
+  static areCompleteDataImage(image) {
+    return (image.game && image.name && image.alt);
   }
 
   static async editParagraph(paragraph, chapterId, sectionId, paragraphId) {
@@ -95,10 +105,11 @@ module.exports = class StoryManager {
     const section = story.find(chapter => chapter.id == chapterId).sections.find(section => section.id == sectionId);
     const indexParagraphToEdit = section.paragraphs.findIndex(paragraph => paragraph.id == paragraphId);
     section.paragraphs[indexParagraphToEdit].text = paragraph.text;
-    if (this.areCompleteDataImage(paragraph)) {
-      section.paragraphs[indexParagraphToEdit].image = paragraph.image;
+    this.deleteIncompleteImages(paragraph);
+    if (paragraph.images){
+      section.paragraphs[indexParagraphToEdit].images = paragraph.images;
     } else {
-      delete section.paragraphs[indexParagraphToEdit].image;
+      delete section.paragraphs[indexParagraphToEdit].images;
     }
     fs.writeFileSync(STORY_FILE_PATH, JSON.stringify(story));
   }
