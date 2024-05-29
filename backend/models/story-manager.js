@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const shartp = require('sharp');
+
+const parentDirectory = path.join(__dirname, '../../../');;
+const parentComposant = parentDirectory.split('\\'); // On bloque si on n'est pas sur la version locale parce que la version Node de l'hébergeur ne gère pas encore sharp
+const isLocaleVersion = parentComposant[parentComposant.length - 2] === 'Programmation';
+if (isLocaleVersion) {
+  const shartp = require('sharp');
+}
 
 const STORY_FILE_PATH = path.join(__dirname, '../data/story.json');
 const ANNOTATION_FILE_PATH = path.join(__dirname, '../data/annotations.json');
@@ -167,6 +173,7 @@ module.exports = class StoryManager {
   }
 
   static addImage(image, gameId) {
+    if (!isLocaleVersion) return;
     const allowedExtensions = ['png'];
     const mimeType = image.mimetype.split('/')[1];
     if (!allowedExtensions.includes(mimeType)) {
