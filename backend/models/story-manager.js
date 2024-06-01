@@ -4,8 +4,9 @@ const path = require('path');
 const parentDirectory = path.join(__dirname, '../../../');;
 const parentComposant = parentDirectory.split('\\'); // On bloque si on n'est pas sur la version locale parce que la version Node de l'hébergeur ne gère pas encore sharp
 const isLocaleVersion = parentComposant[parentComposant.length - 2] === 'Programmation';
+let shartp;
 if (isLocaleVersion) {
-  const shartp = require('sharp');
+   shartp = require('sharp');
 }
 
 const STORY_FILE_PATH = path.join(__dirname, '../data/story.json');
