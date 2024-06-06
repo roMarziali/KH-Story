@@ -4,9 +4,9 @@ const path = require('path');
 const parentDirectory = path.join(__dirname, '../../../');;
 const parentComposant = parentDirectory.split('\\'); // On bloque si on n'est pas sur la version locale parce que la version Node de l'hébergeur ne gère pas encore sharp
 const isLocaleVersion = parentComposant[parentComposant.length - 2] === 'Programmation';
-let shartp;
+let sharp;
 if (isLocaleVersion) {
-   shartp = require('sharp');
+   sharp = require('sharp');
 }
 
 const STORY_FILE_PATH = path.join(__dirname, '../data/story.json');
@@ -191,7 +191,7 @@ module.exports = class StoryManager {
       fs.mkdirSync(imagePathResized);
     }
     fs.writeFileSync(path.join(imagePath, fileName), image.buffer);
-    shartp(image.buffer).resize(500).toFile(path.join(imagePathResized, fileName));
+    sharp(image.buffer).resize(500).toFile(path.join(imagePathResized, fileName));
   }
 
   static getListImages() {
