@@ -5,8 +5,6 @@ const checkAuth = require("../middleware/check-auth");
 const InformationManager = require("../models/information-manager");
 const multer = require("multer");
 const upload = multer();
-const path = require("path");
-const fs = require("fs");
 
 router.get("/story", async (req, res, next) => {
   const story = await StoryManager.getStory();
