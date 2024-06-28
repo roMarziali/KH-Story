@@ -15,7 +15,7 @@ export class HeaderPageComponent {
   displaySettingsMenu: boolean = false;
 
   constructor(public settingsService: SettingsService, private matDialog: MatDialog, private authService: AuthService,
-    private informationService : InformationService) { }
+    private informationService: InformationService) { }
 
   openLoginDialog() {
     this.matDialog.open(LoginComponent, {});
@@ -36,4 +36,5 @@ export class HeaderPageComponent {
   openIntroDialog() {
     this.informationService.openIntroDialog();
   }
+
 }

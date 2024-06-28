@@ -1,6 +1,6 @@
-  main {
-    margin-left : auto;
-    margin-right : auto;
+  .main-container {
+    margin-left: auto;
+    margin-right: auto;
     padding: 1rem;
     max-width: 1200px;
   }
@@ -9,5 +9,17 @@
     main {
       padding: 0;
     }
+  }
 
+  @media screen and (max-width: 400px) {
+    #link-to-comments-container {
+      display: none;
+    }
+  }
+
+  #link-to-comments-container {
+    margin-left: 1rem;
+    position: sticky;
+    top: 150px;
+    max-height: 200px;
   }

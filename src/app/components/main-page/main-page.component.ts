@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent {
-
-
+  goToCommentsSection() {
+    const commentsSection = document.getElementById('comments');
+    if (commentsSection) commentsSection.scrollIntoView({ behavior: 'smooth' });
+  }
 }

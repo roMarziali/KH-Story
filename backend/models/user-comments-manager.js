@@ -31,6 +31,8 @@ const antispamQuestions = [
   },
 ]
 
+const path = require('path');
+const fs = require('fs');
 const USER_COMMENTS_FILE_PATH = path.join(__dirname, '../data/user-comments.json');
 
 module.exports = class UserCommentsManager {

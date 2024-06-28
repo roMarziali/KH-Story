@@ -1,3 +1,11 @@
-<main>
-  <app-story id="story"></app-story>
-</main>
+<div class="main-container" style="display : flex;">
+  <main>
+    <div>
+      <app-story id="story"></app-story>
+      <app-user-comments id="comments"></app-user-comments>
+    </div>
+  </main>
+  <div id = "link-to-comments-container">
+    <button mat-fab (click)="goToCommentsSection()"><mat-icon>comment</mat-icon></button>
+  </div>
+</div>
