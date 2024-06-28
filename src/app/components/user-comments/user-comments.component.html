@@ -1,1 +1,33 @@
-<p>user-comments works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div>Commentaires</div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="addComment()">
+
+      <div class="form-group">
+        <mat-form-field class="form-field__string">
+          <input matInput placeholder="Pseudonyme" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Email (optionnel)" formControlName="email">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="form-field__textarea">
+          <textarea matInput
+            placeholder="N'hésitez pas à faire part de vos suggestions ou de vos remarques, que ce soit sur l'écriture, le nombre de captures d'écran, le niveau de précision du résumé... Soyez juste constructif !"
+            formControlName="comment" maxlength="1000" rows="5"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button type="submit" color="primary">Poster</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -72,6 +72,9 @@ module.exports = class UserCommentsManager {
       return [];
     }
     const userComments = JSON.parse(fs.readFileSync(USER_COMMENTS_FILE_PATH, 'utf8'));
+    for (const comment of userComments) {
+      if (comment.email) delete comment.email;
+    }
     return userComments;
   }
 
