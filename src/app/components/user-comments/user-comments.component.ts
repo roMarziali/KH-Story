@@ -79,6 +79,21 @@ export class UserCommentsComponent {
   refreshComments() {
     this.apiService.get('user-comments/comments').subscribe((result) => {
       this.comments = result;
+      this.comments.sort((a, b) => a.date > b.date ? -1 : 1);
+    });
+  }
+
+  get isAuthenticated() {
+    return this.authService.isAuthenticated;
+  }
+
+  removeComment(comment: UserComment) {
+    if (!confirm("Supprimer ce commentaire ?")) return;
+    this.apiService.delete(`user-comments/comment/${comment.id}`).subscribe((result) => {
+      if (result.status !== "ok") alert(result.message);
+      if (result.status === "ok") {
+        this.refreshComments();
+      }
     });
   }
 }

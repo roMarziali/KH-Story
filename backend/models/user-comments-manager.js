@@ -55,7 +55,7 @@ module.exports = class UserCommentsManager {
       return { status: "error", message: "Fichier de commentaires inexistants" };
     }
     const userComments = JSON.parse(fs.readFileSync(USER_COMMENTS_FILE_PATH, 'utf8'));
-    const index = userComments.findIndex(comment => comment.id === commentId);
+    const index = userComments.findIndex(comment => Number(comment.id) === Number(commentId));
     if (index === -1) {
       return { status: "error", message: "Commentaire inexistant" };
     }

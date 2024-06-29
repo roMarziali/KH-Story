@@ -21,7 +21,8 @@ router.post("/admin-comment", checkAuth, async (req, res, next) => {
 });
 
 router.delete("/comment/:commentId", checkAuth, async (req, res, next) => {
-  UserCommentsManager.deleteUserComment(req.params.commentId);
+  const response = await UserCommentsManager.deleteUserComment(req.params.commentId);
+  res.json(response);
 });
 
 router.get("/antispam-question", async (req, res, next) => {
@@ -31,7 +32,7 @@ router.get("/antispam-question", async (req, res, next) => {
 
 module.exports = router;
 
-function formatBody(body){
+function formatBody(body) {
   const user = {
     name: body.name,
   }
