@@ -51,7 +51,8 @@ module.exports = class UserCommentsManager {
   }
 
   static async deleteUserComment(commentId) {
-    if (!this.testIfUserCommentsFileExists()) {
+    existsFile = fs.existsSync(USER_COMMENTS_FILE_PATH);
+    if (!existsFile) {
       return { status: "error", message: "Fichier de commentaires inexistants" };
     }
     const userComments = JSON.parse(fs.readFileSync(USER_COMMENTS_FILE_PATH, 'utf8'));
@@ -65,7 +66,8 @@ module.exports = class UserCommentsManager {
   }
 
   static async getComments() {
-    if (!this.testIfUserCommentsFileExists()) {
+    existsFile = fs.existsSync(USER_COMMENTS_FILE_PATH);
+    if (!existsFile) {
       return [];
     }
     const commentsToReturn = [];
