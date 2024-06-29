@@ -9,19 +9,15 @@ router.get("/comments", async (req, res, next) => {
 });
 
 router.post("/comment", async (req, res, next) => {
-  console.log(req.body);
-  /*const user = req.body.user;
-  const comment = req.body.comment;
-  const antispamAnswer = req.body.antispamAnswer;
-  UserCommentsManager.recordComment(user, comment, antispamAnswer);
-  */res.json({ status: "ok" });
+  const { user, comment, antiSpam } = formatBody(req.body);
+  const response = await UserCommentsManager.recordComment(user, comment, antiSpam);
+  res.json(response);
 });
 
 router.post("/admin-comment", checkAuth, async (req, res, next) => {
-  const user = req.body.user;
-  const comment = req.body.comment;
-  const antispamAnswer = req.body.antispamAnswer;
-  UserCommentsManager.recordComment(user, comment, antispamAnswer, true);
+  const { user, comment, antiSpam } = formatBody(req.body);
+  const response = await UserCommentsManager.recordComment(user, comment, antiSpam, true);
+  res.json(response);
 });
 
 router.delete("/comment/:commentId", checkAuth, async (req, res, next) => {
@@ -34,3 +30,16 @@ router.get("/antispam-question", async (req, res, next) => {
 });
 
 module.exports = router;
+
+function formatBody(body){
+  const user = {
+    name: body.name,
+  }
+  if (body.email) user.email = body.email;
+  const comment = body.comment;
+  const antiSpam = {
+    id: body.antiSpamId,
+    answer: body.antiSpamAnswer
+  }
+  return { user, comment, antiSpam };
+}

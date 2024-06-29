@@ -24,11 +24,15 @@ export class UserCommentsComponent {
   constructor(private apiService: ApiService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.getAntiSpamQuestion();
+    this.refreshComments();
+  }
+
+  getAntiSpamQuestion() {
     this.apiService.get('user-comments/antispam-question').subscribe((result) => {
       this.antiSpamQuestion = result.question;
       this.form.get('antiSpamId')?.setValue(result.id);
     });
-    this.refreshComments();
   }
 
   addComment() {
@@ -40,10 +44,14 @@ export class UserCommentsComponent {
     }
 
     this.apiService.post(path, this.form.value).subscribe((result) => {
-      if (result.error) alert(result.error);
-      if (result.sent) {
+      if (result.status !== "ok") alert(result.message);
+      if (result.status === "ok") {
         this.form.reset();
         this.refreshComments();
+        this.getAntiSpamQuestion();
+        Object.keys(this.form.controls).forEach(key => {
+          this.form.get(key)?.setErrors(null);
+        });
       }
     });
   }

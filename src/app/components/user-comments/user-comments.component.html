@@ -9,11 +9,13 @@
 
       <div class="form-group">
         <mat-form-field class="form-field__string">
+          <mat-label>Pseudonyme</mat-label>
           <input matInput placeholder="Pseudonyme" formControlName="name">
           <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessage('name')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>Email (optionnel)</mat-label>
           <input matInput placeholder="Email (optionnel)" formControlName="email">
           <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage('email')}}</mat-error>
         </mat-form-field>
@@ -33,7 +35,7 @@
         <input type="hidden" formControlName="antiSpamId">
         <p>Anti-spam : {{antiSpamQuestion}}
           <mat-form-field id="form-field__anti-spam">
-            <input matInput formControlName="antiSpamAnswer">
+            <input matInput formControlName="antiSpamAnswer" maxlength="20">
             <mat-error *ngIf="form.controls.antiSpamAnswer.invalid">{{getErrorMessage('antiSpamAnswer')}}</mat-error>
           </mat-form-field>
         </p>
