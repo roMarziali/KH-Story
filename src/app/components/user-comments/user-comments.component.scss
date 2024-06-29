@@ -11,5 +11,31 @@
 
 #form-field__anti-spam {
   margin-left: 1rem;
-  width : 250px;
+  width: 250px;
+}
+
+form {
+  margin-bottom: 1rem;
+}
+
+#comments {
+
+  mat-icon {
+    transform: scale(0.7);
+    vertical-align: bottom;
+  }
+
+  .comment {
+    margin-bottom: 1rem;
+  }
+
+  .comment__header {
+    line-height: 1.5rem;
+    font-style: italic;
+
+    &__name {
+      text-decoration: underline;
+    }
+  }
+
 }

@@ -2,10 +2,9 @@ const fs = require("fs");
 const backupDir = "./backup";
 const dataDir = "./data";
 const crypto = require('crypto');
-const { has } = require("config");
 
 exports.backup = async function () {
-  const filesToBakcup = ["annotations", "story"]
+  const filesToBakcup = ["annotations", "story", "user-comments"]
   for (const fileName of filesToBakcup) {
     backupFile(fileName);
   }

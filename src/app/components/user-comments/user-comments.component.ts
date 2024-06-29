@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserComment } from './user-comment.interface';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class UserCommentsComponent {
   });
 
   antiSpamQuestion!: string;
+  comments: UserComment[] = [];
 
   constructor(private apiService: ApiService, private authService: AuthService) { }
 
@@ -75,6 +77,8 @@ export class UserCommentsComponent {
   }
 
   refreshComments() {
-
+    this.apiService.get('user-comments/comments').subscribe((result) => {
+      this.comments = result;
+    });
   }
 }

@@ -1,6 +1,7 @@
 export interface UserComment {
   id: number;
-  userName?: string;
+  userName: string;
   comment: string;
   date: Date;
+  isAdministrator?: boolean;
 }

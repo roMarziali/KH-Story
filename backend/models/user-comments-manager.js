@@ -68,11 +68,19 @@ module.exports = class UserCommentsManager {
     if (!this.testIfUserCommentsFileExists()) {
       return [];
     }
+    const commentsToReturn = [];
     const userComments = JSON.parse(fs.readFileSync(USER_COMMENTS_FILE_PATH, 'utf8'));
     for (const comment of userComments) {
-      if (comment.email) delete comment.email;
+      const commentToReturn = {
+        id: comment.id,
+        userName: comment.user.name,
+        comment: comment.comment,
+        date: comment.date
+      };
+      if (comment.isAdministrator) commentToReturn.isAdministrator = true;
+      commentsToReturn.push(commentToReturn);
     }
-    return userComments;
+    return commentsToReturn;
   }
 
   static async createUserCommentsFileIfNotExists() {
