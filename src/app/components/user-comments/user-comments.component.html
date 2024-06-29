@@ -10,10 +10,12 @@
       <div class="form-group">
         <mat-form-field class="form-field__string">
           <input matInput placeholder="Pseudonyme" formControlName="name">
+          <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessage('name')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Email (optionnel)" formControlName="email">
+          <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage('email')}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -22,6 +24,8 @@
           <textarea matInput
             placeholder="N'hésitez pas à faire part de vos suggestions ou de vos remarques, que ce soit sur l'écriture, le nombre de captures d'écran, le niveau de précision du résumé... Soyez juste constructif !"
             formControlName="comment" maxlength="1000" rows="5"></textarea>
+          <mat-hint align="end">{{form.controls.comment.value?.length}}/1000</mat-hint>
+          <mat-error *ngIf="form.controls.comment.invalid">{{getErrorMessage('comment')}}</mat-error>
         </mat-form-field>
       </div>
 
