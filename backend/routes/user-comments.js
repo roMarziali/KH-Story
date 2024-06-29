@@ -8,12 +8,13 @@ router.get("/comments", async (req, res, next) => {
   res.send(comments);
 });
 
-router.post("/user-comment", async (req, res, next) => {
-  const user = req.body.user;
+router.post("/comment", async (req, res, next) => {
+  console.log(req.body);
+  /*const user = req.body.user;
   const comment = req.body.comment;
   const antispamAnswer = req.body.antispamAnswer;
   UserCommentsManager.recordComment(user, comment, antispamAnswer);
-  res.json({ status: "ok" });
+  */res.json({ status: "ok" });
 });
 
 router.post("/admin-comment", checkAuth, async (req, res, next) => {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Story, Chapter, ChapterSection, Paragraph, Image } from 'src/app/models/story';
+import { Paragraph, Image } from 'src/app/models/story';
 import { SettingsService } from 'src/app/services/settings.service';
 import { environment } from 'src/environments/environment';
 import { StoryService } from 'src/app/services/story.service';

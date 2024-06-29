@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-user-comments',
@@ -9,26 +11,39 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class UserCommentsComponent {
 
-  displayError = false;
   form = new FormGroup({
     comment: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(1100)]),
     name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     email: new FormControl('', [Validators.email]),
+    antiSpamId: new FormControl(''),
+    antiSpamAnswer: new FormControl('', [Validators.required]),
   });
 
-  constructor(private apiService: ApiService) { }
+  antiSpamQuestion!: string;
+
+  constructor(private apiService: ApiService, private authService: AuthService) { }
+
+  ngOnInit() {
+    this.apiService.get('user-comments/antispam-question').subscribe((result) => {
+      this.antiSpamQuestion = result.question;
+      this.form.get('antiSpamId')?.setValue(result.id);
+    });
+    this.refreshComments();
+  }
 
   addComment() {
-    if (!this.form.valid) {
-      return;
+    if (!this.form.valid) return;
+
+    let path = "user-comments/comment";
+    if (this.authService.isAuthenticated) {
+      path = "user-comments/admin-comment";
     }
-    this.apiService.post('user-comments/comments', this.form.value).subscribe((result) => {
-      if (result.error) {
-        alert(result.error);
-      }
+
+    this.apiService.post(path, this.form.value).subscribe((result) => {
+      if (result.error) alert(result.error);
       if (result.sent) {
-        console.log("Comment added successfully");
         this.form.reset();
+        this.refreshComments();
       }
     });
   }
@@ -49,5 +64,9 @@ export class UserCommentsComponent {
       return 'Adresse email invalide';
     }
     return "";
+  }
+
+  refreshComments() {
+
   }
 }

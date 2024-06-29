@@ -22,11 +22,22 @@
       <div>
         <mat-form-field class="form-field__textarea">
           <textarea matInput
-            placeholder="N'hésitez pas à faire part de vos suggestions ou de vos remarques, que ce soit sur l'écriture, le nombre de captures d'écran, le niveau de précision du résumé... Soyez juste constructif !"
+            placeholder="N'hésitez pas à faire part de vos corrections, suggestions ou de vos remarques, que ce soit sur l'écriture, le nombre de captures d'écran, le niveau de précision du résumé... Soyez juste constructif !"
             formControlName="comment" maxlength="1000" rows="5"></textarea>
           <mat-hint align="end">{{form.controls.comment.value?.length}}/1000</mat-hint>
           <mat-error *ngIf="form.controls.comment.invalid">{{getErrorMessage('comment')}}</mat-error>
         </mat-form-field>
+      </div>
+
+      <div>
+        <input type="hidden" formControlName="antiSpamId">
+        <p>Anti-spam : {{antiSpamQuestion}}
+          <mat-form-field id="form-field__anti-spam">
+            <input matInput formControlName="antiSpamAnswer">
+            <mat-error *ngIf="form.controls.antiSpamAnswer.invalid">{{getErrorMessage('antiSpamAnswer')}}</mat-error>
+          </mat-form-field>
+        </p>
+
       </div>
 
       <div>

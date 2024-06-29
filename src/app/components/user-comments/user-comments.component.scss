@@ -5,6 +5,11 @@
 .form-group {
   mat-form-field {
     margin-right: 1rem;
-    width : 300px;
+    width: 300px;
   }
+}
+
+#form-field__anti-spam {
+  margin-left: 1rem;
+  width : 250px;
 }

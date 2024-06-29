@@ -21,11 +21,6 @@ const antispamQuestions = [
   },
   {
     id: 5,
-    question: "Kingdom Hearts a été créé par Tetsuya ...",
-    answer: "nomura"
-  },
-  {
-    id: 6,
     question: "Le meilleur ami de Sora s'appelle ...",
     answer: "riku"
   },
@@ -37,9 +32,7 @@ const USER_COMMENTS_FILE_PATH = path.join(__dirname, '../data/user-comments.json
 
 module.exports = class UserCommentsManager {
 
-
-
-  recordComment(user, comment, antispamAnswer, isAdministrator = false) {
+  static async recordComment(user, comment, antispamAnswer, isAdministrator = false) {
     if (!this.testIfUserCommentsFileExists()) {
       this.createUserCommentsFile();
     }
@@ -54,7 +47,7 @@ module.exports = class UserCommentsManager {
     fs.writeFileSync(USER_COMMENTS_FILE_PATH, JSON.stringify(userComments));
   }
 
-  deleteUserComment(commentId) {
+  static async deleteUserComment(commentId) {
     if (!this.testIfUserCommentsFileExists()) {
       return { status: "error", message: "Fichier de commentaires inexistants" };
     }
@@ -67,7 +60,7 @@ module.exports = class UserCommentsManager {
     fs.writeFileSync(USER_COMMENTS_FILE_PATH, JSON.stringify(userComments));
   }
 
-  getComments() {
+  static async getComments() {
     if (!this.testIfUserCommentsFileExists()) {
       return [];
     }
@@ -78,15 +71,15 @@ module.exports = class UserCommentsManager {
     return userComments;
   }
 
-  createUserCommentsFile() {
+  static async createUserCommentsFile() {
     fs.writeFileSync(USER_COMMENTS_FILE_PATH, JSON.stringify([]));
   }
 
-  testIfUserCommentsFileExists() {
+  static async testIfUserCommentsFileExists() {
     return fs.existsSync(USER_COMMENTS_FILE_PATH);
   }
 
-  getAntispamQuestion() {
+  static getAntispamQuestion() {
     const randomIndex = Math.floor(Math.random() * antispamQuestions.length);
     const question = antispamQuestions[randomIndex];
     return { id: question.id, question: question.question };
