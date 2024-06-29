@@ -9,10 +9,10 @@
 
   <div class="illustration-container" *ngIf="paragraph.images" [ngClass]="{'double-image': paragraph.images.length >1}">
     <ng-container *ngFor="let image of paragraph.images">
-    <div class = "illustration">
-        <img class="image" [src]="resizedImageSource(image)" [alt]="image.alt" (click)="openZoomImage(image)">
+      <div class="illustration"><img class="image" [src]="resizedImageSource(image)" [alt]="image.alt"
+          (click)="openZoomImage(image)">
         <div class="caption">{{image.alt}}</div>
-    </div>
-  </ng-container>
+      </div>
+    </ng-container>
   </div>
 </ng-container>

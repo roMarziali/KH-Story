@@ -12,11 +12,10 @@ p {
 
 .illustration {
   max-width: 480px;
+  padding : 0;
   margin: 2rem;
   position: relative;
-  border: 1px solid rgb(0, 0, 0);
-  border-top-right-radius: 3%;
-  border-top-left-radius: 3%;
+  line-height : 0;
 }
 
 
