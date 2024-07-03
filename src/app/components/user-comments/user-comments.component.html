@@ -13,12 +13,6 @@
           <input matInput placeholder="Pseudonyme" formControlName="name">
           <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessage('name')}}</mat-error>
         </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Email (optionnel)</mat-label>
-          <input matInput placeholder="Email (optionnel)" formControlName="email">
-          <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage('email')}}</mat-error>
-        </mat-form-field>
       </div>
 
       <div>

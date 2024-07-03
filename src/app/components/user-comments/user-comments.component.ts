@@ -15,7 +15,6 @@ export class UserCommentsComponent {
   form = new FormGroup({
     comment: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(1100)]),
     name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
-    email: new FormControl('', [Validators.email]),
     antiSpamId: new FormControl(''),
     antiSpamAnswer: new FormControl('', [Validators.required]),
   });
@@ -69,9 +68,6 @@ export class UserCommentsComponent {
     }
     if (control.hasError('maxlength')) {
       return `Au plus ${control.getError('maxlength').requiredLength} caractères attendus`;
-    }
-    if (control.hasError('email')) {
-      return 'Adresse email invalide';
     }
     return "";
   }

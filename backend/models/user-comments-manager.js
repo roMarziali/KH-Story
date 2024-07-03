@@ -37,7 +37,6 @@ module.exports = class UserCommentsManager {
 
     if (!checkAntispamAnswer(antispamAnswer)) return { status: "error", message: "Mauvaise réponse à la question anti-spam" };
     if (!user.name || user.name.length > 50) return { status: "error", message: "Nom invalide" };
-    if (user.email && user.email.length > 100) return { status: "error", message: "Email invalide" };
     if (!comment || comment.length > 1100) return { status: "error", message: "Commentaire invalide" };
     if (!antispamAnswer.id || !antispamAnswer.answer) return { status: "error", message: "Réponse anti-spam invalide" };
     const userComments = JSON.parse(fs.readFileSync(USER_COMMENTS_FILE_PATH, 'utf8'));
